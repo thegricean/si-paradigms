@@ -2,7 +2,7 @@
 
 ## Goal
 
-Investigate various dependent measures that have been used to measure scalar implicatures to try to understand what exactly is being measured, by specifying explicit linking functions between RSA and the dependent measures.
+**Investigate various dependent measures that have been used to measure scalar implicatures to try to understand what exactly is being measured, by specifying explicit linking functions between RSA and the dependent measures.**
 
 Write up the results for the Frontiers special issue:
 
