@@ -19,6 +19,25 @@ function random(a,b) {
   }
 }
 
+// Remove Option Redundancy 
+function options() {
+  var ages = document.getElementById("age");
+  var max  = 90;
+  for (i = 18; i < max; i++) {
+    var option = new Option(String(i), i);
+    ages.options.add(option);
+  }
+}
+
+// Randomize Radio Buttons 
+function createRadioButtons() {
+  var choice = random(3);
+  var radios = document.getElementsByName(String(choice))
+  for (i = 0; i < radios.length; i++) {
+    radios[i].style.visibility = 'visible'
+  }
+}
+
 // Add a random selection function to all arrays (e.g., <code>[4,8,7].random()</code> could return 4, 8, or 7). This is useful for condition randomization.
 Array.prototype.random = function() {
   return this[random(this.length)];
@@ -56,6 +75,17 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+// Select 6 Random Trials, one frome each 
+function randomTrials(trials){
+  var keys = Object.keys(trials)
+  var shuf = shuffle(keys)
+  var output = []
+  for (i = 0; i < shuf.length; i++) {
+    output.push(Object.values(trials[shuf[i]])[0])
+  }
+  return output
 }
 
 // from: http://www.sitepoint.com/url-parameters-jquery/
