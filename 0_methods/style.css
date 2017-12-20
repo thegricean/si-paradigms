@@ -85,7 +85,16 @@ button[disabled] {
   border-left: 1px solid #e0e0e0;
   cursor: not-allowed;
 }
+.slidecontainer {
+    margin-left: auto !important;
+    margin-right: auto;
+    width: 75%; /* Width of the outside container */
+}
 
+/* The slider itself */
+.slider {
+    width: 100% !important; /* Full-width */
+}
 
 /* ## Experiment-specific styles */
 /* This stuff will vary by experiment. */

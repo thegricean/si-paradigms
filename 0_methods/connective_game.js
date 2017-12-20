@@ -29,10 +29,14 @@ function options() {
   }
 }
 
+var choice = random(5);
+
 // Randomize Radio Buttons 
 function createRadioButtons() {
-  var choice = random(3);
-  var radios = document.getElementsByName(String(choice))
+  var radios = Array.from(document.getElementsByName(String(choice)))
+  if (choice == 3 || choice == 4) {
+    radios.push(document.getElementsByName('slider' + choice)[0])
+  }
   for (i = 0; i < radios.length; i++) {
     radios[i].style.visibility = 'visible'
   }
@@ -77,13 +81,17 @@ function shuffle(array) {
   return array;
 }
 
-// Select 6 Random Trials, one frome each 
+// Select 24 Random Trials, three frome each 
 function randomTrials(trials){
   var keys = Object.keys(trials)
   var shuf = shuffle(keys)
   var output = []
   for (i = 0; i < shuf.length; i++) {
-    output.push(Object.values(trials[shuf[i]])[0])
+    var vals = Object.values(trials[shuf[i]])
+    var shuf2 = shuffle(vals)
+    output.push(shuf2[0])
+    output.push(shuf2[1])
+    output.push(shuf2[2])
   }
   return output
 }
@@ -101,7 +109,7 @@ $.urlParam = function(name){
 // -------------------------- Conditions and Trial Order -----------------------------------//
 
 var trials = {
-    training: ["training_dog_animal","dog.jpg", "There is an animal!", "X.A"],    
+    // training: ["training_dog_animal","dog.jpg", "There is an animal!", "X.A"],    
     X_X: {X_X_dog: ["X.X_dog","dog.jpg", "Bob: There is a dog!"],
           X_X_cat: ["X.X_cat","cat.jpg", "Bob: There is a cat!"],
           X_X_ele: ["X.X_ele","ele.jpg", "Bob: There is an elephant!"]},
@@ -147,11 +155,11 @@ var trials = {
         X_XandY_ele_dogele: ["X_XandY_ele_dogele","ele.jpg", "Bob: There is a dog and an elephant!"]}
 }
 
-var sample = [trials.X_X.X_X_cat, trials.X_X.X_X_dog, trials.X_X.X_X_ele]
+// var sample = [trials.X_X.X_X_cat, trials.X_X.X_X_dog, trials.X_X.X_X_ele]
 
-var rsample = shuffle(sample)
+var rsample = randomTrials(trials);
 
-var totalTrials = sample.length;
+var totalTrials = rsample.length;
 
 // ############################## The Experiment Code and Functions ##############################
 
@@ -196,9 +204,19 @@ var experiment = {
       var response_logged = false;
       var elapsed = Date.now() - experiment.start_ms;
 
-      //Array of radio buttons
-      var radio = document.getElementsByName("judgment");
+      if (choice < 3) {
+        var radios = [];
+        var initial = document.getElementsByName(String(choice));
+        for (i = 0; i < initial.length; i++) {
+          radios.push(initial[i].childNodes[0])
+        }
+      } else {
+        var slider = document.getElementsByName('slider' + choice)[0]
+      }
 
+      //Array of radio buttons
+      var radio = document.getElementsByName("3");
+      console.log(radio)
       // Loop through radio buttons
       for (i = 0; i < radio.length; i++) {
         if (radio[i].checked) {
@@ -226,7 +244,7 @@ var experiment = {
                '</font>');
       }
     
-    experiment.data.audioTest.push(document.getElementById('feedback').value)
+    // experiment.data.audioTest.push(document.getElementById('feedback').value)
     },
 
 // NEXT FUNCTION: The work horse of the sequence - what to do on every trial.
@@ -235,7 +253,7 @@ var experiment = {
       if (window.self == window.top | turk.workerId.length > 0) {
           $("#testMessage").html('');   // clear the test message
           $("#prog").attr("style","width:" +
-              String(100 * (1 - sample.length/totalTrials)) + "%")
+              String(100 * (1 - rsample.length/totalTrials)) + "%")
           // style="width:progressTotal%"
           window.setTimeout(function() {
             $('#stage-content').show();
@@ -245,7 +263,7 @@ var experiment = {
 
           // Get the current trial - <code>shift()</code> removes the first element
           // select from our scales array and stop exp after we've exhausted all the domains
-          var current_trial = sample.shift();
+          var current_trial = rsample.shift();
 
           //If the current trial is undefined, call the end function.
           if (typeof current_trial == "undefined") {

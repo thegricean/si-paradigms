@@ -8,6 +8,7 @@
     <title>Language and Cognition</title>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="mmturkey-0.6.js"></script>
+    <script src="connective_game.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -99,32 +100,46 @@
                     <td><img id="card"/ width="560" height="315"></td>
                 </tr>
                 <tr>
-                    <td align="center"><h5><b>Was Bob right?</b></h5> </td>
-                </tr>
-                <tr>
                   <td>
-                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="0">No</label>
-                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="1">Yes</label>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="0">No</label>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="2">Yes</label>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="1">Neither</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="0">1</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="1">2</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="2">3</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="3">4</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="4">5</label>
-                    <script type="text/javascript"> 
-                      createRadioButtons();
-                    </script>
+                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="0">Wrong</label>
+                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="1">Right</label>
                   </td> 
                 </tr>
                 <tr>
-                    <td align="center">Could he say it better? </td> 
+                  <td>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="0">Wrong</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="2">Neither</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="1">Right</label>
+                  </td>
                 </tr>
                 <tr>
-                    <td align="center">
-                        <textarea id="feedback" width="800"></textarea>
-                    </td>
+                  <td>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="0">Wrong</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="1">Kinda Wrong</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="2">Kinda Right</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="3">Right</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="slidecontainer">
+                      <label for="WR" style='visibility: hidden' name = '3' class="pull-left">Wrong</label>
+                      <label for="WR" style='visibility: hidden' name = '3' class="pull-right">Right</label>
+                      <input style='visibility: hidden' name = 'slider3' type="range" min="1" max="5" value="3" class="slider" id="WR">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="slidecontainer">
+                      <label for="DWDR" style='visibility: hidden' name = '4' class="pull-left">Definitely Wrong</label>
+                      <label for="DWDR" style='visibility: hidden' name = '4' class="pull-right">Definitely Right</label>
+                      <input style='visibility: hidden' name = 'slider4' type="range" min="1" max="5" value="3" class="slider" id="DWDR">
+                    </div>
+                    <script type="text/javascript"> 
+                      createRadioButtons();
+                    </script>
+                  </td>
                 </tr>
                 <tr>
                     <td align="center">
