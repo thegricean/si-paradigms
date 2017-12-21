@@ -90,10 +90,21 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    // output.push(shuf2[1])
-    // output.push(shuf2[2])
+    output.push(shuf2[1])
+    output.push(shuf2[2])
   }
   return output
+}
+
+//Track Slider! 
+document.addEventListener('DOMContentLoaded',function() {
+    document.getElementsByName('slider3')[0].onchange=changeEventHandler;
+    document.getElementsByName('slider4')[0].onchange=changeEventHandler;
+},false);
+
+response_logged = false;
+function changeEventHandler(event) {
+    response_logged = true;
 }
 
 // from: http://www.sitepoint.com/url-parameters-jquery/
@@ -201,7 +212,6 @@ var experiment = {
 
 // LOG FUNCTION: the function that records the responses
     log_response: function() {
-      var response_logged = false;
       var elapsed = Date.now() - experiment.start_ms;
       if (choice < 3) {
         // Radio Button Collection  
@@ -226,10 +236,12 @@ var experiment = {
       } else {
         // Slider Data Collection
         var sliders = document.getElementsByName('slider' + choice)[0];
+        console.log(sliders)
         experiment.data.response.push(sliders.value);
         experiment.data.elapsed_ms.push(elapsed);
         experiment.data.num_errors.push(experiment.num_errors);
-        response_logged = true;
+
+        sliders.value = "50";
       }
 
       // If response logged, prepare next slide, else throw error
@@ -238,6 +250,7 @@ var experiment = {
 
         $('#stage-content').hide();
         experiment.next();
+        response_logged = false;
       } else {
         experiment.num_errors += 1;
         $("#testMessage").html('<font color="red">' +
