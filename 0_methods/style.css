@@ -87,8 +87,8 @@ button[disabled] {
 }
 .slidecontainer {
     margin-left: auto !important;
-    margin-right: auto;
-    width: 75%; /* Width of the outside container */
+    margin-right: auto !important;
+    width: 100%; /* Width of the outside container */
 }
 
 /* The slider itself */

@@ -29,16 +29,16 @@ function options() {
   }
 }
 
-var choice = random(5);
 
 // Randomize Radio Buttons 
 function createRadioButtons() {
-  var radios = Array.from(document.getElementsByName(String(choice)))
+  choice = random(5);
+  var radio = Array.from(document.getElementsByName(String(choice)))
   if (choice == 3 || choice == 4) {
-    radios.push(document.getElementsByName('slider' + choice)[0])
+    radio.push(document.getElementsByName('slider' + choice)[0])
   }
-  for (i = 0; i < radios.length; i++) {
-    radios[i].style.visibility = 'visible'
+  for (i = 0; i < radio.length; i++) {
+    radio[i].style.visibility = 'visible'
   }
 }
 
@@ -90,8 +90,8 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    output.push(shuf2[1])
-    output.push(shuf2[2])
+    // output.push(shuf2[1])
+    // output.push(shuf2[2])
   }
   return output
 }
@@ -203,48 +203,47 @@ var experiment = {
     log_response: function() {
       var response_logged = false;
       var elapsed = Date.now() - experiment.start_ms;
-
       if (choice < 3) {
+        // Radio Button Collection  
         var radios = [];
         var initial = document.getElementsByName(String(choice));
         for (i = 0; i < initial.length; i++) {
-          radios.push(initial[i].childNodes[0])
+          radios.push(initial[i].childNodes[0]);
+        }
+        // Loop through Radio Buttons and collect data
+        for (i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            experiment.data.response.push(radios[i].value);
+            experiment.data.elapsed_ms.push(elapsed);
+            experiment.data.num_errors.push(experiment.num_errors);
+            response_logged = true;
+          }
+        }
+        // uncheck radio buttons
+        for (i = 0; i < radios.length; i++) {
+          radios[i].checked = false
         }
       } else {
-        var slider = document.getElementsByName('slider' + choice)[0]
+        // Slider Data Collection
+        var sliders = document.getElementsByName('slider' + choice)[0];
+        experiment.data.response.push(sliders.value);
+        experiment.data.elapsed_ms.push(elapsed);
+        experiment.data.num_errors.push(experiment.num_errors);
+        response_logged = true;
       }
 
-      //Array of radio buttons
-      var radio = document.getElementsByName("3");
-      console.log(radio)
-      // Loop through radio buttons
-      for (i = 0; i < radio.length; i++) {
-        if (radio[i].checked) {
-          experiment.data.response.push(radio[i].value);
-          experiment.data.elapsed_ms.push(elapsed);
-          experiment.data.num_errors.push(experiment.num_errors);
-          response_logged = true;
-        }
-      }
-
+      // If response logged, prepare next slide, else throw error
       if (response_logged) {
         nextButton.blur();
-
-        // uncheck radio buttons
-        for (i = 0; i < radio.length; i++) {
-          radio[i].checked = false
-        }
 
         $('#stage-content').hide();
         experiment.next();
       } else {
-          experiment.num_errors += 1;
-          $("#testMessage").html('<font color="red">' +
-               'Please make a response!' +
-               '</font>');
+        experiment.num_errors += 1;
+        $("#testMessage").html('<font color="red">' +
+             'Please make a response!' +
+             '</font>');
       }
-    
-    // experiment.data.audioTest.push(document.getElementById('feedback').value)
     },
 
 // NEXT FUNCTION: The work horse of the sequence - what to do on every trial.
