@@ -93,7 +93,7 @@ function randomTrials(trials){
     output.push(shuf2[1])
     output.push(shuf2[2])
   }
-  return output
+  return shuffle(output)
 }
 
 //Track Slider! 
