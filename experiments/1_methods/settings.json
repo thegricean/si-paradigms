@@ -1,12 +1,12 @@
 {
-    "title":               "Guessing Game",
-    "description":         "A guessing game designed for children and adults. Please only participate if you are a native speaker of English. The game takes no longer than 12 minutes to complete.",
+    "title":               "A Short Guessing Game",
+    "description":         "A guessing game with cards and animal pictures. Please only participate if you are a native speaker of English. The game takes about 3 to 4 minutes to complete.",
     "keywords":            "Game, cards",
-    "url":                 "https://web.stanford.edu/~masoudj/tieu_replication/study1.html",
+    "url":                 "https://web.stanford.edu/~masoudj/si-paradigms/connective_game.html",
     "frame_height":         700,
     "assignment_duration":  "1 hour",
     "auto_approval_delay":  "5 minutes",
-    "reward":               1.57,
+    "reward":               0.8,
     "qualifications": {
         "location": "US",
         "approval_percentage": 85

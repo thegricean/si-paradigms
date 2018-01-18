@@ -304,6 +304,7 @@ var experiment = {
 
     // submitcomments function
     submit_comments: function() {
+//        console.log("done");
         experiment.data.age.push(document.getElementById("age").value);
         experiment.data.gender.push(document.getElementById("gender").value);
         experiment.data.education.push(document.getElementById("education").value);
@@ -311,7 +312,6 @@ var experiment = {
         experiment.data.expt_gen.push(document.getElementById("expcomments").value);
         experiment.data.language.push(document.getElementById("explanguage").value);
         experiment.data.user_agent.push(window.navigator.userAgent);
-        experiment.data.version.push(trial_order);
         experiment.end();
     }
 }
