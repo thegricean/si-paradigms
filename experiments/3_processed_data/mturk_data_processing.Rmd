@@ -1,0 +1,43 @@
+---
+title: "mturk_data_processing"
+author: "Masoud Jasbi"
+date: "3/7/2017"
+output: html_document
+---
+
+```{r cars}
+library(rjson)
+library(tidyverse)
+```
+
+```{r}
+# read the json file names to be loaded in the json directory
+files <- dir("../1_raw_data/", pattern =".json") 
+# make an empty data frame to append the json data participant by participant
+adult_data <- data.frame()
+
+#loop through json files
+for (file in files) {
+  #read the json file into jd
+  jd <- fromJSON(paste(readLines(paste("../1_raw_data/", file, sep="")), collapse=""))
+  #create a data frame with the column names on the left
+  id <- data_frame(participant = jd$WorkerId,
+                  gender = jd$answers$data$gen,
+                  age = jd$answers$data$age,
+                  Lang = jd$answers$data$language,
+                  version = jd$answers$data$version,
+                  logical_training = jd$answers$data$education,
+                  trials = jd$answers$data$trial,
+                  response = jd$answers$data$response,
+                  duration = jd$answers$data$elapsed_ms,
+                  AgeGroup = "adult",
+                  aim = jd$answers$data$expt_aim,
+                  comments = jd$answers$data$expt_gen
+                  )
+  # append the dataframe for that json file to the big data frame 
+  adult_data <- bind_rows(adult_data, id)
+}
+
+write.csv(adult_data, "../2_processed_data/adult_data.csv")
+```
+
