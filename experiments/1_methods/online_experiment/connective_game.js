@@ -234,14 +234,17 @@ var experiment = {
           radios[i].checked = false
         }
       } else {
-        // Slider Data Collection
-        var sliders = document.getElementsByName('slider' + choice)[0];
-        console.log(sliders)
-        experiment.data.response.push(sliders.value);
-        experiment.data.elapsed_ms.push(elapsed);
-        experiment.data.num_errors.push(experiment.num_errors);
+        if (response_logged) {
+          console.log('here')
+          // Slider Data Collection
+          var sliders = document.getElementsByName('slider' + choice)[0];
+          console.log(sliders)
+          experiment.data.response.push(sliders.value);
+          experiment.data.elapsed_ms.push(elapsed);
+          experiment.data.num_errors.push(experiment.num_errors);
 
-        sliders.value = "50";
+          sliders.value = "50";
+        }
       }
 
       // If response logged, prepare next slide, else throw error
