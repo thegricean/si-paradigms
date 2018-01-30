@@ -22,6 +22,7 @@ for (file in files) {
   jd <- fromJSON(paste(readLines(paste("../2_raw_data/", file, sep="")), collapse=""))
   #create a data frame with the column names on the left
   id <- data_frame(participant = jd$WorkerId,
+                   order=seq(1:24),
                   gender = jd$answers$data$gen,
                   age = jd$answers$data$age,
                   language = jd$answers$data$language,
@@ -37,7 +38,20 @@ for (file in files) {
   # append the dataframe for that json file to the big data frame 
   adult_data <- bind_rows(adult_data, id)
 }
-
 write.csv(adult_data, "../3_processed_data/adult_data.csv")
+```
+
+```{r}
+processed_data <- read.csv("../3_processed_data/adult_data_withConditions.csv")
+
+processed_data2 <-
+  processed_data %>%
+  separate(trials, c("card_type", "guess_type", "card", "guess"), sep = "_", extra = "drop")
+
+write.csv(processed_data2, "../3_processed_data/processed_data2.csv")
+
+processed_data2 %>%
+  group_by(type, card_type, guess_type) %>%
+  summarize(count=n())
 ```
 
