@@ -1,6 +1,6 @@
 ---
 title: "Linking Hypotheses and SI_Paradigms"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
