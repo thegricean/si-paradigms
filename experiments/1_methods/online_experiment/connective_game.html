@@ -101,26 +101,44 @@
                 </tr>
                 <tr>
                   <td>
-                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="0">Wrong</label>
-                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="1">Right</label>
+                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '0'><input type="radio" name="judgment" value="Right">Right</label>
                   </td> 
                 </tr>
                 <tr>
                   <td>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="0">Wrong</label>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="2">Neither</label>
-                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="1">Right</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="Neither">Neither</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="Right">Right</label>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="0">Wrong</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="1">Kinda Wrong</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="2">Kinda Right</label>
-                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="3">Right</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Kinda Wrong">Kinda Wrong</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Kinda Right">Kinda Right</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Right">Right</label>
                   </td>
                 </tr>
                 <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Kinda Wrong">Kinda Wrong</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Neither">Neither</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Kinda Right">Kinda Right</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Right">Right</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="False">False</label>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="True">True</label>
+                    <script type="text/javascript"> 
+                      createRadioButtons();
+                    </script>
+                  </td>
+                </tr>
+ <!--                <tr>
                   <td>
                     <div class="slidecontainer">
                       <label for="WR" style='visibility: hidden' name = '3' class="pull-left">Wrong</label>
@@ -140,7 +158,7 @@
                       createRadioButtons();
                     </script>
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td align="center">
                         <button type="button" id="nextButton" onClick="experiment.log_response()">Next</button>

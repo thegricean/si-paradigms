@@ -34,9 +34,9 @@ function options() {
 function createRadioButtons() {
   choice = random(5);
   var radio = Array.from(document.getElementsByName(String(choice)))
-  if (choice == 3 || choice == 4) {
-    radio.push(document.getElementsByName('slider' + choice)[0])
-  }
+  // if (choice == 3 || choice == 4) {
+  //   radio.push(document.getElementsByName('slider' + choice)[0])
+  // }
   for (i = 0; i < radio.length; i++) {
     radio[i].style.visibility = 'visible'
   }
@@ -90,22 +90,22 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    output.push(shuf2[1])
-    output.push(shuf2[2])
+    // output.push(shuf2[1])
+    // output.push(shuf2[2])
   }
   return shuffle(output)
 }
 
-//Track Slider! 
-document.addEventListener('DOMContentLoaded',function() {
-    document.getElementsByName('slider3')[0].onchange=changeEventHandler;
-    document.getElementsByName('slider4')[0].onchange=changeEventHandler;
-},false);
+// //Track Slider! 
+// document.addEventListener('DOMContentLoaded',function() {
+//     document.getElementsByName('slider3')[0].onchange=changeEventHandler;
+//     document.getElementsByName('slider4')[0].onchange=changeEventHandler;
+// },false);
 
 response_logged = false;
-function changeEventHandler(event) {
-    response_logged = true;
-}
+// function changeEventHandler(event) {
+//     response_logged = true;
+// }
 
 // from: http://www.sitepoint.com/url-parameters-jquery/
 $.urlParam = function(name){
@@ -213,7 +213,7 @@ var experiment = {
 // LOG FUNCTION: the function that records the responses
     log_response: function() {
       var elapsed = Date.now() - experiment.start_ms;
-      if (choice < 3) {
+      if (choice < 5) {
         // Radio Button Collection  
         var radios = [];
         var initial = document.getElementsByName(String(choice));
@@ -235,10 +235,8 @@ var experiment = {
         }
       } else {
         if (response_logged) {
-          console.log('here')
           // Slider Data Collection
           var sliders = document.getElementsByName('slider' + choice)[0];
-          console.log(sliders)
           experiment.data.response.push(sliders.value);
           experiment.data.elapsed_ms.push(elapsed);
           experiment.data.num_errors.push(experiment.num_errors);
@@ -307,7 +305,6 @@ var experiment = {
 
     // submitcomments function
     submit_comments: function() {
-//        console.log("done");
         experiment.data.age.push(document.getElementById("age").value);
         experiment.data.gender.push(document.getElementById("gender").value);
         experiment.data.education.push(document.getElementById("education").value);
