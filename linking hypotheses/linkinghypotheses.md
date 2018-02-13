@@ -1,5 +1,6 @@
-Linking Hypotheses and SI\_Paradigms
+Linking Hypotheses and SI-Paradigms
 ================
+Brandon Waldon
 
 Some preliminaries:
 
@@ -12,7 +13,7 @@ require("ordinal")
 The problem
 -----------
 
-The RSA model of a pragmatically competent speaker is a probability distribution of possible utterances given some world state the speaker intends to communicate to a listener. We'd like to be able to link this model to the categorical responses we observe in the SI\_Paradigms experiment. For the purposes of this document, I'll focus on the version of the experiment where speakers rated an utterance on a two-point scale of "Right"/"Wrong".
+The RSA model of a pragmatically competent speaker is a probability distribution of possible utterances given some world state the speaker intends to communicate to a listener. We'd like to be able to link this model to the categorical responses we observe in the SI-Paradigms experiment. For the purposes of this document, I'll focus on the version of the experiment where speakers rated an utterance on a two-point scale of "Right"/"Wrong".
 
 Setting up the RSA model
 ------------------------
@@ -92,7 +93,7 @@ The empirical picture
 
 As we expect, the utterance 'XorY' (i.e. "there is an X or a Y on the card") is of substantially lower probability than utterance 'XandY'. We interpret this to mean that in our model, 'XorY' is not the optimal utterance given that a speaker is trying to communicate the world state denoted by \['X','Y'\] (i.e. both X and Y are on the card).
 
-Consider this output of the model in the context of the following empirical result of the SI\_Paradigms pilot: in the condition where a participant is shown a card with two animals X and Y, people overwhelmingly find a guess of "there is an X or a Y on the card" to be "Right"" rather than "Wrong".
+Consider this output of the model in the context of the following empirical result of the SI-Paradigms pilot: in the condition where a participant is shown a card with two animals X and Y, people overwhelmingly find a guess of "there is an X or a Y on the card" to be "Right"" rather than "Wrong".
 
 ![](linkinghypotheses_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
@@ -101,7 +102,7 @@ Straw-man linking hypothesis: participants sample 'directly' from S:
 
 Our linking hypothesis should say something about why an overwhelming majority of individuals would rate an 'XorY' guess to be Right in an \['X','Y'\] world state, despite 'XorY' being a suboptimal utterance choice in this world state according to our pragmatic speaker model.
 
-Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI\_Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the S1 distribution assigns to u in w.
+Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI-Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the S1 distribution assigns to u in w.
 
 ``` r
 commands <- "
@@ -124,7 +125,7 @@ code <- paste(model,commands,sep = "\n")
 webppl(code)
 ```
 
-    ## [1] FALSE
+    ## [1] TRUE
 
 Obviously, this model is going to be a very poor fit for the observed data (we could confirm this easily with a binomial test). It will predict that in the vast majority of cases, participants should actually reject 'XorY' in the \['X','Y'\] condition. Moreover, it's unclear how to extend this linking hypothesis to the experimental conditions in which there are more than two possible responses. Lastly, it doesn't even get the qualitative pattern of responses right for the binary-choice experiment. For example, in the conditions where there were two animals X and Y on the card, it was possible that speakers had to rate a guess of 'X or Y' or a guess of just 'X'. However, across both of these guess types, the proportion of "Right" responses among pilot participants is nearly identical -- despite the RSA model prediction that 'X' should be a substantially more optimal utterance than 'X or Y' in this world state. On the naive story built up so far, it is unclear as to why this would be the case.
 
@@ -133,7 +134,7 @@ Obviously, this model is going to be a very poor fit for the observed data (we c
 A better hypothesis? The logistic function
 ------------------------------------------
 
-The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI\_Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker proabibility of u in w as computed by the RSA model:
+The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI-Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker proabibility of u in w as computed by the RSA model:
 
 P(Participant answers "Right"|u,w) = S1(u|w)
 
@@ -141,7 +142,7 @@ Perhaps the straw-man hypothesis is basically correct in conceptualizing the cat
 
 One alternative would be to say that P("Right"|u,w) is a function of, but not identical to, the probability of utterance u given world state w in the S1 model. The challenge then becomes to specify this function. Logistic regression provides one possible solution. This type of regression returns a model of the log odds of some binary categorical response (e.g. "Right"/"Wrong") as a function of an independent variable (e.g. speaker probability of utterance given a world state).
 
-Exploring this requires some transformation to our results. We continue to look at the subset of the SI\_paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value S1(u|w) in a new column (speaker\_probability) of the data frame, where S1(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card).
+Exploring this requires some transformation to our results. We continue to look at the subset of the SI-paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value S1(u|w) in a new column (speaker\_probability) of the data frame, where S1(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card).
 
 ``` r
 binary <- filter(d, type == "binary")
@@ -207,7 +208,7 @@ summary(l)
 
 The above model provides the log odds of responding "Right" vs. "Wrong" as a function of the speaker probability of the utterance being assessed by the participant (in a particular utterance context). It is a better model than the simple straw-man model which assumed a one-to-one correspondance between a) the probability a participant judges some utterance u to be "Right" in w and b) the probability of that utterance u in a world state w, as according to our pragmatic speaker distribution \[say more? model comparison?\].
 
-### Extending the logistic regression model to other SI\_Paradigms conditions, e.g. quatenary response
+### Extending the logistic regression model to other SI-Paradigms conditions, e.g. quatenary response
 
 ``` r
 quatenary <- filter(d, type == "quatenary")
@@ -262,7 +263,146 @@ Another hypothesis: thresholds
 
 Another conceivable hypothesis is that for some utterance u in world state w, u is "Right" so long as S1(u|w) exceeds some probability threshold *θ*.
 
+We can enrich the pragmatic speaker model provided above to model such a function. First, we specify a threshold function which takes as its input a world state w and a probability threshold *θ* and returns only those utterances for which S1(u|w) &gt; *θ* is true. The following model also specifies a cost function - for now, we'll keep the cost uniform on utterances.
+
+``` r
+model_threshold = "
+var states = [['X'], ['Y'], ['Z'], ['X','Y'], ['X','Z'], ['Y','Z'], ['X','Y','Z']];
+var utterances = ['X', 'Y', 'XorY', 'XandY', 'Z','XorZ','XandZ','YorZ','YandZ','XandYandZ','XorYorZ'];
+
+var statePrior = function() {
+  return uniformDraw(states)
+};
+
+var cost = function(u) {
+  return 1
+};
+
+var utterancePrior = function() {
+  return uniformDraw(utterances);
+};
+
+var literalMeanings = {
+  X: function(state) { return state.includes('X'); },
+  Y: function(state) { return state.includes('Y'); },
+  Z: function(state) { return state.includes('Z'); },
+  XorY: function(state) { return state.includes('X') || state.includes('Y'); },
+  XandY: function(state) { return state.includes('X') && state.includes('Y'); },
+  XorZ: function(state) { return state.includes('X') || state.includes('Z'); },
+  XandZ: function(state) { return state.includes('X') && state.includes('Z'); },
+  YorZ: function(state) { return state.includes('Y') || state.includes('Z'); },
+  YandZ: function(state) { return state.includes('Y') && state.includes('Z'); },
+  XorYorZ: function(state) { return state.includes('X') || state.includes('Y') || state.includes('Z'); },
+  XandYandZ: function(state) { return state.includes('X') && state.includes('Y') && state.includes('Z'); },
+};
+
+var literalListener = cache(function(utt) {
+  return Infer({model: function(){
+    var state = statePrior()
+    var meaning = literalMeanings[utt]
+    condition(meaning(state))
+    return state
+  }})
+});
+
+// set speaker optimality
+var alpha = 1
+
+// pragmatic speaker
+var speaker = cache(function(state) {
+  return Infer({model: function(){
+    var utt = utterancePrior()
+    factor(alpha * literalListener(utt).score(state))
+    return utt
+  }})
+});
+
+// threshold function 
+
+var threshold = function(state,threshold) {
+  var supported_utts_string = speaker(state).support().toString();
+  var supported_utts = supported_utts_string.split(',');
+  return filter(function(x) { return Math.exp(speaker(state).score(x)) > threshold; }, supported_utts)
+}
+"
+```
+
+Now it is possible to model the linking function of interest: we say that for any utterance u given world state w and probability threshold *θ*, u is "Right" so long as S(u|w) exceeds *θ* and is "Wrong" otherwise (more precisely, the model returns "Right" so long as u is in the set of utterances returned by threshold(w,*θ*), and "Wrong" otherwise).
+
+``` r
+right_or_wrong <- "
+var right_or_wrong = function(utt,state,theta) {
+  if (threshold(state,theta).includes(utt)) { return 'Right'; } else { return 'Wrong'; }
+}
+"
+```
+
+Suppose the utterance of interest is 'X or Y' in the world state \['X','Y'\] given a probability threshold of 0.2. Which categorical response does our model predict?
+
+``` r
+commands <- "right_or_wrong('XorY',['X','Y'],0.2)"
+code <- paste(model_threshold,right_or_wrong,commands,sep = "\n")
+webppl(code)
+```
+
+    ## [1] "Wrong"
+
+For the experimental conditions in which more than two choices were provided, we need to specify an enriched linking function. For the ternary choice condition, we need a function that takes as its input an utterance, a world state, and two thresholds *θ*<sub>1</sub> and *θ*<sub>2</sub>. An utterance is "Wrong" in world state w just in case S1(u|w) is less than *θ*<sub>1</sub>. It is "Right" just in case S1(u|w) &gt; *θ*<sub>2</sub>. It is "Neither" just in case *θ*<sub>1</sub> &lt; S1(u|w) &lt; *θ*<sub>2</sub>.
+
+What if our *θ*<sub>1</sub> is 0.1, and our *θ*<sub>2</sub> is 0.2? What does this linking model predict a respondent will say about 'X or Y' in world state \['X','Y'\]?
+
+``` r
+right_neither_wrong <- "
+var right_neither_wrong = function(utt,state,thetaone,thetatwo) {
+if (threshold(state,thetatwo).includes(utt)) { return 'Right'; }
+if (threshold(state,thetaone).includes(utt)) { return 'Neither'; } 
+else { return 'Wrong'; }
+}
+"
+
+commands <- "right_neither_wrong('XorY',['X','Y'],0.1,0.2)"
+code <- paste(model_threshold,right_neither_wrong,commands,sep = "\n")
+webppl(code)
+```
+
+    ## [1] "Neither"
+
 Another hypothesis: mixing log odds + the threshold parameter
 -------------------------------------------------------------
 
-Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of S1'(u|w), where S1' is a transformation of the pragmatic speaker distribution. More specifically, S1' is a renormalized version of S1 after low-probability utterances are removed from S1 (according to some threshold of 'low' probability).
+Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of S1'(u|w), where S1' is a transformation of the pragmatic speaker distribution. More specifically, S1' is a renormalized version of S1 after low-probability utterances are filtered from S1 (according to some threshold of probability).
+
+In order to explore this hypothesis, we first need to model S1' (specified below as speaker\_filtered). Speaker\_filtered is a function of utterancePrior\_filtered - an utterance prior function which takes as its input only high-probability utterances; that is, utterances for which S1(u|w) &gt; *θ* is true.
+
+``` r
+filter_utterances <- "
+var utterancePrior_filtered = function(state,theta) {
+  return uniformDraw(threshold(state,theta).toString().split(','));
+};
+
+var speaker_filtered = cache(function(state,theta) {
+  return Infer({model: function(){
+    var utt = utterancePrior_filtered(state,theta)
+    factor(alpha * literalListener(utt).score(state))
+    return utt
+  }})
+});
+"
+
+model_threshold_2 <- paste(model_threshold,filter_utterances,sep = "\n")
+```
+
+Let's explore this new S1' distribution over utterances, given a world state \['X','Y'\] and that we are only interested in those utterances for which it is true that S1(u|w) &gt; 0.12.
+
+``` r
+commands <- "speaker_filtered(['X','Y'],0.12)"
+code <- paste(model_threshold_2, commands, sep = "\n")
+webppl(code)
+```
+
+    ##   support prob
+    ## 1       X 0.25
+    ## 2       Y 0.25
+    ## 3   XandY 0.50
+
+With this model, we could revisit the logistic regression linking function explored above: the log odds of categorical response is a function of the (filtered) speaker probability of that utterance in a particular world state w and given a probability threshold *θ*.
