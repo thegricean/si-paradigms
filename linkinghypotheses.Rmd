@@ -15,7 +15,7 @@ require("ordinal")
 
 ## The problem 
 
-The RSA model of a pragmatically competent speaker is a probability distribution of possible utterances given some world state the speaker intends to communicate to a listener. We'd like to be able to link this model to the categorical responses we observe in the SI_Paradigms experiment. For the purposes of this document, I'll focus on the version of the experiment where speakers rated an utterance on a two-point scale of Right / Wrong.
+The RSA model of a pragmatically competent speaker is a probability distribution of possible utterances given some world state the speaker intends to communicate to a listener. We'd like to be able to link this model to the categorical responses we observe in the SI_Paradigms experiment. For the purposes of this document, I'll focus on the version of the experiment where speakers rated an utterance on a two-point scale of "Right"/"Wrong".
 
 ##Setting up the RSA model
 
@@ -84,7 +84,7 @@ webppl(code)
 
 As we expect, the utterance 'XorY' (i.e. "there is an X or a Y on the card") is of substantially lower probability than utterance 'XandY'. We interpret this to mean that in our model, 'XorY' is not the optimal utterance given that a speaker is trying to communicate the world state denoted by ['X','Y'] (i.e. both X and Y are on the card).
 
-Consider this output of the model in the context of the following empirical result of the SI_Paradigms pilot: in the condition where a participant is shown a card with two animals X and Y, people overwhelmingly find a guess of "there is an X or a Y on the card" to be Right rather than Wrong. 
+Consider this output of the model in the context of the following empirical result of the SI_Paradigms pilot: in the condition where a participant is shown a card with two animals X and Y, people overwhelmingly find a guess of "there is an X or a Y on the card" to be "Right"" rather than "Wrong". 
 
 ```{r echo=FALSE}
 d <- read.csv("processed_data2.csv")
@@ -105,7 +105,7 @@ ggplot(filter(agr, card_type == "XY" & guess_type == "XorY" & type == "binary"),
 
 Our linking hypothesis should say something about why an overwhelming majority of individuals would rate an 'XorY' guess to be Right in an ['X','Y'] world state, despite 'XorY' being a suboptimal utterance choice in this world state according to our pragmatic speaker model. 
 
-Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI_Paradigms trial) and an utterance u (the guess in that trial), have access to the density that the S1 distribution assigns to the value u|w. 
+Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI_Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the S1 distribution assigns to u in w. 
 
 ```{r}
 commands <- "
@@ -126,7 +126,7 @@ code <- paste(model,commands,sep = "\n")
 webppl(code)
 ```
 
-Obviously, this model is going to be a very poor fit for the observed data (we could confirm this easily with a binomial test). It will predict that in the vast majority of cases, participants should actually reject 'XorY' in the ['X','Y'] condition. Moreover, it's unclear how to extend this linking hypothesis to the experimental conditions in which there are more than two possible responses. Lastly, it doesn't even get the qualitative pattern of responses right for the binary-choice experiment. For example, in the conditions where there were two animals X and Y on the card, it was possible that speakers had to rate a guess of 'X or Y' or a guess of just 'X'. However, across both of these guess types, the proportion of Right responses among pilot participants is nearly identical -- despite the RSA model prediction that 'X' should be a substantially more optimal utterance than 'X or Y' in this world state. On the naive story built up so far, it is unclear as to why this would be the case.  
+Obviously, this model is going to be a very poor fit for the observed data (we could confirm this easily with a binomial test). It will predict that in the vast majority of cases, participants should actually reject 'XorY' in the ['X','Y'] condition. Moreover, it's unclear how to extend this linking hypothesis to the experimental conditions in which there are more than two possible responses. Lastly, it doesn't even get the qualitative pattern of responses right for the binary-choice experiment. For example, in the conditions where there were two animals X and Y on the card, it was possible that speakers had to rate a guess of 'X or Y' or a guess of just 'X'. However, across both of these guess types, the proportion of "Right" responses among pilot participants is nearly identical -- despite the RSA model prediction that 'X' should be a substantially more optimal utterance than 'X or Y' in this world state. On the naive story built up so far, it is unclear as to why this would be the case.  
 
 ```{r echo=FALSE}
 ggplot(filter(agr, card_type == "XY" & response == "1" & type == "binary"),aes(x=guess_type,y=n))+
@@ -138,15 +138,15 @@ ggplot(filter(agr, card_type == "XY" & response == "1" & type == "binary"),aes(x
 
 ## A better hypothesis? The logistic function 
 
-The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI_Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering Right/Wrong) can be understood as a probabilistic process, namely the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker proabibility of u in w as computed by the RSA model: 
+The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI_Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker proabibility of u in w as computed by the RSA model: 
 
-P("Right"|u,w) = S1(u|w)
+P(Participant answers "Right"|u,w) = S1(u|w)
 
-Perhaps the straw-man hypothesis is basically correct in conceptualizing the categorical response as a probabilistic process. If we accept the basic story that the categorical response can be represented as P("Right"|u,w), then we need a way to link P("Right"|u,w) to our RSA speaker distribution S1(u|w) - with better empirical coverage than the straw-man hypothesis explored above. 
+Perhaps the straw-man hypothesis is basically correct in conceptualizing the categorical response as a probabilistic process. If we accept the basic story that the categorical response can be represented as P("Right"|u,w), then we need a way to link P("Right"|u,w) to our RSA speaker distribution S1(u|w) - in a way that gets better empirical coverage than the straw-man hypothesis explored above. 
 
 One alternative would be to say that P("Right"|u,w) is a function of, but not identical to, the probability of utterance u given world state w in the S1 model. The challenge then becomes to specify this function. Logistic regression provides one possible solution. This type of regression returns a model of the log odds of some binary categorical response (e.g. "Right"/"Wrong") as a function of an independent variable (e.g. speaker probability of utterance given a world state). 
 
-Exploring this given our results file requires some data transformation. We continue to look at the subset of the SI_paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value S1(u|w) in a new column (speaker_probability) of the data frame, where S1(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card). 
+Exploring this requires some transformation to our results. We continue to look at the subset of the SI_paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value S1(u|w) in a new column (speaker_probability) of the data frame, where S1(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card). 
 
 ```{r}
 binary <- filter(d, type == "binary")
