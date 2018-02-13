@@ -100,7 +100,7 @@ Consider this output of the model in the context of the following empirical resu
 Straw-man linking hypothesis: participants sample 'directly' from S:
 --------------------------------------------------------------------
 
-Our linking hypothesis should say something about why an overwhelming majority of individuals would rate an 'XorY' guess to be Right in an \['X','Y'\] world state, despite 'XorY' being a suboptimal utterance choice in this world state according to our pragmatic speaker model.
+Our linking hypothesis should say something about why an overwhelming majority of individuals would rate an 'XorY' guess to be Right in an \['X','Y'\] world state, despite 'XorY' being a sub-optimal utterance choice in this world state according to our pragmatic speaker model.
 
 Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI-Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the S1 distribution assigns to u in w.
 
@@ -125,7 +125,7 @@ code <- paste(model,commands,sep = "\n")
 webppl(code)
 ```
 
-    ## [1] TRUE
+    ## [1] FALSE
 
 Obviously, this model is going to be a very poor fit for the observed data (we could confirm this easily with a binomial test). It will predict that in the vast majority of cases, participants should actually reject 'XorY' in the \['X','Y'\] condition. Moreover, it's unclear how to extend this linking hypothesis to the experimental conditions in which there are more than two possible responses. Lastly, it doesn't even get the qualitative pattern of responses right for the binary-choice experiment. For example, in the conditions where there were two animals X and Y on the card, it was possible that speakers had to rate a guess of 'X or Y' or a guess of just 'X'. However, across both of these guess types, the proportion of "Right" responses among pilot participants is nearly identical -- despite the RSA model prediction that 'X' should be a substantially more optimal utterance than 'X or Y' in this world state. On the naive story built up so far, it is unclear as to why this would be the case.
 
@@ -134,7 +134,7 @@ Obviously, this model is going to be a very poor fit for the observed data (we c
 A better hypothesis? The logistic function
 ------------------------------------------
 
-The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI-Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker proabibility of u in w as computed by the RSA model:
+The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI-Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker probability of u in w as computed by the RSA model:
 
 P(Participant answers "Right"|u,w) = S1(u|w)
 
@@ -206,7 +206,7 @@ summary(l)
 #confint(l)
 ```
 
-The above model provides the log odds of responding "Right" vs. "Wrong" as a function of the speaker probability of the utterance being assessed by the participant (in a particular utterance context). It is a better model than the simple straw-man model which assumed a one-to-one correspondance between a) the probability a participant judges some utterance u to be "Right" in w and b) the probability of that utterance u in a world state w, as according to our pragmatic speaker distribution \[say more? model comparison?\].
+The above model provides the log odds of responding "Right" vs. "Wrong" as a function of the speaker probability of the utterance being assessed by the participant (in a particular utterance context). It is a better model than the simple straw-man model which assumed a one-to-one correspondence between a) the probability a participant judges some utterance u to be "Right" in w and b) the probability of that utterance u in a world state w, as according to our pragmatic speaker distribution \[say more? model comparison?\].
 
 ### Extending the logistic regression model to other SI-Paradigms conditions, e.g. quatenary response
 
@@ -370,7 +370,7 @@ webppl(code)
 Another hypothesis: mixing log odds + the threshold parameter
 -------------------------------------------------------------
 
-Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of S1'(u|w), where S1' is a transformation of the pragmatic speaker distribution. More specifically, S1' is a renormalized version of S1 after low-probability utterances are filtered from S1 (according to some threshold of probability).
+Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of S1'(u|w), where S1' is a transformation of the pragmatic speaker distribution. More specifically, S1' is a re-normalized version of S1 after low-probability utterances are filtered from S1 (according to some threshold of probability).
 
 In order to explore this hypothesis, we first need to model S1' (specified below as speaker\_filtered). Speaker\_filtered is a function of utterancePrior\_filtered - an utterance prior function which takes as its input only high-probability utterances; that is, utterances for which S1(u|w) &gt; *θ* is true.
 
@@ -406,3 +406,58 @@ webppl(code)
     ## 3   XandY 0.50
 
 With this model, we could revisit the logistic regression linking function explored above: the log odds of categorical response is a function of the (filtered) speaker probability of that utterance in a particular world state w and given a probability threshold *θ*.
+
+``` r
+binary <- add_column(binary, speaker_renorm_probability = 0)
+
+commands <- "speaker_filtered(['X','Y'],0.12)"
+code <- paste(model_threshold_2,commands,sep="\n")
+speaker_renormprobs_xy <- webppl(code)
+
+commands <- "speaker_filtered(['X'],0.12)"
+code <- paste(model_threshold_2,commands,sep="\n")
+speaker_renormprobs_x <- webppl(code)
+
+for(i in 1:nrow(binary)){
+  for(j in 1:nrow(speaker_renormprobs_xy)){
+    if((as.character(speaker_renormprobs_xy[j,]$support) == as.character(binary[i,]$guess_type)) & binary[i,]$card_type == "XY"){
+      binary[i,]$speaker_renorm_probability <- speaker_renormprobs_xy[j,]$prob
+    }
+  }
+}
+
+for(i in 1:nrow(binary)){
+  for(j in 1:nrow(speaker_renormprobs_x)){
+    if((as.character(speaker_renormprobs_x[j,]$support) == as.character(binary[i,]$guess_type)) & binary[i,]$card_type == "X"){
+      binary[i,]$speaker_renorm_probability <- speaker_renormprobs_x[j,]$prob
+    }
+  }
+}
+
+l <- glm(as.factor(response) ~ speaker_renorm_probability, data = binary, family = "binomial")
+summary(l)
+```
+
+    ## 
+    ## Call:
+    ## glm(formula = as.factor(response) ~ speaker_renorm_probability, 
+    ##     family = "binomial", data = binary)
+    ## 
+    ## Deviance Residuals: 
+    ##      Min        1Q    Median        3Q       Max  
+    ## -2.38203  -0.73988   0.04938   0.34752   1.69081  
+    ## 
+    ## Coefficients:
+    ##                            Estimate Std. Error z value Pr(>|z|)    
+    ## (Intercept)                 -1.1557     0.1094  -10.57   <2e-16 ***
+    ## speaker_renorm_probability  15.7294     1.0641   14.78   <2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## (Dispersion parameter for binomial family taken to be 1)
+    ## 
+    ##     Null deviance: 1228.76  on 912  degrees of freedom
+    ## Residual deviance:  635.91  on 911  degrees of freedom
+    ## AIC: 639.91
+    ## 
+    ## Number of Fisher Scoring iterations: 6
