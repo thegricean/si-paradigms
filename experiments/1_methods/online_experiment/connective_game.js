@@ -32,7 +32,7 @@ function options() {
 
 // Randomize Radio Buttons 
 function createRadioButtons() {
-  choice = random(5);
+  choice = random(3,4);
   var radio = Array.from(document.getElementsByName(String(choice)))
   // if (choice == 3 || choice == 4) {
   //   radio.push(document.getElementsByName('slider' + choice)[0])
@@ -90,8 +90,8 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    // output.push(shuf2[1])
-    // output.push(shuf2[2])
+    output.push(shuf2[1])
+    output.push(shuf2[2])
   }
   return shuffle(output)
 }
