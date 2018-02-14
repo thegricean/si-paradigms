@@ -1,5 +1,5 @@
 ---
-title: "Linking Hypotheses and SI-Paradigms"
+title: "Understanding Experimental Data in the Rational Speech Act Framework"
 author: "Brandon Waldon"
 output: github_document
 ---
@@ -14,13 +14,31 @@ require("tidyverse")
 require("ordinal")
 ```
 
+## Background 
+
+Two contributions: one empirical, one theoretical
+
+**'Sentence verification' paradigms and scalar implicature**
+
+- Lots of things can affect speakers' judgments about scalar implicature. 
+
+- Pragmatic judgments change according to ``dependent measure used to probe linguistic intuitions" - e.g. 'sentence verification' tasks, 'word probability rating' tasks, and 'sentence interpretation' tasks (Degen and Goodman 2014: 1). Moreover, Degen and Goodman (2014) show that some experimental paradigms are more sensitive to contextual manipulations than others.
+
+- Building off that work, we provide evidence that judgments in 'sentence verification' tasks are furthermore sensitive to the number of response options participants have when completing the task. 
+
+**Understanding what is measured in 'sentence verification' paradigms**
+
+- The typical neo-Gricean way of understanding participant behavior on truth value judgment task experiments (to the extent linking hypotheses are discussed in that literature): a participant either does or does not `calculate' an implicature when presented some sentence S. The evaluation of the sentence S as "Right"/"Wrong", "True"/"False", "Correct"/"Incorrect" depends on whether an implicature was derived and whether or not that pragmatically enriched interpretation is actually used to verify S.
+
+- Another proposal: building off Degen and Goodman (2014), participants' behavior on these tasks can be modeled directly as a function of a Rational Speech Act model of a pragmatic speaker. 
+
 ## The problem 
 
 The RSA model of a pragmatically competent speaker is a probability distribution of possible utterances given some world state the speaker intends to communicate to a listener. We'd like to be able to link this model to the categorical responses we observe in the SI-Paradigms experiment. For the purposes of this document, I'll focus on the version of the experiment where speakers rated an utterance on a two-point scale of "Right"/"Wrong".
 
-##Setting up the RSA model
+## Setting up the RSA model
 
-In the RSA model, the function S1 returns the probability of an utterance given the world state the speaker intends to communicate. 
+In the RSA model, the function $S_1$ returns the probability of an utterance given the world state the speaker intends to communicate. 
 
 Let's imagine that a speaker is in a scenario where there are exactly three animals - X, Y, and Z - that each might be on some card. We represent all of the possible world states as an nested array, where the array ['X'] corresponds to the world state where an animal X is on the card (and no other animal is). We define a set of possible sentences a speaker might utter, assuming the speaker intends to communicate which animals are on the card. Next, we attribute meanings to those utterances. Lastly, we define the pragmatic speaker function. 
 
@@ -106,7 +124,7 @@ ggplot(filter(agr, card_type == "XY" & guess_type == "XorY" & type == "binary"),
 
 Our linking hypothesis should say something about why an overwhelming majority of individuals would rate an 'XorY' guess to be Right in an ['X','Y'] world state, despite 'XorY' being a sub-optimal utterance choice in this world state according to our pragmatic speaker model. 
 
-Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI-Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the S1 distribution assigns to u in w. 
+Let's first explore a linking hypothesis that makes the wrong predictions in this regard. We might hypothesize that speakers, when confronted with a world state w (i.e. the configuration of animals on the card in a given SI-Paradigms trial) and an utterance u (the guess in that trial), have access to the probability that the $S_1$ distribution assigns to u in w. 
 
 ```{r}
 commands <- "
@@ -116,7 +134,7 @@ code <- paste(model,commands,sep="\n")
 webppl(code)
 ```
 
-On this simplistic straw-man story, we might say that all that happens next is that speakers sample from a Bernoulli distribution where the probability of success is equal to S1(u|w). If that sample is a success, the utterance is rated as Right; if failure, the utterance is rated as Wrong. 
+On this simplistic straw-man story, we might say that all that happens next is that speakers sample from a Bernoulli distribution where the probability of success is equal to $S_1$(u|w). If that sample is a success, the utterance is rated as Right; if failure, the utterance is rated as Wrong. 
 
 ```{r}
 commands <- "
@@ -141,13 +159,13 @@ ggplot(filter(agr, card_type == "XY" & response == "1" & type == "binary"),aes(x
 
 The straw-man linking hypothesis described above was clearly inadequate. But it is a linking hypothesis: it generates predictions about categorical behavior (e.g. responses in the SI-Paradigms experiment) from our model; it "maps the response measure onto the theoretical constructs of interest" (Tanenhaus 2000:564-5). The above hypothesis achieves this by positing that the categorical behavior of interest (answering "Right"/"Wrong"") can be understood as a probabilistic process, whereby the probability that a participant responds "Right" when exposed to utterance u in world state w is equal to the speaker probability of u in w as computed by the RSA model: 
 
-P(Participant answers "Right"|u,w) = S1(u|w)
+P(Participant answers "Right"|u,w) = $S_1$(u|w)
 
-Perhaps the straw-man hypothesis is basically correct in conceptualizing the categorical response as a probabilistic process. If we accept the basic story that the categorical response can be represented as P("Right"|u,w), then we need a way to link P("Right"|u,w) to our RSA speaker distribution S1(u|w) - in a way that gets better empirical coverage than the straw-man hypothesis explored above. 
+Perhaps the straw-man hypothesis is basically correct in conceptualizing the categorical response as a probabilistic process. If we accept the basic story that the categorical response can be represented as P("Right"|u,w), then we need a way to link P("Right"|u,w) to our RSA speaker distribution $S_1$(u|w) - in a way that gets better empirical coverage than the straw-man hypothesis explored above. 
 
-One alternative would be to say that P("Right"|u,w) is a function of, but not identical to, the probability of utterance u given world state w in the S1 model. The challenge then becomes to specify this function. Logistic regression provides one possible solution. This type of regression returns a model of the log odds of some binary categorical response (e.g. "Right"/"Wrong") as a function of an independent variable (e.g. speaker probability of utterance given a world state). 
+One alternative would be to say that P("Right"|u,w) is a function of, but not identical to, the probability of utterance u given world state w in the $S_1$ model. The challenge then becomes to specify this function. Logistic regression provides one possible solution. This type of regression returns a model of the log odds of some binary categorical response (e.g. "Right"/"Wrong") as a function of an independent variable (e.g. speaker probability of utterance given a world state). 
 
-Exploring this requires some transformation to our results. We continue to look at the subset of the SI-paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value S1(u|w) in a new column (speaker_probability) of the data frame, where S1(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card). 
+Exploring this requires some transformation to our results. We continue to look at the subset of the SI-paradigms pilot data where response was binary "Right"/"Wrong". Now, for every row in the data (each row corresponds to one response), we add a value $S_1$(u|w) in a new column (speaker_probability) of the data frame, where $S_1$(u|w) is the speaker probability of u (the 'guess' presented on the screen) given w (the configuration of animals on the card). 
 
 ```{r}
 binary <- filter(d, type == "binary")
@@ -218,9 +236,9 @@ summary(lq)
 
 ## Another hypothesis: thresholds
 
-Another conceivable hypothesis is that for some utterance u in world state w, u is "Right" so long as S1(u|w) exceeds some probability threshold $\theta$. 
+Another conceivable hypothesis is that for some utterance u in world state w, u is "Right" so long as $S_1$(u|w) exceeds some probability threshold $\theta$. 
 
-We can enrich the pragmatic speaker model provided above to model such a function. First, we specify a threshold function which takes as its input a world state w and a probability threshold $\theta$ and returns only those utterances for which S1(u|w) > $\theta$ is true. The following model also specifies a cost function - for now, we'll keep the cost uniform on utterances. 
+We can enrich the pragmatic speaker model provided above to model such a function. First, we specify a threshold function which takes as its input a world state w and a probability threshold $\theta$ and returns only those utterances for which $S_1$(u|w) > $\theta$ is true. The following model also specifies a cost function - for now, we'll keep the cost uniform on utterances. 
 
 ```{r}
 model_threshold = "
@@ -302,7 +320,7 @@ code <- paste(model_threshold,right_or_wrong,commands,sep = "\n")
 webppl(code)
 ```
 
-For the experimental conditions in which more than two choices were provided, we need to specify an enriched linking function. For the ternary choice condition, we need a function that takes as its input an utterance, a world state, and two thresholds $\theta_1$ and $\theta_2$. An utterance is "Wrong" in world state w just in case S1(u|w) is less than $\theta_1$. It is "Right" just in case S1(u|w) > $\theta_2$. It is "Neither" just in case  $\theta_1$ < S1(u|w) < $\theta_2$. 
+For the experimental conditions in which more than two choices were provided, we need to specify an enriched linking function. For the ternary choice condition, we need a function that takes as its input an utterance, a world state, and two thresholds $\theta_1$ and $\theta_2$. An utterance is "Wrong" in world state w just in case $S_1$(u|w) is less than $\theta_1$. It is "Right" just in case $S_1$(u|w) > $\theta_2$. It is "Neither" just in case  $\theta_1$ < $S_1$(u|w) < $\theta_2$. 
 
 What if our $\theta_1$ is 0.1, and our $\theta_2$ is 0.2? What does this linking model predict a respondent will say about 'X or Y' in world state ['X','Y']?
 
@@ -322,9 +340,9 @@ webppl(code)
 
 ## Another hypothesis: mixing log odds + the threshold parameter
 
-Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of S1'(u|w), where S1' is a transformation of the pragmatic speaker distribution. More specifically, S1' is a re-normalized version of S1 after low-probability utterances are filtered from S1 (according to some threshold of probability). 
+Yet another possibility is that for some utterance u in world state w, P("Right"|u,w) is a function of $S_1$'(u|w), where $S_1$' is a transformation of the pragmatic speaker distribution. More specifically, $S_1$' is a re-normalized version of $S_1$ after low-probability utterances are filtered from $S_1$ (according to some threshold of probability). 
 
-In order to explore this hypothesis, we first need to model S1' (specified below as speaker_filtered). Speaker_filtered is a function of utterancePrior_filtered - an utterance prior function which takes as its input only high-probability utterances; that is, utterances for which S1(u|w) > $\theta$ is true.  
+In order to explore this hypothesis, we first need to model $S_1$' (specified below as speaker_filtered). Speaker_filtered is a function of utterancePrior_filtered - an utterance prior function which takes as its input only high-probability utterances; that is, utterances for which $S_1$(u|w) > $\theta$ is true.  
 
 ```{r}
 
@@ -346,7 +364,7 @@ model_threshold_2 <- paste(model_threshold,filter_utterances,sep = "\n")
 
 ```
 
-Let's explore this new S1' distribution over utterances, given a world state ['X','Y'] and that we are only interested in those utterances for which it is true that S1(u|w) > 0.12. 
+Let's explore this new $S_1$' distribution over utterances, given a world state ['X','Y'] and that we are only interested in those utterances for which it is true that $S_1$(u|w) > 0.12. 
 
 ```{r}
 commands <- "speaker_filtered(['X','Y'],0.12)"
@@ -354,7 +372,7 @@ code <- paste(model_threshold_2, commands, sep = "\n")
 webppl(code)
 ```
 
-With this model, we could revisit the logistic regression linking function explored above: the log odds of categorical response is a function of the (filtered) speaker probability of that utterance in a particular world state w and given a probability threshold $\theta$. 
+With this model, we could revisit the logistic regression linking function explored above: the log odds of categorical response is a function of the (filtered) speaker probability of that utterance in a particular world state w and given a probability threshold $\theta$ (in the example below, $\theta$ is 0.12 - a totally arbitrary value). 
 
 ```{r}
 binary <- add_column(binary, speaker_renorm_probability = 0)
