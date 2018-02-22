@@ -32,7 +32,7 @@ function options() {
 
 // Randomize Radio Buttons 
 function createRadioButtons() {
-  choice = random(3,4);
+  choice = [1,5].random();
   var radio = Array.from(document.getElementsByName(String(choice)))
   // if (choice == 3 || choice == 4) {
   //   radio.push(document.getElementsByName('slider' + choice)[0])
@@ -90,8 +90,8 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    output.push(shuf2[1])
-    output.push(shuf2[2])
+    // output.push(shuf2[1])
+    // output.push(shuf2[2])
   }
   return shuffle(output)
 }
@@ -185,6 +185,7 @@ var experiment = {
         gender: [],
         education: [],
         version: [],
+        type: [], 
         trial: [], // what trial/video was presented to the participant
         response: [], // response
         feedback: [], // their linguistic feedback
@@ -213,7 +214,7 @@ var experiment = {
 // LOG FUNCTION: the function that records the responses
     log_response: function() {
       var elapsed = Date.now() - experiment.start_ms;
-      if (choice < 5) {
+      if (choice < 6) {
         // Radio Button Collection  
         var radios = [];
         var initial = document.getElementsByName(String(choice));
@@ -223,6 +224,7 @@ var experiment = {
         // Loop through Radio Buttons and collect data
         for (i = 0; i < radios.length; i++) {
           if (radios[i].checked) {
+            experiment.data.type.push(choice);
             experiment.data.response.push(radios[i].value);
             experiment.data.elapsed_ms.push(elapsed);
             experiment.data.num_errors.push(experiment.num_errors);
@@ -237,6 +239,7 @@ var experiment = {
         if (response_logged) {
           // Slider Data Collection
           var sliders = document.getElementsByName('slider' + choice)[0];
+          experiment.data.type.push(choice);
           experiment.data.response.push(sliders.value);
           experiment.data.elapsed_ms.push(elapsed);
           experiment.data.num_errors.push(experiment.num_errors);
