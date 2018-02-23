@@ -1,0 +1,35 @@
+---
+title: "mturk_data_processing"
+author: "Masoud Jasbi"
+date: "3/7/2017"
+output: html_document
+---
+
+```{r cars}
+library(tidyverse)
+```
+
+```{r}
+data <- read.csv("adult_data_withConditions.csv")
+
+data[data$type=="binary" & data$response==0,]$response <- "wrong"
+data[data$type=="binary" & data$response==1,]$response <- "right"
+
+data[data$type=="ternary" & data$response==0,]$response <- "wrong"
+data[data$type=="ternary" & data$response==1,]$response <- "right"
+data[data$type=="ternary" & data$response==2,]$response <- "neiter"
+
+data[data$type=="quatenary" & data$response==0,]$response <- "wrong"
+data[data$type=="quatenary" & data$response==1,]$response <- "kinda wrong"
+data[data$type=="quatenary" & data$response==2,]$response <- "kinda right"
+data[data$type=="quatenary" & data$response==3,]$response <- "right"
+
+final_data <- 
+  data %>% 
+  filter(type!="slider") %>% 
+  separate(trials, into = c("card_type", "guess_type", "card", "guess"), sep = "_") %>%
+  unite(trial_type, card_type, guess_type, remove = FALSE) %>%
+  rename(response_type = "type")
+
+write.csv(final_data, "guessingGame_data.csv", row.names = FALSE)
+```

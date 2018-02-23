@@ -1,0 +1,24 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/stimuli-1}
+
+}
+
+\caption{Cards used in the connective guessing game.}\label{fig:stimuli}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/trials-1}
+
+}
+
+\caption{Trial types represented by example cards and guesses.}\label{fig:trials}
+\end{figure*}
+\efloatseparator
+ 
