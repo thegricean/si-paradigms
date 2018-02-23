@@ -60,11 +60,32 @@ set.seed(42)
 
 # Introduction
 
+* In a truth-value judgment task, how do we know whether an interpretation is literal or the result of an implicature computation?
 
+Traditional Linking Hypotheses:
+* If an implicature is calculated, the participant chooses a Non-True/Right response
+* If an implicature is calculated, the participant chooses the Wrong/False response
+* If an implicature is calculated, the participant chooses the lower end of the scale (2: wrong/False, 3: wrong, 4: wrong/kinda-wrong, 5: wrong/kinda-wrong)
+
+Questions:
+* Do these linking hypotheses give us different measures of implicature computation?
+* If they do differ, which one is most stable?
+
+Alternative Linking Hypothesis:
+* RSA: Response behavior across conditions (utterance-card combinations) and dependent measures can be predicted by a linking hypothesis that assumes that participants are behaving like soft-optimal RSA speakers and provide a particular response (eg TRUE) to an utterance u if the RSA speaker probability of u (given the card) is within a particular probability interval (eg, within the interval [theta, 1]).
+
+* Differences between traditional approaches and RSA: 1. The traditional linking hypotheses are based on a binary implicature/literal theory of pragmatic reasoning but RSA gives a continuous measure of pragmatic reasoning and allows for better predicting response behavior with multiple options.
 
 # Background
 
 * discussing the ways people in tha past have measured the "implicature rate".
+* it seems like the literature takes the n(not-True)/n(Total) as the proporition of responses caused by implicature calculation
+* BUT, I remember that Jesse Snedeker said it's NOT n(not-True)/n(Total) but it is n(False)/n(Total)
+* However, this is probably not a consensus in the field because Katsos & Bishop consider the mid-point response "big" on the scale small-big-huge (strawberry) to be the result of implicture caculation
+
+* what is the most common measure of "implicature rate" in the literature?
+Binary True/False: Noveck 2001, 
+Ternary: Katsos & Bishop 2011
 
 # Methods
 
@@ -85,11 +106,11 @@ pragmatic_trials$trial_type <-fct_recode(pragmatic_trials$trial_type,
                                          adhoc = "XY_X", scalar = "XY_XorY")
 ```
 
-* data exclusion? we don't expect any.
+* No data will be excluded.
 
 ## Participants
 
-* how are we choosing the sample size?
+* how are we choosing the sample size? We went for a 20 per cell number. based on?
 
 ## Materials and Design
 
@@ -158,6 +179,8 @@ implicature_analysis <- glmer(implicature ~ response_type * trial_type + (1+resp
 implicature_analysis <- brm(implicature ~ response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=pragmatic_trials)
 
 ```
+
+
 
 # Modeling
 
