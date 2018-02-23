@@ -32,7 +32,7 @@ function options() {
 
 // Randomize Radio Buttons 
 function createRadioButtons() {
-  choice = random(3,4);
+  choice = [1,5].random();
   var radio = Array.from(document.getElementsByName(String(choice)))
   // if (choice == 3 || choice == 4) {
   //   radio.push(document.getElementsByName('slider' + choice)[0])
@@ -90,8 +90,8 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    output.push(shuf2[1])
-    output.push(shuf2[2])
+    // output.push(shuf2[1])
+    // output.push(shuf2[2])
   }
   return shuffle(output)
 }
@@ -181,18 +181,24 @@ var experiment = {
 
 // DATA: The data structure that records the responses to be sent to mTurk
     data: {
-        age: [],
-        gender: [],
-        education: [],
-        version: [],
-        trial: [], // what trial/video was presented to the participant
-        response: [], // response
-        feedback: [], // their linguistic feedback
-        elapsed_ms: [], // time taken to provide an answer
-        num_errors: [], // number of times participant attempted to go to the next slide without providing an answer
-        expt_aim: [], // participant's comments on the aim of the study
-        expt_gen: [], // participant's general comments
-        language: [], // what is the native language of the participant
+        // Participant Worker ID
+        gender: [],           // gender of participant
+        age: [],              // age
+        language: [],         // what is the native language of the participant
+        logical_training: [], // what is the participant's experience with formal logic
+        trial_type: [],       // X_XorY
+        card_type: [],        // X
+        guess_type: [],       // XorY
+        card: [],             // Actual card
+        guess: [],            // Actual Guess
+        response: [],         // Response
+        response_type: [],    // Response Type
+        aim: [],              // participant's comments on the aim of the study
+        comments: [],          // participant's general comments
+
+        elapsed_ms: [],       // time taken to provide an answer
+        num_errors: [],       // number of times participant attempted to go to the next slide without providing an answer     
+        
         user_agent: [],
         window_width: [],
         window_height: [],
@@ -213,7 +219,8 @@ var experiment = {
 // LOG FUNCTION: the function that records the responses
     log_response: function() {
       var elapsed = Date.now() - experiment.start_ms;
-      if (choice < 5) {
+      var response_types = ['','true-false','binary','tertiary','quatenary','quinary']
+      if (choice < 6) {
         // Radio Button Collection  
         var radios = [];
         var initial = document.getElementsByName(String(choice));
@@ -223,6 +230,7 @@ var experiment = {
         // Loop through Radio Buttons and collect data
         for (i = 0; i < radios.length; i++) {
           if (radios[i].checked) {
+            experiment.data.response_type.push(response_types[choice]);
             experiment.data.response.push(radios[i].value);
             experiment.data.elapsed_ms.push(elapsed);
             experiment.data.num_errors.push(experiment.num_errors);
@@ -237,6 +245,7 @@ var experiment = {
         if (response_logged) {
           // Slider Data Collection
           var sliders = document.getElementsByName('slider' + choice)[0];
+          experiment.data.type.push(choice);
           experiment.data.response.push(sliders.value);
           experiment.data.elapsed_ms.push(elapsed);
           experiment.data.num_errors.push(experiment.num_errors);
@@ -290,8 +299,12 @@ var experiment = {
           $("#guess").text(current_trial[2]);
 
           // push all relevant variables into data object
-          experiment.data.trial.push(current_trial[0]);
-          experiment.data.window_width.push($(window).width());
+          types = current_trial[0].split('_');
+          experiment.data.trial_type.push(types[0] + '_' + types[1]);
+          experiment.data.card_type.push(types[0]);
+          experiment.data.guess_type.push(types[1]);
+          experiment.data.card.push(types[2]);
+          experiment.data.guess.push(types[3]);
           experiment.data.window_height.push($(window).height());
 
           showSlide("stage");
@@ -307,9 +320,9 @@ var experiment = {
     submit_comments: function() {
         experiment.data.age.push(document.getElementById("age").value);
         experiment.data.gender.push(document.getElementById("gender").value);
-        experiment.data.education.push(document.getElementById("education").value);
-        experiment.data.expt_aim.push(document.getElementById("expthoughts").value);
-        experiment.data.expt_gen.push(document.getElementById("expcomments").value);
+        experiment.data.logical_training.push(document.getElementById("education").value);
+        experiment.data.aim.push(document.getElementById("expthoughts").value);
+        experiment.data.comments.push(document.getElementById("expcomments").value);
         experiment.data.language.push(document.getElementById("explanguage").value);
         experiment.data.user_agent.push(window.navigator.userAgent);
         experiment.end();
