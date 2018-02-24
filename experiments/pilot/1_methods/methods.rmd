@@ -142,29 +142,3 @@ colnames(file3) <- c("Card", "Guess")
 write.csv(file3, file="file3.csv", row.names=FALSE)
 ```
 
-### Procedure: 
-
-Three decks of cards  are prepared: introduction, instruction, and warm-up+test. The introduction deck includes six cards; one of each card type.
-
-**Introduction**
-
-The experimenter puts the introduction cards on the table and shows them to the puppet and the child. The puppet asks about the name of the animals on the cards. The experimenter waits to see if the child can answer the puppet's questions. The experimenter can also encourage the child to answer the puppet's questions.
-
-*Experimenter: Look! My game has a lot of cards!*
-*Puppet: Ooh look at all these animals! [points to a card] what is this one? [waits for answer, points to another card] What is on this one? etc.*
-
-When it is clear that the child knows the animals well the experimeter proceeds to the instruction deck.
-
-**Instruction**
-
-Then the experimenter explains the game to the puppet. Picks up the instruction deck. The instruction deck is always arranged as: CAT > ELEPHANT > CAT-DOG. The puppet guesses are: dog > elephant > cat. The experimenter responds to geusses with: "Sorry. That's not right" > "Yes! That's right" > "That's a little bit right!". After each feedback, he also explains to the child how to give feedback to the puppet.
-
-*Now! I'm going to put the cards like this [puts the warm-up deck on the table face down]. I'm going to pick this card on the top. Can you guess what animal is on this one? What is on this card? [puppet guesses] Yes! That's right! When [puppet name] is right, you can tell her: Yes! you are right.*
-
-**Warm-up + Test**
-
-The warm-up+test deck is arranged according to the order of the trials in the participant csv file. When the instruction deck is done, the puppet asks to play with the child. The experimenter explains to the child:
-
-*Here are some more cards [uses the warm-up+test deck]. Now you pick a card and Jazzy is going to guess what is on the card. If Jazzy is right, tell her "you are right"! If she is a little bit right, tell her "you are a little bit right", if she is wrong, tell her "sorry. that's not right"*
-
-The first three trials of this deck are arranged as warm-up. They have the trial types in the instruction set but the order and animals are randomized. The warm up trials let us know how comfortable the child is with giving feedback. The next 13 trials are test trials. They include all the conjunction and disjunction trials.

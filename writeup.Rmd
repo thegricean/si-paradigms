@@ -84,7 +84,7 @@ Alternative Linking Hypothesis:
 * However, this is probably not a consensus in the field because Katsos & Bishop consider the mid-point response "big" on the scale small-big-huge (strawberry) to be the result of implicture caculation
 
 * what is the most common measure of "implicature rate" in the literature?
-Binary True/False: Noveck 2001, 
+Binary True/False: Noveck 2001, Chemla & Spector 2011, 
 Ternary: Katsos & Bishop 2011
 
 # Methods

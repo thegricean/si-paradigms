@@ -90,8 +90,8 @@ function randomTrials(trials){
     var vals = Object.values(trials[shuf[i]])
     var shuf2 = shuffle(vals)
     output.push(shuf2[0])
-    // output.push(shuf2[1])
-    // output.push(shuf2[2])
+    output.push(shuf2[1])
+    output.push(shuf2[2])
   }
   return shuffle(output)
 }

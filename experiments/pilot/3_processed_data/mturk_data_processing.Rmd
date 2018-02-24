@@ -12,46 +12,49 @@ library(tidyverse)
 
 ```{r}
 # read the json file names to be loaded in the json directory
-files <- dir("../2_raw_data/", pattern =".json") 
+files <- dir("../2_raw_data/round2/", pattern =".json") 
 # make an empty data frame to append the json data participant by participant
 adult_data <- data.frame()
 
 #loop through json files
 for (file in files) {
   #read the json file into jd
-  jd <- fromJSON(paste(readLines(paste("../2_raw_data/", file, sep="")), collapse=""))
+  jd <- fromJSON(paste(readLines(paste("../2_raw_data/round2/", file, sep="")), collapse=""))
   #create a data frame with the column names on the left
   id <- data_frame(participant = jd$WorkerId,
                    order=seq(1:24),
                   gender = jd$answers$data$gen,
                   age = jd$answers$data$age,
                   language = jd$answers$data$language,
-#                  version = jd$answers$data$version,
-                  logical_training = jd$answers$data$education,
-                  trials = jd$answers$data$trial,
+                  trial_type = jd$answers$data$trial_type,
+                  response_type = jd$answers$data$response_type,
+                  guess_type = jd$answers$data$guess_type,
+                  guess = jd$answers$data$guess,
+                  card_type = jd$answers$data$card_type,
+                  card = jd$answers$data$card,
+                  logical_training = jd$answers$data$logical_training,
                   response = jd$answers$data$response,
-#                  duration = jd$answers$data$elapsed_ms,
-#                  AgeGroup = "adult",
-                  aim = jd$answers$data$expt_aim,
-                  comments = jd$answers$data$expt_gen
+                  duration = jd$answers$data$elapsed_ms,
+                  aim = jd$answers$data$aim,
+                  comments = jd$answers$data$comments
                   )
   # append the dataframe for that json file to the big data frame 
   adult_data <- bind_rows(adult_data, id)
 }
-write.csv(adult_data, "../3_processed_data/adult_data.csv")
+write.csv(adult_data, "../3_processed_data/pilot2_data.csv")
 ```
 
 ```{r}
-processed_data <- read.csv("../3_processed_data/adult_data_withConditions.csv")
+#processed_data <- read.csv("../3_processed_data/adult_data_withConditions.csv")
 
-processed_data2 <-
-  processed_data %>%
-  separate(trials, c("card_type", "guess_type", "card", "guess"), sep = "_", extra = "drop")
+#processed_data2 <-
+#  processed_data %>%
+#  separate(trials, c("card_type", "guess_type", "card", "guess"), sep = "_", extra = "drop")
 
-write.csv(processed_data2, "../3_processed_data/processed_data2.csv")
+#write.csv(processed_data2, "../3_processed_data/processed_data2.csv")
 
-processed_data2 %>%
-  group_by(type, card_type, guess_type) %>%
-  summarize(count=n())
+#processed_data2 %>%
+#  group_by(type, card_type, guess_type) %>%
+#  summarize(count=n())
 ```
 
