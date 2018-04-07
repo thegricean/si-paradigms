@@ -62,8 +62,12 @@ set.seed(42)
 
 * In a truth-value judgment task, how do we know whether an interpretation is literal or the result of an implicature computation?
 
+Explain the setup
+* the speaker produces weaker alternative from the scale
+* the facts are such that the stronger alternative is true  
+
 Traditional Linking Hypotheses:
-* If an implicature is calculated, the participant chooses a Non-True/Right response
+* If an implicature is calculated, the participant chooses a Non-True/Non-Right response
 * If an implicature is calculated, the participant chooses the Wrong/False response
 * If an implicature is calculated, the participant chooses the lower end of the scale (2: wrong/False, 3: wrong, 4: wrong/kinda-wrong, 5: wrong/kinda-wrong)
 
@@ -90,7 +94,8 @@ Ternary: Katsos & Bishop 2011
 # Methods
 
 ```{r importData, warning=FALSE, echo=FALSE}
-data <- read_csv("experiments/pilot/3_processed_data/guessingGame_data.csv")
+data <- read_csv("experiments/pilot/3_processed_data/pilot_data.csv")
+data$response <- pilot_data$response %>% tolower()
 
 # define an implicature column for the ad-hoc and implicature trials
 pragmatic_trials <- 
@@ -98,11 +103,20 @@ pragmatic_trials <-
   filter(trial_type == "XY_XorY" | trial_type=="XY_X")
 
 # adding a column that defines pragmatic vs. literal
-pragmatic_trials$implicature<-1
-pragmatic_trials[pragmatic_trials$response=="right",]$implicature <-0
 
-# chaing trial type names to adhoc vs. scalar
-pragmatic_trials$trial_type <-fct_recode(pragmatic_trials$trial_type, 
+# high definition only considers the highest point on the scale as "literal"
+pragmatic_trials$high<-1
+pragmatic_trials[pragmatic_trials$response=="right" | pragmatic_trials$response=="true",]$high <-0
+
+# low definition only considers the lowers point on the scale as implicature 
+pragmatic_trials$low<-0
+pragmatic_trials[pragmatic_trials$response=="wrong" | pragmatic_trials$response=="false",]$low <-1
+
+implicature_rate <- 
+  pragmatic_trials %>% gather("definition","implicature", high:low)
+
+# changing trial type names to adhoc vs. scalar
+implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type, 
                                          adhoc = "XY_X", scalar = "XY_XorY")
 ```
 
@@ -110,47 +124,44 @@ pragmatic_trials$trial_type <-fct_recode(pragmatic_trials$trial_type,
 
 ## Participants
 
-* how are we choosing the sample size? We went for a 20 per cell number. based on?
+100 participants (20 per condition) were recruited using Amazon Mechanical Turk. 
 
-## Materials and Design
+## Procedure
+
+The study was administered online and through Amazon Mechanical Turk. Participants were introduced to a set of cards with pictures of one or two animals (Figure \@ref(fig:stimuli)). They were told that a blindfolded fictional character called Bob is going to guess what animals are on the card. In each trial, participants saw a card as well as a sentence representing Bob's guess. For example they saw a card with a cat on it and read the sentence "there is a cat on the card." The study ended after 24 trials. At the end participants were asked about their   
+You can access and view [the online study here]().
+
+## Design and Materials
 
 ```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=3, fig.height=1.5, set.cap.width=T, num.cols.cap=1, fig.width=1.5,fig.cap = "Cards used in the connective guessing game."}
 cards_img <- jpeg::readJPEG("experiments/figs/cards.jpg")
 grid::grid.raster(cards_img)
 ```
 
-* Manipulations: type of card and the type of guess.
+The design had two main manipulaitons: the type of card and the type of guess. There were two types of cards. Cards with only one animal on them and cards with two animals. Animals were chosen from the following set: cat, dog, and elephant  There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*).
 
-The study included six cards with cartoon images of a cat, a dog, and an elephant (Figure \@ref(fig:stimuli)). The study was designed based on the type of cards participants saw and the type of guesses they heard. There were two types of cards: cards with only one animal on them and the ones with two animals. There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*). In each guess, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: dog, Guess: *There is a cat or an elephant*), a partial overlap (e.g. Image: Cat, Guess: *There is a cat or an elephant*), or a total overlap (e.g. Image: cat and elephant, Guess: *There is a cat or an elephant*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. 
+In each trial, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: dog, Guess: *There is a cat or an elephant*), a partial overlap (e.g. Image: Cat, Guess: *There is a cat or an elephant*), or a total overlap (e.g. Image: cat and elephant, Guess: *There is a cat or an elephant*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. 
 
-* The study used five different types of measurements. 1. two-options (true vs. false) 2. two-options (wrong vs. right) 3. three-options (wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda right, right) 5. five-options (wrong, kinda wrong, neither, kinda right).
+
+
+* The study used five different types of measurements. 1. two-options (true vs. false) 2. two-options (wrong vs. right) 3. three-options (wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda right, right) 5. five-options (wrong, kinda wrong, neither, kinda right, right).
 
 ```{r trials, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=4, fig.height=2, set.cap.width=T, num.cols.cap=1, fig.width=1.5, fig.cap = "Trial types represented by example cards and guesses."}
 trials_img <- jpeg::readJPEG("experiments/figs/trialTypes.jpg")
 grid::grid.raster(trials_img)
 ```
 
-## Procedure
-
-You can access and view the online study using [the following link]().
-
 ## Pre-registered Analysis
-
-<!-- changes in the experiment
- - record the response type as response_type
- - record trial type, separate from the card itself and what was said: trial_type, card_type, guess_type, card, guess
-
--->
 
 <!--We used `r cite_r("r-references.bib")` for all our analyses.-->
 
-* Define implicature rate:
+We are primarily concerned with the rate of implicatures in an experimental study. Two trial types are predicted to include pragmatic implicatures. First, trials where there are two animals on the card but the fictional character guesses using the connective *or*; for example "cat or dog" when the card has both a cat and a dog on it. We call such trials "scalar" trials. Second, trials where there are two animals on the card but the character guesses only one; for example "cat" when the card has a cat and a dog on it. We call such trials "exhaustive". In our assessment of implicature rate we focus on these two types of trials.
+
+We define "implicature rate" in two ways: 
 
 This study set out to test two hypotheses. First, that the proportion of pragmatic vs. literal responses in a truth values judgement task changes based on the number of response options available to the participants. We test this hypothesis formally using a binomial mixed effects model with the fixed effect of response type and the random intercept for participants as well as random intercept and slope for 
 
 Second, ...
-
-
 
 # Results
 
@@ -172,12 +183,30 @@ ggplot(results, aes(x=response,y=proportion)) +
 
 # Analysis
 
+```{r implicatureResultss}
+implicature_results<-
+  implicature_rate %>%
+  group_by(response_type, trial_type, implicature, definition) %>%
+  summarize(counts = n()) %>%
+  group_by(response_type, trial_type, definition) %>%
+  mutate(total = sum(counts), proportion = counts/total)
+```
+
 ```{r}
+ggplot(implicature_results, aes(x=as.factor(implicature),y=proportion)) +
+  geom_bar(stat="identity", position = "dodge") +
+  facet_grid(response_type~definition + trial_type, drop = TRUE) +
+  theme_few() + 
+  labs(x="Implicature")
+```
 
-implicature_analysis <- glmer(implicature ~ response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=pragmatic_trials)
 
-implicature_analysis <- brm(implicature ~ response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=pragmatic_trials)
+```{r}
+implicature_analysis_a <- glmer(implicature ~ definition * response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
 
+summary(implicature_analysis)
+
+implicature_analysis_b <- brm(implicature ~ definition * response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
 ```
 
 
