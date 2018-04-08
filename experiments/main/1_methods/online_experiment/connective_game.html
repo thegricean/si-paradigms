@@ -1,0 +1,255 @@
+
+<!-- Preamble -->
+<html>
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Language and Cognition</title>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="mmturkey-0.6.js"></script>
+    <script src="connective_game.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+</head>
+
+<body>
+
+<!-- First Page -->
+<div class="slide" id="instructions">
+  <br>
+  <img src="images/stanford.png" alt="Stanford University">
+  <h3 id='logo-text'>Stanford Language and Cognition Lab</h3>
+    
+    <div class="block-text">
+        <p>Welcome! Please consider participating in this study only if you are a native speaker of English. </p>
+    </div>
+
+  <button type="button" onclick="this.blur(); showSlide('instructions1')">Next</button>
+  
+  <p class="block-text"><br> <b> Note: you won't be able to preview this HIT before accepting it because it's so short. </b></p>
+  
+  <p class="block-text" id="legal">
+      
+      By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact us at <a href="mailto://stanfordpsych254@gmail.com">stanfordpsych254@gmail.com</a>. You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. We have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.
+    </p>
+</div>
+
+<!-- Instructions: Cards -->
+    
+<div class="slide" id="instructions1">
+
+    <!--Instruction text-->
+   
+    <p class="block-text">Thank you so much for participating in this study. We have prepared a card game for you! In this game, each card has one or two of the following animals: dog, cat, or elephant. You can see the cards below.
+    </p>
+
+    <img align="center" src="images/cards.jpg" width="40%">
+
+    <table align = "center" class="judgements">
+        <tr> <td colspan="2" align="center"> 
+            <button type="button" onclick="this.blur(); showSlide('instructions2')">NEXT</button>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+<!--- Instructions: Bob -->
+    
+<div class="slide" id="instructions2">
+
+    <!--Instruction text-->
+   
+    <p class="block-text">You are going to play this game with Bob. You will see a card and Bob is going to guess what animal is on the card. Bob CANNOT see what is on your card. Please tell us if Bob's guess is right or not.
+    </p>
+
+    <img align="center" src="images/bob.jpg" width="15%">
+
+    <p class="block-text" align="center"> Click NEXT to play the game.
+    </p>
+    
+    <table align = "center" class="judgements">
+        <tr> <td colspan="2" align="center"> 
+            <button type="button" onclick="this.blur(); experiment.next()">NEXT</button>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+<!-- Progress Bar -->
+
+    <div class="slide" id="stage">
+        
+        <div class="progress">
+            <div id="prog" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
+        </div>
+        
+        <br>
+        
+        <div id="stage-content">
+                        
+            <table align = "center" class="judgements" width="1000">
+                <tr>
+                    <td><h3 id="guess" align="right"></h3></td>
+                </tr>
+                <tr>
+                    <td><img id="card"/ width="500" height="250"></td>
+                </tr>
+<!--                 <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '2'><input type="radio" name="judgment" value="Right">Right</label>
+                  </td> 
+                </tr>
+                <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Neither">Neither</label>
+                    <label style='visibility: hidden' name = '3'><input type="radio" name="judgment" value="Right">Right</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="Kinda Wrong">Kinda Wrong</label>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="Kinda Right">Kinda Right</label>
+                    <label style='visibility: hidden' name = '4'><input type="radio" name="judgment" value="Right">Right</label>
+                  </td>
+                </tr> -->
+                <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '5'><input type="radio" name="judgment" value="Wrong">Wrong</label>
+                    <label style='visibility: hidden' name = '5'><input type="radio" name="judgment" value="Kinda Wrong">Kinda Wrong</label>
+                    <label style='visibility: hidden' name = '5'><input type="radio" name="judgment" value="Neither">Neither</label>
+                    <label style='visibility: hidden' name = '5'><input type="radio" name="judgment" value="Kinda Right">Kinda Right</label>
+                    <label style='visibility: hidden' name = '5'><input type="radio" name="judgment" value="Right">Right</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="False">False</label>
+                    <label style='visibility: hidden' name = '1'><input type="radio" name="judgment" value="True">True</label>
+                    <script type="text/javascript"> 
+                      createRadioButtons();
+                    </script>
+                  </td>
+                </tr>
+ <!--                <tr>
+                  <td>
+                    <div class="slidecontainer">
+                      <label for="WR" style='visibility: hidden' name = '3' class="pull-left">Wrong</label>
+                      <label for="WR" style='visibility: hidden' name = '3' class="pull-right">Right</label>
+                      <input style='visibility: hidden' name = 'slider3' type="range" min="0" max="100" value="50" class="slider" id="WR">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="slidecontainer">
+                      <label for="DWDR" style='visibility: hidden' name = '4' class="pull-left">Definitely Wrong</label>
+                      <label for="DWDR" style='visibility: hidden' name = '4' class="pull-right">Definitely Right</label>
+                      <input style='visibility: hidden' name = 'slider4' type="range" min="0" max="100" value="50" class="slider" id="DWDR">
+                    </div>
+                    <script type="text/javascript"> 
+                      createRadioButtons();
+                    </script>
+                  </td>
+                </tr> -->
+                <tr>
+                    <td align="center">
+                        <button type="button" id="nextButton" onClick="experiment.log_response()">Next</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="2">
+                        <div id="testMessage"> </div>
+                    </td>
+                </tr>
+            </table>
+            
+
+        </div>
+
+    </div>
+
+<!-- The debriefing slide. -->
+
+ <form id="demographics">
+ <div class="slide" id="debriefing">
+   <div class="question">
+     <p><b>What is your age?</b>
+       <label id="age-error" class="error" for="age">Please choose an option</label>
+      </p>
+      <select name="age" id="age" form="demographics" required>
+        <option selected value="">Choose an age</option>
+        <script type="text/javascript">
+            options();
+        </script>
+        <option value="&gt;90">90+</option>
+      </select>
+    </div>
+
+   <div class="question">
+     <p>
+       <b>What is your gender identity?</b>
+       <label id="gender-error" class="error" for="gender">Please choose an option</label>
+      </p>
+      <select name="gender" id="gender" form="demographics" required>
+        <option value="">Please choose an option</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="other">Other</option>
+        <option value="no_answer">Prefer not to answer</option>
+      </select>
+   </div>
+
+   <div class="question">
+     <p>
+       <b>Have you ever learned about logical conjunction (&) and disjunction (V) as part of a course or reading on math, logic, or programming ?</b>
+       <label id="education-error" class="error" for="education">Please choose an option</label>
+     </p>
+     <select name="education" id="education" form="demographics" required>
+       <option value="">Choose an option</option>
+       <option value="Yes">Yes</option>
+       <option value="No">No</option>
+     </select>
+   </div>
+
+    <div class="question">
+     <p><b>What is your native language?</b></p>
+     <textarea type="text" id="explanguage" style="width:50%" name="explang" rows="1" required></textarea>
+   </div>
+
+   <div class="question">
+     <p><b>What in your opinion was the goal of the experiment?</b></p>
+     <textarea type="text" id="expthoughts" style="width:100%" name="expaim"></textarea>
+   </div>
+
+   <div class="question">
+     <p><b>If you have any comment about the experiment, please write it here. Did you happen to run into any issues?</b></p>
+     <textarea type="textarea" id="expcomments" style="width:100%" name="expgen"></textarea>
+   </div>
+  
+  <div align="center">
+    <button type="submit" id="debriefsubmit">Submit</button>
+  </div>
+
+     </div>
+</form>
+
+<!-- The finish slide. -->
+<div class="slide" id="finished">
+  <p class="block-text">
+  Thank you for participating in the study. The purpose of the study is to understand how humans understand the meaning of the logical words "and" and "or". In this study, we ask participants to judge whether statements with "or" were right or wrong depending on what they saw on a set of cards. If you would like to know more about this topic or if you have any questions or concerns, please don't hesitate to contact the lead researcher at <a href="mailto:masoudj@stanford.edu">masoudj@stanford.edu</a>.
+  </p>
+</div>
+
+<script src="connective_game.js"></script>
+
+</body>
+
+</html>

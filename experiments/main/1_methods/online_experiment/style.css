@@ -1,0 +1,189 @@
+/* ## General styles */
+/* This stuff can be ported from experiment to experiment.*/
+
+/* We want the page to sit flush inside the browser window - that means no margins or padding. Also, use a nice-looking serif font. */
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Palatino Linotype, Bookman Antiqua, Palatino, serif;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+/* We manage display using "slides". A slide is a <code>div</code> that takes up the entire page. Only one slide should be visible at a time. Navigation between slides is most sensibly accomplished using buttons, rather than keyboard events. */
+.slide {
+  width: 100%;
+  height: 95%;
+  display: none;
+  position: absolute;
+  margin: 0;
+  margin-left: 0.5%;
+  padding: 1% 2% 1% 2%;
+}
+
+.center {
+  margin-left: auto;
+    margin-right: auto;
+  width: 70%;
+  text-align: center;
+}
+
+input, select, button {font-family: Georgia, serif; font-size: 14px;}
+
+input[type="radio"] {
+    margin: 5px;
+    vertical-align: baseline;
+}
+
+.judgements{
+    font-size: 15px;
+}
+
+#text-only {
+    margin-top: 20px;
+}
+
+.judgements label {
+  cursor: pointer;
+  display: inline-block;
+  padding: 6px;
+}
+.judgements label:hover {
+    cursor: pointer;
+    display: inline-block;
+    padding: 6px;
+    background: #efefef;
+}
+
+#demographics label {
+  display: inline;
+}
+
+button {
+  background: url(images/button-gradient.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 29px;
+  min-width: 70px;
+}
+button:active {
+  border-left: 1px solid #c9c9c9;
+  border-top: 1px solid #c9c9c9;
+  background: none;
+  background-color: #c9c9c9;
+}
+
+button[disabled] {
+  background: url(zen-button.png);
+  border: 1px solid #999;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  cursor: not-allowed;
+}
+.slidecontainer {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    width: 100% !important; /* Full-width */
+}
+
+/* ## Experiment-specific styles */
+/* This stuff will vary by experiment. */
+#stage.slide h5 {
+  font-size: 16px;
+}
+
+#logo-text {
+  margin-bottom: 1em;
+}
+
+#instructions, #instructions1 #instructions2, #instructions3, #finished {
+  text-align: center;
+}
+
+#debriefing,
+#instructions1,
+#instructions2,
+#instructions3,
+#finished {
+  margin-top: 3em;
+}
+
+#odd-key, #even-key {
+  background-color: #e3e3e3;
+  padding: 2px;
+  border: 1px outset #cccccc;
+  font-family: Courier New;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.block-text {
+    width: 500px;
+    text-align: justify;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    font-size: 15px;
+}
+
+#legal {
+  margin: 0 auto;
+  margin-top: 1.5em;
+  font-size: 0.8em;
+}
+
+#number {
+  font-size: 42px;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  text-align: center;
+  width: 100px;
+}
+
+td {
+  text-align: center;
+  width: 60px;
+}
+
+.prompt p {
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 15px;
+}
+
+#debriefing textarea {
+  height: 5em;
+}
+
+#debriefing .question {
+  margin-bottom: 1.1em;
+}
+
+#demographics label.error {
+  color: red;
+  margin-left: .5em;
+  display: none;
+}
+
+img {
+    display: block;
+    margin: auto;
+    padding: 2  0px;
+}
+
+table {
+    width: auto;
+}
+
+#guess {
+    align-content: right;
+}

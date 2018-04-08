@@ -1,0 +1,14 @@
+{
+    "title":               "A Short Guessing Game",
+    "description":         "A guessing game with cards and animal pictures. Please only participate if you are a native speaker of English. The game takes about 3 to 4 minutes to complete.",
+    "keywords":            "Game, cards",
+    "url":                 "https://web.stanford.edu/~masoudj/online_experiment/connective_game.html",
+    "frame_height":         700,
+    "assignment_duration":  "1 hour",
+    "auto_approval_delay":  "5 minutes",
+    "reward":               0.8,
+    "qualifications": {
+        "location": "US",
+        "approval_percentage": 85
+    }
+}
