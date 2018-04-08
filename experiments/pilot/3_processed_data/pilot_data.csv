@@ -364,7 +364,7 @@ anon27,male,24,en,No,XY_XandY,XY,XandY,dogele,dogandele,right,no,NA,binary,NA,NA
 anon27,male,24,en,No,X_Z,X,Z,ele,cat,wrong,no,NA,binary,NA,NA
 anon27,male,24,en,No,X_X,X,X,dog,dog,right,no,NA,binary,NA,NA
 anon27,male,24,en,No,X_XandY,X,XandY,dog,catanddog,wrong,no,NA,binary,NA,NA
-anon27,male,24,en,No,X_XandY,X,XandY,cat,catandele,2,no,NA,binary,NA,NA
+anon27,male,24,en,No,X_XandY,X,XandY,cat,catandele,wrong,no,NA,binary,NA,NA
 anon27,male,24,en,No,X_XorY,X,XorY,ele,catorele,wrong,no,NA,binary,NA,NA
 anon27,male,24,en,No,XY_X,XY,X,catele,ele,right,no,NA,binary,NA,NA
 anon27,male,24,en,No,X_Z,X,Z,cat,dog,wrong,no,NA,binary,NA,NA
@@ -1656,54 +1656,54 @@ anon10,female,59,english,No,XY_Z,XY,Z,DOGELE,cat,Wrong,I have no idea,no,quinary
 anon10,female,59,english,No,XY_Z,XY,Z,CATELE,dog,Wrong,I have no idea,no,quinary,22,2887
 anon10,female,59,english,No,X_Z,X,Z,DOG,ele,Wrong,I have no idea,no,quinary,23,2688
 anon10,female,59,english,No,XY_XorY,XY,XorY,DOGELE,dogorele,Neither,I have no idea,no,quinary,24,9161
-anon11,female,22,English,No,X_XorY,X,XorY,ELE,catorele,True,Understanding perceptions of english,NA,true-false,1,16232
-anon11,female,22,English,No,X_X,X,X,DOG,dog,True,Understanding perceptions of english,NA,true-false,2,3500
-anon11,female,22,English,No,X_X,X,X,CAT,cat,True,Understanding perceptions of english,NA,true-false,3,3080
-anon11,female,22,English,No,X_Z,X,Z,DOG,cat,False,Understanding perceptions of english,NA,true-false,4,1950
-anon11,female,22,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,Understanding perceptions of english,NA,true-false,5,3340
-anon11,female,22,English,No,X_XandY,X,XandY,DOG,dogandele,False,Understanding perceptions of english,NA,true-false,6,2344
-anon11,female,22,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,True,Understanding perceptions of english,NA,true-false,7,4311
-anon11,female,22,English,No,XY_XorY,XY,XorY,CATDOG,catordog,True,Understanding perceptions of english,NA,true-false,8,2730
-anon11,female,22,English,No,X_XorY,X,XorY,CAT,catordog,True,Understanding perceptions of english,NA,true-false,9,2124
-anon11,female,22,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,Understanding perceptions of english,NA,true-false,10,2679
-anon11,female,22,English,No,X_Z,X,Z,CAT,ele,False,Understanding perceptions of english,NA,true-false,11,1647
-anon11,female,22,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,Understanding perceptions of english,NA,true-false,12,2327
-anon11,female,22,English,No,XY_Z,XY,Z,CATELE,dog,False,Understanding perceptions of english,NA,true-false,13,1792
-anon11,female,22,English,No,XY_X,XY,X,CATDOG,cat,True,Understanding perceptions of english,NA,true-false,14,1584
-anon11,female,22,English,No,X_XandY,X,XandY,CAT,catandele,False,Understanding perceptions of english,NA,true-false,15,1805
-anon11,female,22,English,No,XY_XorY,XY,XorY,CATELE,catorele,True,Understanding perceptions of english,NA,true-false,16,2458
-anon11,female,22,English,No,XY_Z,XY,Z,DOGELE,cat,False,Understanding perceptions of english,NA,true-false,17,1689
-anon11,female,22,English,No,X_XorY,X,XorY,DOG,dogorele,True,Understanding perceptions of english,NA,true-false,18,2233
-anon11,female,22,English,No,X_XandY,X,XandY,CAT,catanddog,False,Understanding perceptions of english,NA,true-false,19,1552
-anon11,female,22,English,No,X_Z,X,Z,DOG,ele,False,Understanding perceptions of english,NA,true-false,20,1541
-anon11,female,22,English,No,XY_Z,XY,Z,CATDOG,ele,False,Understanding perceptions of english,NA,true-false,21,2986
-anon11,female,22,English,No,X_X,X,X,ELE,ele,True,Understanding perceptions of english,NA,true-false,22,1375
-anon11,female,22,English,No,XY_X,XY,X,CATELE,cat,True,Understanding perceptions of english,NA,true-false,23,1695
-anon11,female,22,English,No,XY_X,XY,X,DOGELE,ele,True,Understanding perceptions of english,NA,true-false,24,2793
-anon12,female,36,English,Yes,X_X,X,X,CAT,cat,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,1,3708
-anon12,female,36,English,Yes,X_Z,X,Z,CAT,ele,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,2,2528
-anon12,female,36,English,Yes,X_XandY,X,XandY,CAT,catanddog,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,3,2166
-anon12,female,36,English,Yes,XY_XorY,XY,XorY,DOGELE,dogorele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,4,5363
-anon12,female,36,English,Yes,XY_XandY,XY,XandY,DOGELE,dogandele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,5,3849
-anon12,female,36,English,Yes,XY_X,XY,X,CATDOG,dog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,6,3576
-anon12,female,36,English,Yes,X_XandY,X,XandY,DOG,dogandele,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,7,2785
-anon12,female,36,English,Yes,XY_Z,XY,Z,DOGELE,cat,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,8,1863
-anon12,female,36,English,Yes,XY_X,XY,X,CATELE,ele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,9,2927
-anon12,female,36,English,Yes,X_Z,X,Z,ELE,dog,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,10,2880
-anon12,female,36,English,Yes,XY_X,XY,X,DOGELE,ele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,11,2109
-anon12,female,36,English,Yes,X_X,X,X,DOG,dog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,12,1653
-anon12,female,36,English,Yes,X_XorY,X,XorY,CAT,catordog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,13,3411
-anon12,female,36,English,Yes,XY_Z,XY,Z,CATELE,dog,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,14,2131
-anon12,female,36,English,Yes,XY_XorY,XY,XorY,CATELE,catorele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,15,2780
-anon12,female,36,English,Yes,XY_XorY,XY,XorY,CATDOG,catordog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,16,3957
-anon12,female,36,English,Yes,XY_Z,XY,Z,CATDOG,ele,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,17,2070
-anon12,female,36,English,Yes,X_Z,X,Z,CAT,dog,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,18,2872
-anon12,female,36,English,Yes,X_XorY,X,XorY,ELE,dogorele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,19,2008
-anon12,female,36,English,Yes,X_XandY,X,XandY,ELE,dogandele,False,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,20,2447
-anon12,female,36,English,Yes,X_XorY,X,XorY,DOG,catordog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,21,2295
-anon12,female,36,English,Yes,XY_XandY,XY,XandY,CATDOG,catanddog,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,22,3919
-anon12,female,36,English,Yes,X_X,X,X,ELE,ele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,23,1725
-anon12,female,36,English,Yes,XY_XandY,XY,XandY,CATELE,catandele,True,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,24,4466
+anon11,female,22,English,No,X_XorY,X,XorY,ELE,catorele,TRUE,Understanding perceptions of english,NA,true-false,1,16232
+anon11,female,22,English,No,X_X,X,X,DOG,dog,TRUE,Understanding perceptions of english,NA,true-false,2,3500
+anon11,female,22,English,No,X_X,X,X,CAT,cat,TRUE,Understanding perceptions of english,NA,true-false,3,3080
+anon11,female,22,English,No,X_Z,X,Z,DOG,cat,FALSE,Understanding perceptions of english,NA,true-false,4,1950
+anon11,female,22,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,Understanding perceptions of english,NA,true-false,5,3340
+anon11,female,22,English,No,X_XandY,X,XandY,DOG,dogandele,FALSE,Understanding perceptions of english,NA,true-false,6,2344
+anon11,female,22,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,TRUE,Understanding perceptions of english,NA,true-false,7,4311
+anon11,female,22,English,No,XY_XorY,XY,XorY,CATDOG,catordog,TRUE,Understanding perceptions of english,NA,true-false,8,2730
+anon11,female,22,English,No,X_XorY,X,XorY,CAT,catordog,TRUE,Understanding perceptions of english,NA,true-false,9,2124
+anon11,female,22,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,Understanding perceptions of english,NA,true-false,10,2679
+anon11,female,22,English,No,X_Z,X,Z,CAT,ele,FALSE,Understanding perceptions of english,NA,true-false,11,1647
+anon11,female,22,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,Understanding perceptions of english,NA,true-false,12,2327
+anon11,female,22,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,Understanding perceptions of english,NA,true-false,13,1792
+anon11,female,22,English,No,XY_X,XY,X,CATDOG,cat,TRUE,Understanding perceptions of english,NA,true-false,14,1584
+anon11,female,22,English,No,X_XandY,X,XandY,CAT,catandele,FALSE,Understanding perceptions of english,NA,true-false,15,1805
+anon11,female,22,English,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,Understanding perceptions of english,NA,true-false,16,2458
+anon11,female,22,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,Understanding perceptions of english,NA,true-false,17,1689
+anon11,female,22,English,No,X_XorY,X,XorY,DOG,dogorele,TRUE,Understanding perceptions of english,NA,true-false,18,2233
+anon11,female,22,English,No,X_XandY,X,XandY,CAT,catanddog,FALSE,Understanding perceptions of english,NA,true-false,19,1552
+anon11,female,22,English,No,X_Z,X,Z,DOG,ele,FALSE,Understanding perceptions of english,NA,true-false,20,1541
+anon11,female,22,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,Understanding perceptions of english,NA,true-false,21,2986
+anon11,female,22,English,No,X_X,X,X,ELE,ele,TRUE,Understanding perceptions of english,NA,true-false,22,1375
+anon11,female,22,English,No,XY_X,XY,X,CATELE,cat,TRUE,Understanding perceptions of english,NA,true-false,23,1695
+anon11,female,22,English,No,XY_X,XY,X,DOGELE,ele,TRUE,Understanding perceptions of english,NA,true-false,24,2793
+anon12,female,36,English,Yes,X_X,X,X,CAT,cat,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,1,3708
+anon12,female,36,English,Yes,X_Z,X,Z,CAT,ele,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,2,2528
+anon12,female,36,English,Yes,X_XandY,X,XandY,CAT,catanddog,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,3,2166
+anon12,female,36,English,Yes,XY_XorY,XY,XorY,DOGELE,dogorele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,4,5363
+anon12,female,36,English,Yes,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,5,3849
+anon12,female,36,English,Yes,XY_X,XY,X,CATDOG,dog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,6,3576
+anon12,female,36,English,Yes,X_XandY,X,XandY,DOG,dogandele,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,7,2785
+anon12,female,36,English,Yes,XY_Z,XY,Z,DOGELE,cat,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,8,1863
+anon12,female,36,English,Yes,XY_X,XY,X,CATELE,ele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,9,2927
+anon12,female,36,English,Yes,X_Z,X,Z,ELE,dog,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,10,2880
+anon12,female,36,English,Yes,XY_X,XY,X,DOGELE,ele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,11,2109
+anon12,female,36,English,Yes,X_X,X,X,DOG,dog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,12,1653
+anon12,female,36,English,Yes,X_XorY,X,XorY,CAT,catordog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,13,3411
+anon12,female,36,English,Yes,XY_Z,XY,Z,CATELE,dog,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,14,2131
+anon12,female,36,English,Yes,XY_XorY,XY,XorY,CATELE,catorele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,15,2780
+anon12,female,36,English,Yes,XY_XorY,XY,XorY,CATDOG,catordog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,16,3957
+anon12,female,36,English,Yes,XY_Z,XY,Z,CATDOG,ele,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,17,2070
+anon12,female,36,English,Yes,X_Z,X,Z,CAT,dog,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,18,2872
+anon12,female,36,English,Yes,X_XorY,X,XorY,ELE,dogorele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,19,2008
+anon12,female,36,English,Yes,X_XandY,X,XandY,ELE,dogandele,FALSE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,20,2447
+anon12,female,36,English,Yes,X_XorY,X,XorY,DOG,catordog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,21,2295
+anon12,female,36,English,Yes,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,22,3919
+anon12,female,36,English,Yes,X_X,X,X,ELE,ele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,23,1725
+anon12,female,36,English,Yes,XY_XandY,XY,XandY,CATELE,catandele,TRUE,I dont know,I did not have any technical problems during the survey. Have a terrific day!,true-false,24,4466
 anon13,female,35,English,Yes,XY_Z,XY,Z,DOGELE,cat,Neither,to see how we'd interpret the and/or answers,NA,quinary,1,4578
 anon13,female,35,English,Yes,XY_XandY,XY,XandY,DOGELE,dogandele,Right,to see how we'd interpret the and/or answers,NA,quinary,2,6217
 anon13,female,35,English,Yes,XY_XorY,XY,XorY,CATDOG,catordog,Kinda Wrong,to see how we'd interpret the and/or answers,NA,quinary,3,11353
@@ -1728,54 +1728,54 @@ anon13,female,35,English,Yes,XY_X,XY,X,DOGELE,ele,Kinda Right,to see how we'd in
 anon13,female,35,English,Yes,X_XorY,X,XorY,ELE,catorele,Kinda Right,to see how we'd interpret the and/or answers,NA,quinary,22,6754
 anon13,female,35,English,Yes,XY_X,XY,X,CATDOG,cat,Kinda Wrong,to see how we'd interpret the and/or answers,NA,quinary,23,4688
 anon13,female,35,English,Yes,X_Z,X,Z,CAT,ele,Wrong,to see how we'd interpret the and/or answers,NA,quinary,24,2233
-anon14,male,25,English,No,X_X,X,X,CAT,cat,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,1,4729
-anon14,male,25,English,No,X_XorY,X,XorY,ELE,dogorele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,2,4047
-anon14,male,25,English,No,X_Z,X,Z,ELE,cat,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,3,3033
-anon14,male,25,English,No,XY_XorY,XY,XorY,CATELE,catorele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,4,14209
-anon14,male,25,English,No,XY_Z,XY,Z,CATELE,dog,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,5,4786
-anon14,male,25,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,6,4488
-anon14,male,25,English,No,X_Z,X,Z,CAT,dog,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,7,2074
-anon14,male,25,English,No,XY_X,XY,X,CATELE,cat,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,8,3544
-anon14,male,25,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,9,3249
-anon14,male,25,English,No,X_XorY,X,XorY,DOG,dogorele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,10,3793
-anon14,male,25,English,No,XY_X,XY,X,CATDOG,cat,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,11,13402
-anon14,male,25,English,No,X_XorY,X,XorY,CAT,catordog,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,12,2280
-anon14,male,25,English,No,X_XandY,X,XandY,CAT,catandele,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,13,14225
-anon14,male,25,English,No,X_Z,X,Z,CAT,ele,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,14,2081
-anon14,male,25,English,No,X_XandY,X,XandY,DOG,catanddog,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,15,183089
-anon14,male,25,English,No,XY_Z,XY,Z,DOGELE,cat,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,16,1823
-anon14,male,25,English,No,XY_Z,XY,Z,CATDOG,ele,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,17,4088
-anon14,male,25,English,No,XY_X,XY,X,DOGELE,dog,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,18,1897
-anon14,male,25,English,No,X_XandY,X,XandY,DOG,dogandele,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,19,2017
-anon14,male,25,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,20,3432
-anon14,male,25,English,No,X_X,X,X,DOG,dog,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,21,1424
-anon14,male,25,English,No,XY_XorY,XY,XorY,CATDOG,catordog,False,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,22,2833
-anon14,male,25,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,23,1546
-anon14,male,25,English,No,X_X,X,X,ELE,ele,True,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,24,1344
-anon15,male,49,English,No,X_Z,X,Z,DOG,ele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,1,4119
-anon15,male,49,English,No,XY_X,XY,X,DOGELE,ele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,2,4801
-anon15,male,49,English,No,X_XandY,X,XandY,ELE,catandele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,3,3952
-anon15,male,49,English,No,X_XorY,X,XorY,CAT,catorele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,4,3862
-anon15,male,49,English,No,X_X,X,X,ELE,ele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,5,2473
-anon15,male,49,English,No,X_Z,X,Z,ELE,dog,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,6,1981
-anon15,male,49,English,No,X_X,X,X,CAT,cat,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,7,1948
-anon15,male,49,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,8,4501
-anon15,male,49,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,9,2484
-anon15,male,49,English,No,XY_X,XY,X,CATELE,cat,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,10,3488
-anon15,male,49,English,No,XY_Z,XY,Z,DOGELE,cat,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,11,2360
-anon15,male,49,English,No,X_X,X,X,DOG,dog,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,12,1600
-anon15,male,49,English,No,XY_XorY,XY,XorY,CATELE,catorele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,13,7251
-anon15,male,49,English,No,XY_Z,XY,Z,CATELE,dog,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,14,2746
-anon15,male,49,English,No,XY_X,XY,X,CATDOG,dog,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,15,1832
-anon15,male,49,English,No,X_Z,X,Z,CAT,ele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,16,1790
-anon15,male,49,English,No,XY_XorY,XY,XorY,CATDOG,catordog,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,17,4256
-anon15,male,49,English,No,X_XorY,X,XorY,ELE,dogorele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,18,2695
-anon15,male,49,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,19,3194
-anon15,male,49,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,20,2707
-anon15,male,49,English,No,X_XorY,X,XorY,DOG,catordog,True,To see how people would interpret the questions.,No problems. Thank you.,true-false,21,2358
-anon15,male,49,English,No,XY_Z,XY,Z,CATDOG,ele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,22,2088
-anon15,male,49,English,No,X_XandY,X,XandY,DOG,catanddog,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,23,3831
-anon15,male,49,English,No,X_XandY,X,XandY,ELE,dogandele,False,To see how people would interpret the questions.,No problems. Thank you.,true-false,24,2906
+anon14,male,25,English,No,X_X,X,X,CAT,cat,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,1,4729
+anon14,male,25,English,No,X_XorY,X,XorY,ELE,dogorele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,2,4047
+anon14,male,25,English,No,X_Z,X,Z,ELE,cat,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,3,3033
+anon14,male,25,English,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,4,14209
+anon14,male,25,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,5,4786
+anon14,male,25,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,6,4488
+anon14,male,25,English,No,X_Z,X,Z,CAT,dog,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,7,2074
+anon14,male,25,English,No,XY_X,XY,X,CATELE,cat,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,8,3544
+anon14,male,25,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,9,3249
+anon14,male,25,English,No,X_XorY,X,XorY,DOG,dogorele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,10,3793
+anon14,male,25,English,No,XY_X,XY,X,CATDOG,cat,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,11,13402
+anon14,male,25,English,No,X_XorY,X,XorY,CAT,catordog,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,12,2280
+anon14,male,25,English,No,X_XandY,X,XandY,CAT,catandele,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,13,14225
+anon14,male,25,English,No,X_Z,X,Z,CAT,ele,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,14,2081
+anon14,male,25,English,No,X_XandY,X,XandY,DOG,catanddog,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,15,183089
+anon14,male,25,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,16,1823
+anon14,male,25,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,17,4088
+anon14,male,25,English,No,XY_X,XY,X,DOGELE,dog,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,18,1897
+anon14,male,25,English,No,X_XandY,X,XandY,DOG,dogandele,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,19,2017
+anon14,male,25,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,20,3432
+anon14,male,25,English,No,X_X,X,X,DOG,dog,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,21,1424
+anon14,male,25,English,No,XY_XorY,XY,XorY,CATDOG,catordog,FALSE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,22,2833
+anon14,male,25,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,23,1546
+anon14,male,25,English,No,X_X,X,X,ELE,ele,TRUE,"To see how we view the wording of a sentence and would respond (or, and, etc)",No issues. Thank you! Quick and easy!,true-false,24,1344
+anon15,male,49,English,No,X_Z,X,Z,DOG,ele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,1,4119
+anon15,male,49,English,No,XY_X,XY,X,DOGELE,ele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,2,4801
+anon15,male,49,English,No,X_XandY,X,XandY,ELE,catandele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,3,3952
+anon15,male,49,English,No,X_XorY,X,XorY,CAT,catorele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,4,3862
+anon15,male,49,English,No,X_X,X,X,ELE,ele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,5,2473
+anon15,male,49,English,No,X_Z,X,Z,ELE,dog,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,6,1981
+anon15,male,49,English,No,X_X,X,X,CAT,cat,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,7,1948
+anon15,male,49,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,8,4501
+anon15,male,49,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,9,2484
+anon15,male,49,English,No,XY_X,XY,X,CATELE,cat,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,10,3488
+anon15,male,49,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,11,2360
+anon15,male,49,English,No,X_X,X,X,DOG,dog,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,12,1600
+anon15,male,49,English,No,XY_XorY,XY,XorY,CATELE,catorele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,13,7251
+anon15,male,49,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,14,2746
+anon15,male,49,English,No,XY_X,XY,X,CATDOG,dog,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,15,1832
+anon15,male,49,English,No,X_Z,X,Z,CAT,ele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,16,1790
+anon15,male,49,English,No,XY_XorY,XY,XorY,CATDOG,catordog,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,17,4256
+anon15,male,49,English,No,X_XorY,X,XorY,ELE,dogorele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,18,2695
+anon15,male,49,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,19,3194
+anon15,male,49,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,20,2707
+anon15,male,49,English,No,X_XorY,X,XorY,DOG,catordog,TRUE,To see how people would interpret the questions.,No problems. Thank you.,true-false,21,2358
+anon15,male,49,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,22,2088
+anon15,male,49,English,No,X_XandY,X,XandY,DOG,catanddog,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,23,3831
+anon15,male,49,English,No,X_XandY,X,XandY,ELE,dogandele,FALSE,To see how people would interpret the questions.,No problems. Thank you.,true-false,24,2906
 anon16,female,26,English,No,XY_Z,XY,Z,CATDOG,ele,Wrong,perceptions of right and wrong,no issues,quinary,1,4718
 anon16,female,26,English,No,XY_X,XY,X,DOGELE,ele,Right,perceptions of right and wrong,no issues,quinary,2,10497
 anon16,female,26,English,No,X_XorY,X,XorY,DOG,dogorele,Wrong,perceptions of right and wrong,no issues,quinary,3,54654
@@ -1824,30 +1824,30 @@ anon17,male,23,English,No,XY_XorY,XY,XorY,CATDOG,catordog,Kinda Wrong,It was abo
 anon17,male,23,English,No,XY_X,XY,X,CATELE,cat,Kinda Right,It was about perceptions.,NA,quinary,22,2473
 anon17,male,23,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,Kinda Right,It was about perceptions.,NA,quinary,23,4296
 anon17,male,23,English,No,X_Z,X,Z,DOG,ele,Wrong,It was about perceptions.,NA,quinary,24,1872
-anon18,male,27,English,Yes,X_XorY,X,XorY,CAT,catorele,True,I don't know,NA,true-false,1,3825
-anon18,male,27,English,Yes,X_XandY,X,XandY,CAT,catanddog,False,I don't know,NA,true-false,2,2560
-anon18,male,27,English,Yes,X_XandY,X,XandY,CAT,catandele,False,I don't know,NA,true-false,3,1784
-anon18,male,27,English,Yes,XY_XandY,XY,XandY,CATDOG,catanddog,True,I don't know,NA,true-false,4,2170
-anon18,male,27,English,Yes,X_XorY,X,XorY,CAT,catordog,True,I don't know,NA,true-false,5,1849
-anon18,male,27,English,Yes,X_X,X,X,DOG,dog,True,I don't know,NA,true-false,6,3608
-anon18,male,27,English,Yes,XY_X,XY,X,CATDOG,cat,True,I don't know,NA,true-false,7,2618
-anon18,male,27,English,Yes,XY_XorY,XY,XorY,CATDOG,catordog,False,I don't know,NA,true-false,8,2897
-anon18,male,27,English,Yes,XY_X,XY,X,DOGELE,ele,True,I don't know,NA,true-false,9,3497
-anon18,male,27,English,Yes,XY_Z,XY,Z,CATDOG,ele,False,I don't know,NA,true-false,10,2504
-anon18,male,27,English,Yes,X_Z,X,Z,CAT,ele,False,I don't know,NA,true-false,11,1658
-anon18,male,27,English,Yes,XY_XandY,XY,XandY,CATELE,catandele,True,I don't know,NA,true-false,12,2393
-anon18,male,27,English,Yes,XY_X,XY,X,DOGELE,dog,True,I don't know,NA,true-false,13,1537
-anon18,male,27,English,Yes,XY_XorY,XY,XorY,CATELE,catorele,False,I don't know,NA,true-false,14,2777
-anon18,male,27,English,Yes,XY_XorY,XY,XorY,DOGELE,dogorele,False,I don't know,NA,true-false,15,3251
-anon18,male,27,English,Yes,X_XandY,X,XandY,ELE,dogandele,False,I don't know,NA,true-false,16,3687
-anon18,male,27,English,Yes,X_Z,X,Z,ELE,dog,False,I don't know,NA,true-false,17,1584
-anon18,male,27,English,Yes,X_X,X,X,ELE,ele,True,I don't know,NA,true-false,18,2153
-anon18,male,27,English,Yes,XY_XandY,XY,XandY,DOGELE,dogandele,True,I don't know,NA,true-false,19,2034
-anon18,male,27,English,Yes,X_Z,X,Z,DOG,ele,False,I don't know,NA,true-false,20,1562
-anon18,male,27,English,Yes,X_X,X,X,CAT,cat,True,I don't know,NA,true-false,21,2450
-anon18,male,27,English,Yes,XY_Z,XY,Z,DOGELE,cat,False,I don't know,NA,true-false,22,1369
-anon18,male,27,English,Yes,X_XorY,X,XorY,ELE,catorele,True,I don't know,NA,true-false,23,2137
-anon18,male,27,English,Yes,XY_Z,XY,Z,CATELE,dog,False,I don't know,NA,true-false,24,3026
+anon18,male,27,English,Yes,X_XorY,X,XorY,CAT,catorele,TRUE,I don't know,NA,true-false,1,3825
+anon18,male,27,English,Yes,X_XandY,X,XandY,CAT,catanddog,FALSE,I don't know,NA,true-false,2,2560
+anon18,male,27,English,Yes,X_XandY,X,XandY,CAT,catandele,FALSE,I don't know,NA,true-false,3,1784
+anon18,male,27,English,Yes,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,I don't know,NA,true-false,4,2170
+anon18,male,27,English,Yes,X_XorY,X,XorY,CAT,catordog,TRUE,I don't know,NA,true-false,5,1849
+anon18,male,27,English,Yes,X_X,X,X,DOG,dog,TRUE,I don't know,NA,true-false,6,3608
+anon18,male,27,English,Yes,XY_X,XY,X,CATDOG,cat,TRUE,I don't know,NA,true-false,7,2618
+anon18,male,27,English,Yes,XY_XorY,XY,XorY,CATDOG,catordog,FALSE,I don't know,NA,true-false,8,2897
+anon18,male,27,English,Yes,XY_X,XY,X,DOGELE,ele,TRUE,I don't know,NA,true-false,9,3497
+anon18,male,27,English,Yes,XY_Z,XY,Z,CATDOG,ele,FALSE,I don't know,NA,true-false,10,2504
+anon18,male,27,English,Yes,X_Z,X,Z,CAT,ele,FALSE,I don't know,NA,true-false,11,1658
+anon18,male,27,English,Yes,XY_XandY,XY,XandY,CATELE,catandele,TRUE,I don't know,NA,true-false,12,2393
+anon18,male,27,English,Yes,XY_X,XY,X,DOGELE,dog,TRUE,I don't know,NA,true-false,13,1537
+anon18,male,27,English,Yes,XY_XorY,XY,XorY,CATELE,catorele,FALSE,I don't know,NA,true-false,14,2777
+anon18,male,27,English,Yes,XY_XorY,XY,XorY,DOGELE,dogorele,FALSE,I don't know,NA,true-false,15,3251
+anon18,male,27,English,Yes,X_XandY,X,XandY,ELE,dogandele,FALSE,I don't know,NA,true-false,16,3687
+anon18,male,27,English,Yes,X_Z,X,Z,ELE,dog,FALSE,I don't know,NA,true-false,17,1584
+anon18,male,27,English,Yes,X_X,X,X,ELE,ele,TRUE,I don't know,NA,true-false,18,2153
+anon18,male,27,English,Yes,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,I don't know,NA,true-false,19,2034
+anon18,male,27,English,Yes,X_Z,X,Z,DOG,ele,FALSE,I don't know,NA,true-false,20,1562
+anon18,male,27,English,Yes,X_X,X,X,CAT,cat,TRUE,I don't know,NA,true-false,21,2450
+anon18,male,27,English,Yes,XY_Z,XY,Z,DOGELE,cat,FALSE,I don't know,NA,true-false,22,1369
+anon18,male,27,English,Yes,X_XorY,X,XorY,ELE,catorele,TRUE,I don't know,NA,true-false,23,2137
+anon18,male,27,English,Yes,XY_Z,XY,Z,CATELE,dog,FALSE,I don't know,NA,true-false,24,3026
 anon19,male,43,English,No,XY_XorY,XY,XorY,CATDOG,catordog,Kinda Right,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,1,28870
 anon19,male,43,English,No,XY_Z,XY,Z,CATELE,dog,Wrong,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,2,3773
 anon19,male,43,English,No,X_XorY,X,XorY,ELE,catorele,Right,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,3,3088
@@ -1872,54 +1872,54 @@ anon19,male,43,English,No,X_X,X,X,CAT,cat,Right,I really didn't think about it b
 anon19,male,43,English,No,X_XorY,X,XorY,ELE,dogorele,Right,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,22,3393
 anon19,male,43,English,No,X_X,X,X,ELE,ele,Right,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,23,2134
 anon19,male,43,English,No,X_Z,X,Z,ELE,cat,Wrong,I really didn't think about it because it doesn't concern me. I'll leave the experiment and its goal to you guys.,No issues. Thank you for letting me participate.,quinary,24,2303
-anon2,female,61,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,To see if I understand the wording of a phrase.,No problems,true-false,1,9805
-anon2,female,61,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,To see if I understand the wording of a phrase.,No problems,true-false,2,5032
-anon2,female,61,English,No,X_XorY,X,XorY,DOG,dogorele,True,To see if I understand the wording of a phrase.,No problems,true-false,3,7371
-anon2,female,61,English,No,XY_XorY,XY,XorY,CATELE,catorele,False,To see if I understand the wording of a phrase.,No problems,true-false,4,17387
-anon2,female,61,English,No,XY_X,XY,X,CATELE,cat,False,To see if I understand the wording of a phrase.,No problems,true-false,5,7697
-anon2,female,61,English,No,XY_X,XY,X,DOGELE,dog,False,To see if I understand the wording of a phrase.,No problems,true-false,6,3432
-anon2,female,61,English,No,XY_Z,XY,Z,CATELE,dog,False,To see if I understand the wording of a phrase.,No problems,true-false,7,4178
-anon2,female,61,English,No,X_XorY,X,XorY,CAT,catordog,True,To see if I understand the wording of a phrase.,No problems,true-false,8,14041
-anon2,female,61,English,No,X_XorY,X,XorY,CAT,catorele,True,To see if I understand the wording of a phrase.,No problems,true-false,9,3601
-anon2,female,61,English,No,X_XandY,X,XandY,DOG,catanddog,False,To see if I understand the wording of a phrase.,No problems,true-false,10,4353
-anon2,female,61,English,No,X_Z,X,Z,CAT,ele,False,To see if I understand the wording of a phrase.,No problems,true-false,11,3488
-anon2,female,61,English,No,X_X,X,X,ELE,ele,True,To see if I understand the wording of a phrase.,No problems,true-false,12,3417
-anon2,female,61,English,No,X_Z,X,Z,ELE,cat,False,To see if I understand the wording of a phrase.,No problems,true-false,13,2850
-anon2,female,61,English,No,XY_Z,XY,Z,CATDOG,ele,False,To see if I understand the wording of a phrase.,No problems,true-false,14,4104
-anon2,female,61,English,No,XY_X,XY,X,DOGELE,ele,False,To see if I understand the wording of a phrase.,No problems,true-false,15,5264
-anon2,female,61,English,No,X_X,X,X,DOG,dog,True,To see if I understand the wording of a phrase.,No problems,true-false,16,2906
-anon2,female,61,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,To see if I understand the wording of a phrase.,No problems,true-false,17,4360
-anon2,female,61,English,No,XY_XorY,XY,XorY,CATDOG,catordog,False,To see if I understand the wording of a phrase.,No problems,true-false,18,5152
-anon2,female,61,English,No,XY_Z,XY,Z,DOGELE,cat,False,To see if I understand the wording of a phrase.,No problems,true-false,19,2856
-anon2,female,61,English,No,X_XandY,X,XandY,DOG,dogandele,False,To see if I understand the wording of a phrase.,No problems,true-false,20,4736
-anon2,female,61,English,No,X_X,X,X,CAT,cat,True,To see if I understand the wording of a phrase.,No problems,true-false,21,3289
-anon2,female,61,English,No,X_Z,X,Z,ELE,dog,False,To see if I understand the wording of a phrase.,No problems,true-false,22,2641
-anon2,female,61,English,No,X_XandY,X,XandY,ELE,catandele,False,To see if I understand the wording of a phrase.,No problems,true-false,23,3866
-anon2,female,61,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,False,To see if I understand the wording of a phrase.,No problems,true-false,24,6647
-anon3,male,25,ENglish,No,X_XorY,X,XorY,DOG,dogorele,True,human behavior,NA,true-false,1,4443
-anon3,male,25,ENglish,No,XY_Z,XY,Z,DOGELE,cat,False,human behavior,NA,true-false,2,2070
-anon3,male,25,ENglish,No,X_XandY,X,XandY,DOG,dogandele,False,human behavior,NA,true-false,3,2566
-anon3,male,25,ENglish,No,XY_XorY,XY,XorY,DOGELE,dogorele,True,human behavior,NA,true-false,4,7636
-anon3,male,25,ENglish,No,X_XandY,X,XandY,CAT,catanddog,False,human behavior,NA,true-false,5,3444
-anon3,male,25,ENglish,No,X_XandY,X,XandY,CAT,catandele,False,human behavior,NA,true-false,6,4706
-anon3,male,25,ENglish,No,X_Z,X,Z,DOG,cat,False,human behavior,NA,true-false,7,2277
-anon3,male,25,ENglish,No,XY_XorY,XY,XorY,CATELE,catorele,True,human behavior,NA,true-false,8,2717
-anon3,male,25,ENglish,No,X_Z,X,Z,ELE,dog,False,human behavior,NA,true-false,9,1813
-anon3,male,25,ENglish,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,human behavior,NA,true-false,10,2773
-anon3,male,25,ENglish,No,X_XorY,X,XorY,CAT,catorele,True,human behavior,NA,true-false,11,2473
-anon3,male,25,ENglish,No,XY_X,XY,X,CATELE,ele,True,human behavior,NA,true-false,12,2349
-anon3,male,25,ENglish,No,X_X,X,X,ELE,ele,True,human behavior,NA,true-false,13,1560
-anon3,male,25,ENglish,No,X_X,X,X,DOG,dog,True,human behavior,NA,true-false,14,1518
-anon3,male,25,ENglish,No,XY_X,XY,X,CATELE,cat,True,human behavior,NA,true-false,15,15163
-anon3,male,25,ENglish,No,X_XorY,X,XorY,CAT,catordog,True,human behavior,NA,true-false,16,1915
-anon3,male,25,ENglish,No,XY_Z,XY,Z,CATELE,dog,False,human behavior,NA,true-false,17,2343
-anon3,male,25,ENglish,No,X_X,X,X,CAT,cat,True,human behavior,NA,true-false,18,1490
-anon3,male,25,ENglish,No,XY_X,XY,X,CATDOG,cat,True,human behavior,NA,true-false,19,1549
-anon3,male,25,ENglish,No,XY_XandY,XY,XandY,CATELE,catandele,True,human behavior,NA,true-false,20,2293
-anon3,male,25,ENglish,No,XY_Z,XY,Z,CATDOG,ele,False,human behavior,NA,true-false,21,1898
-anon3,male,25,ENglish,No,X_Z,X,Z,CAT,ele,False,human behavior,NA,true-false,22,1478
-anon3,male,25,ENglish,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,human behavior,NA,true-false,23,2228
-anon3,male,25,ENglish,No,XY_XorY,XY,XorY,CATDOG,catordog,True,human behavior,NA,true-false,24,3134
+anon2,female,61,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,1,9805
+anon2,female,61,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,2,5032
+anon2,female,61,English,No,X_XorY,X,XorY,DOG,dogorele,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,3,7371
+anon2,female,61,English,No,XY_XorY,XY,XorY,CATELE,catorele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,4,17387
+anon2,female,61,English,No,XY_X,XY,X,CATELE,cat,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,5,7697
+anon2,female,61,English,No,XY_X,XY,X,DOGELE,dog,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,6,3432
+anon2,female,61,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,7,4178
+anon2,female,61,English,No,X_XorY,X,XorY,CAT,catordog,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,8,14041
+anon2,female,61,English,No,X_XorY,X,XorY,CAT,catorele,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,9,3601
+anon2,female,61,English,No,X_XandY,X,XandY,DOG,catanddog,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,10,4353
+anon2,female,61,English,No,X_Z,X,Z,CAT,ele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,11,3488
+anon2,female,61,English,No,X_X,X,X,ELE,ele,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,12,3417
+anon2,female,61,English,No,X_Z,X,Z,ELE,cat,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,13,2850
+anon2,female,61,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,14,4104
+anon2,female,61,English,No,XY_X,XY,X,DOGELE,ele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,15,5264
+anon2,female,61,English,No,X_X,X,X,DOG,dog,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,16,2906
+anon2,female,61,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,17,4360
+anon2,female,61,English,No,XY_XorY,XY,XorY,CATDOG,catordog,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,18,5152
+anon2,female,61,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,19,2856
+anon2,female,61,English,No,X_XandY,X,XandY,DOG,dogandele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,20,4736
+anon2,female,61,English,No,X_X,X,X,CAT,cat,TRUE,To see if I understand the wording of a phrase.,No problems,true-false,21,3289
+anon2,female,61,English,No,X_Z,X,Z,ELE,dog,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,22,2641
+anon2,female,61,English,No,X_XandY,X,XandY,ELE,catandele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,23,3866
+anon2,female,61,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,FALSE,To see if I understand the wording of a phrase.,No problems,true-false,24,6647
+anon3,male,25,ENglish,No,X_XorY,X,XorY,DOG,dogorele,TRUE,human behavior,NA,true-false,1,4443
+anon3,male,25,ENglish,No,XY_Z,XY,Z,DOGELE,cat,FALSE,human behavior,NA,true-false,2,2070
+anon3,male,25,ENglish,No,X_XandY,X,XandY,DOG,dogandele,FALSE,human behavior,NA,true-false,3,2566
+anon3,male,25,ENglish,No,XY_XorY,XY,XorY,DOGELE,dogorele,TRUE,human behavior,NA,true-false,4,7636
+anon3,male,25,ENglish,No,X_XandY,X,XandY,CAT,catanddog,FALSE,human behavior,NA,true-false,5,3444
+anon3,male,25,ENglish,No,X_XandY,X,XandY,CAT,catandele,FALSE,human behavior,NA,true-false,6,4706
+anon3,male,25,ENglish,No,X_Z,X,Z,DOG,cat,FALSE,human behavior,NA,true-false,7,2277
+anon3,male,25,ENglish,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,human behavior,NA,true-false,8,2717
+anon3,male,25,ENglish,No,X_Z,X,Z,ELE,dog,FALSE,human behavior,NA,true-false,9,1813
+anon3,male,25,ENglish,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,human behavior,NA,true-false,10,2773
+anon3,male,25,ENglish,No,X_XorY,X,XorY,CAT,catorele,TRUE,human behavior,NA,true-false,11,2473
+anon3,male,25,ENglish,No,XY_X,XY,X,CATELE,ele,TRUE,human behavior,NA,true-false,12,2349
+anon3,male,25,ENglish,No,X_X,X,X,ELE,ele,TRUE,human behavior,NA,true-false,13,1560
+anon3,male,25,ENglish,No,X_X,X,X,DOG,dog,TRUE,human behavior,NA,true-false,14,1518
+anon3,male,25,ENglish,No,XY_X,XY,X,CATELE,cat,TRUE,human behavior,NA,true-false,15,15163
+anon3,male,25,ENglish,No,X_XorY,X,XorY,CAT,catordog,TRUE,human behavior,NA,true-false,16,1915
+anon3,male,25,ENglish,No,XY_Z,XY,Z,CATELE,dog,FALSE,human behavior,NA,true-false,17,2343
+anon3,male,25,ENglish,No,X_X,X,X,CAT,cat,TRUE,human behavior,NA,true-false,18,1490
+anon3,male,25,ENglish,No,XY_X,XY,X,CATDOG,cat,TRUE,human behavior,NA,true-false,19,1549
+anon3,male,25,ENglish,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,human behavior,NA,true-false,20,2293
+anon3,male,25,ENglish,No,XY_Z,XY,Z,CATDOG,ele,FALSE,human behavior,NA,true-false,21,1898
+anon3,male,25,ENglish,No,X_Z,X,Z,CAT,ele,FALSE,human behavior,NA,true-false,22,1478
+anon3,male,25,ENglish,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,human behavior,NA,true-false,23,2228
+anon3,male,25,ENglish,No,XY_XorY,XY,XorY,CATDOG,catordog,TRUE,human behavior,NA,true-false,24,3134
 anon4,male,25,eng,No,X_X,X,X,CAT,cat,Kinda Wrong,0,NA,quinary,1,1823
 anon4,male,25,eng,No,X_XandY,X,XandY,DOG,dogandele,Wrong,0,NA,quinary,2,2934
 anon4,male,25,eng,No,X_X,X,X,DOG,dog,Right,0,NA,quinary,3,1975
@@ -1968,30 +1968,30 @@ anon5,male,59,English,No,XY_XorY,XY,XorY,CATELE,catorele,Kinda Wrong,unsure,NA,q
 anon5,male,59,English,No,X_XorY,X,XorY,DOG,catordog,Right,unsure,NA,quinary,22,9386
 anon5,male,59,English,No,XY_Z,XY,Z,DOGELE,cat,Wrong,unsure,NA,quinary,23,4270
 anon5,male,59,English,No,XY_X,XY,X,DOGELE,ele,Right,unsure,NA,quinary,24,4415
-anon6,female,27,English,No,XY_XandY,XY,XandY,CATELE,catandele,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,1,10690
-anon6,female,27,English,No,X_XandY,X,XandY,CAT,catanddog,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,2,34630
-anon6,female,27,English,No,XY_XorY,XY,XorY,CATELE,catorele,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,3,5424
-anon6,female,27,English,No,X_XandY,X,XandY,ELE,catandele,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,4,2297
-anon6,female,27,English,No,X_X,X,X,ELE,ele,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,5,1665
-anon6,female,27,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,6,2360
-anon6,female,27,English,No,XY_X,XY,X,CATDOG,cat,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,7,1519
-anon6,female,27,English,No,X_Z,X,Z,ELE,dog,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,8,1818
-anon6,female,27,English,No,XY_Z,XY,Z,DOGELE,cat,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,9,1984
-anon6,female,27,English,No,XY_XorY,XY,XorY,CATDOG,catordog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,10,2584
-anon6,female,27,English,No,X_XandY,X,XandY,DOG,dogandele,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,11,3650
-anon6,female,27,English,No,X_X,X,X,CAT,cat,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,12,1664
-anon6,female,27,English,No,X_Z,X,Z,CAT,ele,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,13,1401
-anon6,female,27,English,No,X_XorY,X,XorY,DOG,catordog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,14,1911
-anon6,female,27,English,No,XY_Z,XY,Z,CATDOG,ele,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,15,1769
-anon6,female,27,English,No,XY_Z,XY,Z,CATELE,dog,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,16,3297
-anon6,female,27,English,No,XY_X,XY,X,DOGELE,dog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,17,2026
-anon6,female,27,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,18,1865
-anon6,female,27,English,No,X_Z,X,Z,DOG,cat,False,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,19,1970
-anon6,female,27,English,No,XY_X,XY,X,CATELE,cat,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,20,9246
-anon6,female,27,English,No,X_XorY,X,XorY,ELE,dogorele,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,21,1824
-anon6,female,27,English,No,X_XorY,X,XorY,CAT,catordog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,22,1401
-anon6,female,27,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,23,1391
-anon6,female,27,English,No,X_X,X,X,DOG,dog,True,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,24,1513
+anon6,female,27,English,No,XY_XandY,XY,XandY,CATELE,catandele,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,1,10690
+anon6,female,27,English,No,X_XandY,X,XandY,CAT,catanddog,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,2,34630
+anon6,female,27,English,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,3,5424
+anon6,female,27,English,No,X_XandY,X,XandY,ELE,catandele,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,4,2297
+anon6,female,27,English,No,X_X,X,X,ELE,ele,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,5,1665
+anon6,female,27,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,6,2360
+anon6,female,27,English,No,XY_X,XY,X,CATDOG,cat,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,7,1519
+anon6,female,27,English,No,X_Z,X,Z,ELE,dog,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,8,1818
+anon6,female,27,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,9,1984
+anon6,female,27,English,No,XY_XorY,XY,XorY,CATDOG,catordog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,10,2584
+anon6,female,27,English,No,X_XandY,X,XandY,DOG,dogandele,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,11,3650
+anon6,female,27,English,No,X_X,X,X,CAT,cat,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,12,1664
+anon6,female,27,English,No,X_Z,X,Z,CAT,ele,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,13,1401
+anon6,female,27,English,No,X_XorY,X,XorY,DOG,catordog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,14,1911
+anon6,female,27,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,15,1769
+anon6,female,27,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,16,3297
+anon6,female,27,English,No,XY_X,XY,X,DOGELE,dog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,17,2026
+anon6,female,27,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,18,1865
+anon6,female,27,English,No,X_Z,X,Z,DOG,cat,FALSE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,19,1970
+anon6,female,27,English,No,XY_X,XY,X,CATELE,cat,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,20,9246
+anon6,female,27,English,No,X_XorY,X,XorY,ELE,dogorele,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,21,1824
+anon6,female,27,English,No,X_XorY,X,XorY,CAT,catordog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,22,1401
+anon6,female,27,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,23,1391
+anon6,female,27,English,No,X_X,X,X,DOG,dog,TRUE,I'm not sure,"The first image did not load. I just clicked false to move on to see what would happen on the next. I was about to return the HIT when I thought about right clicking where the picture should be, and when I did, it gave me the option to open the image in a new tab. That worked, and when I went back to the HIT tab, the images finally started to load on their own. I was able to complete the HIT fine after that.",true-false,24,1513
 anon7,male,23,English,No,X_XorY,X,XorY,ELE,catorele,Right,difference of kinda right and right or kinda wrong and wrong,NA,quinary,1,41153
 anon7,male,23,English,No,X_X,X,X,DOG,dog,Right,difference of kinda right and right or kinda wrong and wrong,NA,quinary,2,4536
 anon7,male,23,English,No,XY_Z,XY,Z,CATELE,dog,Wrong,difference of kinda right and right or kinda wrong and wrong,NA,quinary,3,24953
@@ -2016,51 +2016,51 @@ anon7,male,23,English,No,X_XorY,X,XorY,CAT,catordog,Right,difference of kinda ri
 anon7,male,23,English,No,X_X,X,X,CAT,cat,Right,difference of kinda right and right or kinda wrong and wrong,NA,quinary,22,2120
 anon7,male,23,English,No,X_Z,X,Z,DOG,ele,Wrong,difference of kinda right and right or kinda wrong and wrong,NA,quinary,23,2561
 anon7,male,23,English,No,XY_XorY,XY,XorY,CATDOG,catordog,Right,difference of kinda right and right or kinda wrong and wrong,NA,quinary,24,2817
-anon8,male,50,English,No,X_Z,X,Z,CAT,dog,False,Not really sure,Everything appeared to work well.,true-false,1,6392
-anon8,male,50,English,No,XY_XorY,XY,XorY,CATELE,catorele,True,Not really sure,Everything appeared to work well.,true-false,2,6297
-anon8,male,50,English,No,XY_Z,XY,Z,DOGELE,cat,False,Not really sure,Everything appeared to work well.,true-false,3,2967
-anon8,male,50,English,No,XY_Z,XY,Z,CATDOG,ele,False,Not really sure,Everything appeared to work well.,true-false,4,3480
-anon8,male,50,English,No,X_XorY,X,XorY,ELE,catorele,True,Not really sure,Everything appeared to work well.,true-false,5,3259
-anon8,male,50,English,No,X_XandY,X,XandY,CAT,catanddog,False,Not really sure,Everything appeared to work well.,true-false,6,3345
-anon8,male,50,English,No,X_X,X,X,CAT,cat,True,Not really sure,Everything appeared to work well.,true-false,7,2722
-anon8,male,50,English,No,XY_Z,XY,Z,CATELE,dog,False,Not really sure,Everything appeared to work well.,true-false,8,2962
-anon8,male,50,English,No,XY_XorY,XY,XorY,CATDOG,catordog,True,Not really sure,Everything appeared to work well.,true-false,9,4081
-anon8,male,50,English,No,XY_X,XY,X,CATDOG,cat,True,Not really sure,Everything appeared to work well.,true-false,10,3185
-anon8,male,50,English,No,X_XorY,X,XorY,DOG,dogorele,True,Not really sure,Everything appeared to work well.,true-false,11,4081
-anon8,male,50,English,No,X_Z,X,Z,ELE,cat,False,Not really sure,Everything appeared to work well.,true-false,12,2712
-anon8,male,50,English,No,X_X,X,X,DOG,dog,True,Not really sure,Everything appeared to work well.,true-false,13,2256
-anon8,male,50,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,True,Not really sure,Everything appeared to work well.,true-false,14,3024
-anon8,male,50,English,No,X_X,X,X,ELE,ele,True,Not really sure,Everything appeared to work well.,true-false,15,3649
-anon8,male,50,English,No,XY_X,XY,X,DOGELE,ele,True,Not really sure,Everything appeared to work well.,true-false,16,2714
-anon8,male,50,English,No,X_XorY,X,XorY,CAT,catordog,True,Not really sure,Everything appeared to work well.,true-false,17,2863
-anon8,male,50,English,No,X_XandY,X,XandY,ELE,catandele,False,Not really sure,Everything appeared to work well.,true-false,18,3954
-anon8,male,50,English,No,XY_X,XY,X,DOGELE,dog,True,Not really sure,Everything appeared to work well.,true-false,19,2238
-anon8,male,50,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,Not really sure,Everything appeared to work well.,true-false,20,3170
-anon8,male,50,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,Not really sure,Everything appeared to work well.,true-false,21,4993
-anon8,male,50,English,No,X_XandY,X,XandY,DOG,catanddog,False,Not really sure,Everything appeared to work well.,true-false,22,2913
-anon8,male,50,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,Not really sure,Everything appeared to work well.,true-false,23,2641
-anon8,male,50,English,No,X_Z,X,Z,ELE,dog,False,Not really sure,Everything appeared to work well.,true-false,24,2473
-anon9,female,52,English,No,X_XandY,X,XandY,DOG,catanddog,False,I really have no idea.,NA,true-false,1,10654
-anon9,female,52,English,No,X_Z,X,Z,ELE,cat,False,I really have no idea.,NA,true-false,2,3922
-anon9,female,52,English,No,X_XorY,X,XorY,CAT,catorele,True,I really have no idea.,NA,true-false,3,5063
-anon9,female,52,English,No,X_X,X,X,ELE,ele,True,I really have no idea.,NA,true-false,4,3038
-anon9,female,52,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,False,I really have no idea.,NA,true-false,5,13823
-anon9,female,52,English,No,XY_Z,XY,Z,CATELE,dog,False,I really have no idea.,NA,true-false,6,5093
-anon9,female,52,English,No,X_X,X,X,DOG,dog,True,I really have no idea.,NA,true-false,7,2243
-anon9,female,52,English,No,X_XorY,X,XorY,DOG,dogorele,True,I really have no idea.,NA,true-false,8,3039
-anon9,female,52,English,No,XY_Z,XY,Z,CATDOG,ele,False,I really have no idea.,NA,true-false,9,2606
-anon9,female,52,English,No,X_XorY,X,XorY,ELE,catorele,True,I really have no idea.,NA,true-false,10,3101
-anon9,female,52,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,True,I really have no idea.,NA,true-false,11,4457
-anon9,female,52,English,No,X_XandY,X,XandY,ELE,dogandele,False,I really have no idea.,NA,true-false,12,2530
-anon9,female,52,English,No,XY_XorY,XY,XorY,CATDOG,catordog,False,I really have no idea.,NA,true-false,13,4479
-anon9,female,52,English,No,XY_X,XY,X,CATDOG,cat,True,I really have no idea.,NA,true-false,14,9313
-anon9,female,52,English,No,X_Z,X,Z,CAT,ele,False,I really have no idea.,NA,true-false,15,2035
-anon9,female,52,English,No,X_XandY,X,XandY,ELE,catandele,False,I really have no idea.,NA,true-false,16,3425
-anon9,female,52,English,No,XY_X,XY,X,CATDOG,dog,True,I really have no idea.,NA,true-false,17,2607
-anon9,female,52,English,No,XY_Z,XY,Z,DOGELE,cat,False,I really have no idea.,NA,true-false,18,2901
-anon9,female,52,English,No,X_X,X,X,CAT,cat,True,I really have no idea.,NA,true-false,19,2226
-anon9,female,52,English,No,XY_X,XY,X,DOGELE,ele,True,I really have no idea.,NA,true-false,20,3723
-anon9,female,52,English,No,XY_XorY,XY,XorY,CATELE,catorele,True,I really have no idea.,NA,true-false,21,4404
-anon9,female,52,English,No,X_Z,X,Z,DOG,ele,False,I really have no idea.,NA,true-false,22,2723
-anon9,female,52,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,True,I really have no idea.,NA,true-false,23,2856
-anon9,female,52,English,No,XY_XandY,XY,XandY,CATELE,catandele,True,I really have no idea.,NA,true-false,24,3131
+anon8,male,50,English,No,X_Z,X,Z,CAT,dog,FALSE,Not really sure,Everything appeared to work well.,true-false,1,6392
+anon8,male,50,English,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,Not really sure,Everything appeared to work well.,true-false,2,6297
+anon8,male,50,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,Not really sure,Everything appeared to work well.,true-false,3,2967
+anon8,male,50,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,Not really sure,Everything appeared to work well.,true-false,4,3480
+anon8,male,50,English,No,X_XorY,X,XorY,ELE,catorele,TRUE,Not really sure,Everything appeared to work well.,true-false,5,3259
+anon8,male,50,English,No,X_XandY,X,XandY,CAT,catanddog,FALSE,Not really sure,Everything appeared to work well.,true-false,6,3345
+anon8,male,50,English,No,X_X,X,X,CAT,cat,TRUE,Not really sure,Everything appeared to work well.,true-false,7,2722
+anon8,male,50,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,Not really sure,Everything appeared to work well.,true-false,8,2962
+anon8,male,50,English,No,XY_XorY,XY,XorY,CATDOG,catordog,TRUE,Not really sure,Everything appeared to work well.,true-false,9,4081
+anon8,male,50,English,No,XY_X,XY,X,CATDOG,cat,TRUE,Not really sure,Everything appeared to work well.,true-false,10,3185
+anon8,male,50,English,No,X_XorY,X,XorY,DOG,dogorele,TRUE,Not really sure,Everything appeared to work well.,true-false,11,4081
+anon8,male,50,English,No,X_Z,X,Z,ELE,cat,FALSE,Not really sure,Everything appeared to work well.,true-false,12,2712
+anon8,male,50,English,No,X_X,X,X,DOG,dog,TRUE,Not really sure,Everything appeared to work well.,true-false,13,2256
+anon8,male,50,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,TRUE,Not really sure,Everything appeared to work well.,true-false,14,3024
+anon8,male,50,English,No,X_X,X,X,ELE,ele,TRUE,Not really sure,Everything appeared to work well.,true-false,15,3649
+anon8,male,50,English,No,XY_X,XY,X,DOGELE,ele,TRUE,Not really sure,Everything appeared to work well.,true-false,16,2714
+anon8,male,50,English,No,X_XorY,X,XorY,CAT,catordog,TRUE,Not really sure,Everything appeared to work well.,true-false,17,2863
+anon8,male,50,English,No,X_XandY,X,XandY,ELE,catandele,FALSE,Not really sure,Everything appeared to work well.,true-false,18,3954
+anon8,male,50,English,No,XY_X,XY,X,DOGELE,dog,TRUE,Not really sure,Everything appeared to work well.,true-false,19,2238
+anon8,male,50,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,Not really sure,Everything appeared to work well.,true-false,20,3170
+anon8,male,50,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,Not really sure,Everything appeared to work well.,true-false,21,4993
+anon8,male,50,English,No,X_XandY,X,XandY,DOG,catanddog,FALSE,Not really sure,Everything appeared to work well.,true-false,22,2913
+anon8,male,50,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,Not really sure,Everything appeared to work well.,true-false,23,2641
+anon8,male,50,English,No,X_Z,X,Z,ELE,dog,FALSE,Not really sure,Everything appeared to work well.,true-false,24,2473
+anon9,female,52,English,No,X_XandY,X,XandY,DOG,catanddog,FALSE,I really have no idea.,NA,true-false,1,10654
+anon9,female,52,English,No,X_Z,X,Z,ELE,cat,FALSE,I really have no idea.,NA,true-false,2,3922
+anon9,female,52,English,No,X_XorY,X,XorY,CAT,catorele,TRUE,I really have no idea.,NA,true-false,3,5063
+anon9,female,52,English,No,X_X,X,X,ELE,ele,TRUE,I really have no idea.,NA,true-false,4,3038
+anon9,female,52,English,No,XY_XorY,XY,XorY,DOGELE,dogorele,FALSE,I really have no idea.,NA,true-false,5,13823
+anon9,female,52,English,No,XY_Z,XY,Z,CATELE,dog,FALSE,I really have no idea.,NA,true-false,6,5093
+anon9,female,52,English,No,X_X,X,X,DOG,dog,TRUE,I really have no idea.,NA,true-false,7,2243
+anon9,female,52,English,No,X_XorY,X,XorY,DOG,dogorele,TRUE,I really have no idea.,NA,true-false,8,3039
+anon9,female,52,English,No,XY_Z,XY,Z,CATDOG,ele,FALSE,I really have no idea.,NA,true-false,9,2606
+anon9,female,52,English,No,X_XorY,X,XorY,ELE,catorele,TRUE,I really have no idea.,NA,true-false,10,3101
+anon9,female,52,English,No,XY_XandY,XY,XandY,CATDOG,catanddog,TRUE,I really have no idea.,NA,true-false,11,4457
+anon9,female,52,English,No,X_XandY,X,XandY,ELE,dogandele,FALSE,I really have no idea.,NA,true-false,12,2530
+anon9,female,52,English,No,XY_XorY,XY,XorY,CATDOG,catordog,FALSE,I really have no idea.,NA,true-false,13,4479
+anon9,female,52,English,No,XY_X,XY,X,CATDOG,cat,TRUE,I really have no idea.,NA,true-false,14,9313
+anon9,female,52,English,No,X_Z,X,Z,CAT,ele,FALSE,I really have no idea.,NA,true-false,15,2035
+anon9,female,52,English,No,X_XandY,X,XandY,ELE,catandele,FALSE,I really have no idea.,NA,true-false,16,3425
+anon9,female,52,English,No,XY_X,XY,X,CATDOG,dog,TRUE,I really have no idea.,NA,true-false,17,2607
+anon9,female,52,English,No,XY_Z,XY,Z,DOGELE,cat,FALSE,I really have no idea.,NA,true-false,18,2901
+anon9,female,52,English,No,X_X,X,X,CAT,cat,TRUE,I really have no idea.,NA,true-false,19,2226
+anon9,female,52,English,No,XY_X,XY,X,DOGELE,ele,TRUE,I really have no idea.,NA,true-false,20,3723
+anon9,female,52,English,No,XY_XorY,XY,XorY,CATELE,catorele,TRUE,I really have no idea.,NA,true-false,21,4404
+anon9,female,52,English,No,X_Z,X,Z,DOG,ele,FALSE,I really have no idea.,NA,true-false,22,2723
+anon9,female,52,English,No,XY_XandY,XY,XandY,DOGELE,dogandele,TRUE,I really have no idea.,NA,true-false,23,2856
+anon9,female,52,English,No,XY_XandY,XY,XandY,CATELE,catandele,TRUE,I really have no idea.,NA,true-false,24,3131

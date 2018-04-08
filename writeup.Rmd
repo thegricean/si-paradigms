@@ -1,8 +1,8 @@
 ---
 title             : "The title"
 shorttitle        : "Title"
-
 author: 
+    
   - name          : "First Author"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
@@ -12,41 +12,39 @@ author:
     affiliation   : "1"
   - name          : "Third Author"
     affiliation   : "1"
-    
 affiliation:
   - id            : "1"
     institution   : "Stanford University"
-
 author_note: |
   Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
-
   Enter author note here.
-
 abstract: |
   Enter abstract here. Each new line herein must be indented, like this line.
   
 keywords          : "keywords"
 wordcount         : "X"
-
 bibliography      : ["r-references.bib"]
-
 figsintext        : no
 figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : yes
 mask              : no
-
 class             : "man"
 output            : papaja::apa6_pdf
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r load_packages, include = FALSE}
+library(grid)
+library(gtable)
 library(papaja)
 library(tidyverse)
 library(magrittr)
 library(readr)
 library(png)
+library(jpeg)
 library(lme4)
 library(ggthemes)
 library(forcats)
@@ -115,16 +113,14 @@ pragmatic_trials[pragmatic_trials$response=="wrong" | pragmatic_trials$response=
 implicature_rate <- 
   pragmatic_trials %>% gather("definition","implicature", high:low)
 
-# changing trial type names to adhoc vs. scalar
+# changing trial type names to exhaustive vs. scalar
 implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type, 
-                                         adhoc = "XY_X", scalar = "XY_XorY")
+                                         exhaustive = "XY_X", scalar = "XY_XorY")
 ```
-
-* No data will be excluded.
 
 ## Participants
 
-100 participants (20 per condition) were recruited using Amazon Mechanical Turk. 
+100 participants (20 per condition) were recruited using Amazon Mechanical Turk. No participant was excluded from the final analysis.
 
 ## Procedure
 
@@ -142,9 +138,7 @@ The design had two main manipulaitons: the type of card and the type of guess. T
 
 In each trial, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: dog, Guess: *There is a cat or an elephant*), a partial overlap (e.g. Image: Cat, Guess: *There is a cat or an elephant*), or a total overlap (e.g. Image: cat and elephant, Guess: *There is a cat or an elephant*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. 
 
-
-
-* The study used five different types of measurements. 1. two-options (true vs. false) 2. two-options (wrong vs. right) 3. three-options (wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda right, right) 5. five-options (wrong, kinda wrong, neither, kinda right, right).
+The study used five different types of measurements. 1. two-options (true vs. false) 2. two-options (wrong vs. right) 3. three-options (wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda right, right) 5. five-options (wrong, kinda wrong, neither, kinda right, right).
 
 ```{r trials, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=4, fig.height=2, set.cap.width=T, num.cols.cap=1, fig.width=1.5, fig.cap = "Trial types represented by example cards and guesses."}
 trials_img <- jpeg::readJPEG("experiments/figs/trialTypes.jpg")
@@ -155,15 +149,63 @@ grid::grid.raster(trials_img)
 
 <!--We used `r cite_r("r-references.bib")` for all our analyses.-->
 
-We are primarily concerned with the rate of implicatures in an experimental study. Two trial types are predicted to include pragmatic implicatures. First, trials where there are two animals on the card but the fictional character guesses using the connective *or*; for example "cat or dog" when the card has both a cat and a dog on it. We call such trials "scalar" trials. Second, trials where there are two animals on the card but the character guesses only one; for example "cat" when the card has a cat and a dog on it. We call such trials "exhaustive". In our assessment of implicature rate we focus on these two types of trials.
+We are primarily concerned with the "rate of implicatures" in an experimental study. Two trial types are predicted to include pragmatic implicatures. First, trials where there are two animals on the card but the fictional character guesses using the connective *or*; for example "cat or dog" when the card has both a cat and a dog on it. We call such trials "scalar" trials. Second, trials where there are two animals on the card but the character guesses only one; for example "cat" when the card has a cat and a dog on it. We call such trials "exhaustive". In our assessment of implicature rate we focus on these two types of trials.
 
 We define "implicature rate" in two ways: 
 
 This study set out to test two hypotheses. First, that the proportion of pragmatic vs. literal responses in a truth values judgement task changes based on the number of response options available to the participants. We test this hypothesis formally using a binomial mixed effects model with the fixed effect of response type and the random intercept for participants as well as random intercept and slope for 
 
-Second, ...
+A second hypothesis was that the definition of what responses count as participants computing an implicature may affect the estimated rate of implicature in the experimental task. 
 
 # Results
+
+```{r binaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' two-alternative forced choice judgments in the connective guessing game."}
+
+binary_summary<-
+  data %>%
+  filter(response_type=="binary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), proportion=count/total)
+
+binary_summary$response <- factor(binary_summary$response, levels = c("wrong","right"))
+binary_summary$guess_type <- factor(binary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+binary_summary$guess_type <- recode(binary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+
+binary_plot<-
+  binary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="", y="")+
+  theme_few() +
+  theme(text = element_text(size=17)) +
+  scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+binary_plot_g <- ggplot_gtable(ggplot_build(binary_plot))
+
+strips <- grep("strip-r", binary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+binary_plot_g <- with(binary_plot_g$layout[strips,],
+          gtable_add_grob(binary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+binary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(binary_plot_g)
+```
+
 
 ```{r}
 results<-
@@ -202,11 +244,13 @@ ggplot(implicature_results, aes(x=as.factor(implicature),y=proportion)) +
 
 
 ```{r}
-implicature_analysis_a <- glmer(implicature ~ definition * response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
+implicature_rate$card <- implicature_rate$card %>% tolower()
+
+implicature_analysis_a <- glmer(implicature ~ definition * response_type + trial_type + (1+response_type|card) + (1|participant), family="binomial", data=implicature_rate)
 
 summary(implicature_analysis)
 
-implicature_analysis_b <- brm(implicature ~ definition * response_type * trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
+implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
 ```
 
 
