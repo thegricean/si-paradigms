@@ -1,18 +1,4 @@
 // ############################## Helper functions ##############################
-// Condition - call the maker getter to get the cond variable 
-try {
-    var filename = "myexpt_v1"
-    var condCounts = "1,20;2,20;3,20;4,20;5,20"
-    var xmlHttp = null;
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://website.com/cgi-bin/maker_getter.php?conds=" + 
-    condCounts +"&filename=" + filename);
-    xmlHttp.send( null );
-    choice = Number(xmlHttp.responseText) - 1;
-} catch (e) {
-    var choice = 0;
-}
-
 // Shows slides. We're using jQuery here - the **$** is the jQuery selector function, which takes as input either a DOM element or a CSS selector string.
 function showSlide(id) {
   // Hide all slides
@@ -45,6 +31,7 @@ function options() {
 
 // Randomize Radio Buttons 
 function createRadioButtons() {
+  choice = random(2,5)
   var radio = Array.from(document.getElementsByName(String(choice)))
   // if (choice == 3 || choice == 4) {
   //   radio.push(document.getElementsByName('slider' + choice)[0])
@@ -223,16 +210,6 @@ var experiment = {
 // END FUNCTION: The function to call when the experiment has ended
     end: function() {
       showSlide("finished");
-      // Decrement only if this is an actual turk worker!  
-      if (turk.workerId.length > 0){
-       var xmlHttp = null;
-       xmlHttp = new XMLHttpRequest();
-       xmlHttp.open('GET',    
-        'https://website.com/cgi-bin/' + 
-        'decrementer.php?filename=' + 
-        filename + "&to_decrement=" + choice);
-        xmlHttp.send(null);
-      }
       setTimeout(function() {
         turk.submit(experiment.data)
       }, 1500);
