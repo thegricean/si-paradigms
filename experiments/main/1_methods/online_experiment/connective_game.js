@@ -5,7 +5,7 @@ try {
     var condCounts = "1,20;2,20;3,20;4,20;5,20"
     var xmlHttp = null;
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://website.com/cgi-bin/maker_getter.php?conds=" + 
+    xmlHttp.open( "GET", "https://website.com/cgi-bin/maker_getter.php?conds=" + 
     condCounts +"&filename=" + filename);
     xmlHttp.send( null );
     choice = Number(xmlHttp.responseText) - 1;
@@ -228,7 +228,7 @@ var experiment = {
        var xmlHttp = null;
        xmlHttp = new XMLHttpRequest();
        xmlHttp.open('GET',    
-        'http://website.com/cgi-bin/' + 
+        'https://website.com/cgi-bin/' + 
         'decrementer.php?filename=' + 
         filename + "&to_decrement=" + choice);
         xmlHttp.send(null);
