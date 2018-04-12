@@ -92,8 +92,9 @@ Ternary: Katsos & Bishop 2011
 # Methods
 
 ```{r importData, warning=FALSE, echo=FALSE}
-data <- read_csv("experiments/pilot/3_processed_data/pilot_data.csv")
-data$response <- pilot_data$response %>% tolower()
+data <- read_csv("experiments/main/3_processed_data/data_main.csv")
+
+data$response_type <- recode(data$response_type, quatenary = "quaternary", tertiary = "ternary")
 
 # define an implicature column for the ad-hoc and implicature trials
 pragmatic_trials <- 
@@ -104,11 +105,11 @@ pragmatic_trials <-
 
 # high definition only considers the highest point on the scale as "literal"
 pragmatic_trials$high<-1
-pragmatic_trials[pragmatic_trials$response=="right" | pragmatic_trials$response=="true",]$high <-0
+pragmatic_trials[pragmatic_trials$response=="Right"]$high <-0
 
 # low definition only considers the lowers point on the scale as implicature 
 pragmatic_trials$low<-0
-pragmatic_trials[pragmatic_trials$response=="wrong" | pragmatic_trials$response=="false",]$low <-1
+pragmatic_trials[pragmatic_trials$response=="Wrong"]$low <-1
 
 implicature_rate <- 
   pragmatic_trials %>% gather("definition","implicature", high:low)
@@ -120,7 +121,14 @@ implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type,
 
 ## Participants
 
-100 participants (20 per condition) were recruited using Amazon Mechanical Turk. No participant was excluded from the final analysis.
+```{r participants}
+participants_info <-
+  data %>%
+  group_by(response_type) %>%
+  summarise(count = n()/24)
+```
+
+200 participants were recruited using Amazon Mechanical Turk (binary=`r participants_info$count[1]`, ternary`r participants_info$count[4]`, quaternary=`r participants_info$count[2]`, quinary=`r participants_info$count[3]`). No participant was excluded from the final analysis.
 
 ## Procedure
 
@@ -169,7 +177,7 @@ binary_summary<-
   group_by(card_type, guess_type) %>%
   mutate(total = sum(count), proportion=count/total)
 
-binary_summary$response <- factor(binary_summary$response, levels = c("wrong","right"))
+binary_summary$response <- factor(binary_summary$response, levels = c("Wrong","Right"))
 binary_summary$guess_type <- factor(binary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
 binary_summary$guess_type <- recode(binary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
 
@@ -181,7 +189,7 @@ binary_plot<-
   facet_grid(card_type~guess_type) +
   labs(x="", y="")+
   theme_few() +
-  theme(text = element_text(size=17)) +
+  theme(text = element_text(size=15)) +
   scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
 
 cat <- 
@@ -206,6 +214,147 @@ binary_plot_g$widths[[11]] <- unit(2.5,"cm")
 grid.draw(binary_plot_g)
 ```
 
+```{r ternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+
+ternary_summary<-
+  data %>%
+  filter(response_type=="ternary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), proportion=count/total)
+
+ternary_summary$response <- factor(ternary_summary$response, levels = c("Wrong","Neither", "Right"))
+ternary_summary$guess_type <- factor(ternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+ternary_summary$guess_type <- recode(ternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+
+ternary_plot<-
+  ternary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="", y="")+
+  theme_few() +
+  theme(text = element_text(size=15)) +
+  scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE)
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+ternary_plot_g <- ggplot_gtable(ggplot_build(ternary_plot))
+
+strips <- grep("strip-r", ternary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+ternary_plot_g <- with(ternary_plot_g$layout[strips,],
+          gtable_add_grob(ternary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+ternary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(ternary_plot_g)
+```
+
+```{r quaternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+
+quaternary_summary<-
+  data %>%
+  filter(response_type=="quaternary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), proportion=count/total)
+
+quaternary_summary$response <- factor(quaternary_summary$response, levels = c("Wrong","Kinda Wrong", "Kinda Right", "Right"))
+quaternary_summary$guess_type <- factor(quaternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+quaternary_summary$guess_type <- recode(quaternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+
+quaternary_plot<-
+  quaternary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="", y="")+
+  theme_few() +
+  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE)
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+quaternary_plot_g <- ggplot_gtable(ggplot_build(quaternary_plot))
+
+strips <- grep("strip-r", quaternary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+quaternary_plot_g <- with(quaternary_plot_g$layout[strips,],
+          gtable_add_grob(quaternary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+quaternary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(quaternary_plot_g)
+```
+
+```{r quinaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+
+quinary_summary<-
+  data %>%
+  filter(response_type=="quinary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), proportion=count/total)
+
+quinary_summary$response <- factor(quinary_summary$response, levels = c("Wrong","Kinda Wrong", "Neither", "Kinda Right", "Right"))
+quinary_summary$guess_type <- factor(quinary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+quinary_summary$guess_type <- recode(quinary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+
+quinary_plot<-
+  quinary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="", y="")+
+  theme_few() +
+  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE)
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+quinary_plot_g <- ggplot_gtable(ggplot_build(quinary_plot))
+
+strips <- grep("strip-r", quinary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+quinary_plot_g <- with(quinary_plot_g$layout[strips,],
+          gtable_add_grob(quinary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+quinary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(quinary_plot_g)
+```
+
 
 ```{r}
 results<-
@@ -222,6 +371,9 @@ ggplot(results, aes(x=response,y=proportion)) +
   facet_grid(response_type~trial_type, drop = TRUE) +
   theme_few()
 ```
+
+* make sure to break down based on whether participants had logical training or not.
+
 
 # Analysis
 
