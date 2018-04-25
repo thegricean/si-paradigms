@@ -58,6 +58,13 @@ set.seed(42)
 
 # Introduction
 
+
+```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=3, fig.height=1, set.cap.width=T, num.cols.cap=1,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
+cards_img <- jpeg::readJPEG("writeup_files/link-visualization.jpg")
+grid::grid.raster(cards_img)
+```
+
+
 * In a truth-value judgment task, how do we know whether an interpretation is literal or the result of an implicature computation?
 
 Explain the setup
