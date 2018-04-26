@@ -64,14 +64,14 @@ The past 15 years have seen the rise and development of a bustling and exciting 
 The most prominently studied phenomenon in experimental pragmatics is undoubtedly *scalar implicature*. Scalar implicatures arise in virtue of a speaker producing the weaker of two ordered scalemates [@grice1975; hornXXX; @hirschberg1985; @Geurts2010]. Examples are provided in (1) and (2). 
 
 1. 
-  a. *Utterance:* Some of her pets are cats.
-  b. *Implicature:* Some, but not all, of her pets are cats.
-  c. *Scale:* <all, some>
+  + *Utterance:* Some of her pets are cats.
+  + *Implicature:* Some, but not all, of her pets are cats.
+  + *Scale:* <all, some>
 
 2. 
-  a. *Utterance:* She owns a cat or a dog.
-  b. *Implicature:* She owns a cat or a dog, but not both.
-  c. *Scale:* <and, or>  
+  + *Utterance:* She owns a cat or a dog.
+  + *Implicature:* She owns a cat or a dog, but not both.
+  + *Scale:* <and, or>  
   
 A listener, upon observing the utterances in (1a) and (2a), typically infers that the speaker intended to convey the meanings in (1b) and (2b), respectively. Since @grice1975, the agreed-upon abstract rationalization the listener could give for their inference goes something like this: if the speaker knows whether the stronger alternative (e.g., *All of her pets are cats.*) is true, then if it is, they should have produced it. They chose not to. I believe the speaker knows whether the stronger alternative is true. Hence, it must not be true.
 
