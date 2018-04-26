@@ -1,16 +1,16 @@
 ---
-title             : "The title"
-shorttitle        : "Title"
+title             : "The effect of linking assumptions and number of response options on inferred scalar implicature rate"
+shorttitle        : "Linking assumptions and implicature rate"
 author: 
     
-  - name          : "First Author"
+  - name          : "Masoud Jasbi"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "Postal address"
     email         : "my@email.com"
-  - name          : "Second Author"
+  - name          : "Brandon Waldon"
     affiliation   : "1"
-  - name          : "Third Author"
+  - name          : "Judith Degen"
     affiliation   : "1"
 affiliation:
   - id            : "1"
@@ -21,10 +21,10 @@ author_note: |
 abstract: |
   Enter abstract here. Each new line herein must be indented, like this line.
   
-keywords          : "keywords"
+keywords          : "scalar implicature; methodology; linking assumption; experimental pragmatics; truth-value judgment task"
 wordcount         : "X"
 bibliography      : ["r-references.bib"]
-figsintext        : no
+figsintext        : yes
 figurelist        : no
 tablelist         : no
 footnotelist      : no
@@ -48,7 +48,8 @@ library(jpeg)
 library(lme4)
 library(ggthemes)
 library(forcats)
-library(brms)
+# library(brms)
+theme_set(theme_bw(18))
 ```
 
 ```{r analysis_preferences}
@@ -58,10 +59,35 @@ set.seed(42)
 
 # Introduction
 
+The past 15 years have seen the rise and development of a bustling and exciting new field at the intersection of linguistics, psychology, and philosophy: *experimental pragmatics* [@bott2004;@Breheny2006;@DegenTanenhaus2015;@Grodner2010;@huang2009;@Geurts2009;@noveck2008] **XXX ADD MORE**. Experimental pragmatics is devoted to experimentally testing theories of how language is used in context. How do listeners draw inferences about the -- often underspecified -- linguistic signal they receive from speakers? How do speakers choose between the many utterance alternatives they have at their disposal?
 
-```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=3, fig.height=1, set.cap.width=T, num.cols.cap=1,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
-cards_img <- jpeg::readJPEG("writeup_files/link-visualization.jpg")
-grid::grid.raster(cards_img)
+The most prominently studied phenomenon in experimental pragmatics is undoubtedly *scalar implicature*. Scalar implicatures arise in virtue of a speaker producing the weaker of two ordered scalemates [@grice1975; hornXXX; @hirschberg1985; @Geurts2010]. Examples are provided in (1) and (2). 
+
+1. 
+  a. *Utterance:* Some of her pets are cats.
+  b. *Implicature:* Some, but not all, of her pets are cats.
+  c. *Scale:* <all, some>
+
+2. 
+  a. *Utterance:* She owns a cat or a dog.
+  b. *Implicature:* She owns a cat or a dog, but not both.
+  c. *Scale:* <and, or>  
+  
+A listener, upon observing the utterances in (1a) and (2a), typically infers that the speaker intended to convey the meanings in (1b) and (2b), respectively. Since @grice1975, the agreed-upon abstract rationalization the listener could give for their inference goes something like this: if the speaker knows whether the stronger alternative (e.g., *All of her pets are cats.*) is true, then if it is, they should have produced it. They chose not to. I believe the speaker knows whether the stronger alternative is true. Hence, it must not be true.
+
+CONTINUE HERE: motivation for examining implicature rate assumptions:
+
+* surging interest in differences in implicature rates (eg van tiel, dgen tanenhaus)
+* implicature rates serve as basis for claims about online processing (bott & noveck, degen tanenhaus)
+* implicature rates serve as basis for claims about children (bishop katsos, barner, frank)
+
+* add @deneys2007
+* @demarneffetonhauser for investigations of scalar adjectives, and @vantiel
+
+
+```{r linkvisualization, fig.env = "figure", fig.align='center', fig.width=5, set.cap.width=T, num.cols.cap=1,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
+link_img <- png::readPNG("writeup_files/figures/link-visualization.png")
+grid::grid.raster(link_img)
 ```
 
 
@@ -112,11 +138,11 @@ pragmatic_trials <-
 
 # high definition only considers the highest point on the scale as "literal"
 pragmatic_trials$high<-1
-pragmatic_trials[pragmatic_trials$response=="Right"]$high <-0
+pragmatic_trials[pragmatic_trials$response=="Right",]$high <-0
 
 # low definition only considers the lowers point on the scale as implicature 
 pragmatic_trials$low<-0
-pragmatic_trials[pragmatic_trials$response=="Wrong"]$low <-1
+pragmatic_trials[pragmatic_trials$response=="Wrong",]$low <-1
 
 implicature_rate <- 
   pragmatic_trials %>% gather("definition","implicature", high:low)
@@ -407,9 +433,9 @@ implicature_rate$card <- implicature_rate$card %>% tolower()
 
 implicature_analysis_a <- glmer(implicature ~ definition * response_type + trial_type + (1+response_type|card) + (1|participant), family="binomial", data=implicature_rate)
 
-summary(implicature_analysis)
+summary(implicature_analysis_a)
 
-implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
+# implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
 ```
 
 
