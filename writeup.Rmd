@@ -73,7 +73,15 @@ The most prominently studied phenomenon in experimental pragmatics is undoubtedl
   + *Implicature:* She owns a cat or a dog, but not both.
   + *Scale:* <and, or>  
   
-A listener, upon observing the utterances in (1a) and (2a), typically infers that the speaker intended to convey the meanings in (1b) and (2b), respectively. Since @grice1975, the agreed-upon abstract rationalization the listener could give for their inference goes something like this: if the speaker knows whether the stronger alternative (e.g., *All of her pets are cats.*) is true, then if it is, they should have produced it. They chose not to. I believe the speaker knows whether the stronger alternative is true. Hence, it must not be true.
+A listener, upon observing the utterances in (1a) and (2a), typically infers that the speaker intended to convey the meanings in (1b) and (2b), respectively. Since @grice1975, the agreed-upon abstract rationalization the listener could give for their inference goes something like this: the speaker could have made a more informative statement by producing the stronger alternative (e.g., *All of her pets are cats.*). If the stronger alternative is true, they should have produced it to comply with the Cooperative Principle. They chose not to. I believe the speaker knows whether the stronger alternative is true. Hence, it must not be true.
+
+Because the basic reconstruction of the inference is much more easily characterized for  scalar implicatures than for other implicatures, scalar implicatures have served as a test bed for many questions in experimental pragmatics, including, but not limited to:
+1. Are scalar inferences default inferences, in the sense that they arise unless blocked by (marked) contexts [@horn1984; @levinson2000; @Degen2015]?
+2. Are scalar inferences default inferences, in the sense that they are computed automatically in online processing and only cancelled by context in a second effortful step if required by context) [@bott2004;@Breheny2006;@DegenTanenhaus2016;@Grodner2010;@huang2009]?
+3. What are the (linguistic and extra-linguistic) factors that affect whether a scalar implicature is derived [@zondervan2010;@DegenTanenhaus2015; @DegenTanenhaus2016; @Degen2015; @DegenGoodman2014; @Bergen2012; @Breheny2006; @Breheny2013;@DeMarneffeTonhauser;@DeNeys2007;@Bonnefon2009]?
+4. At what age do children acquire the ability to compute implicatures [@Noveck2001; @Papafragou2004; @Barner2011; Frank; @Musolino2004]? 
+5. How much diversity is there across implicature types, and within scalar implicatures across scale types, in whether or not an implicature is computed [@Doran2012;@VanTiel2014]?
+
 
 CONTINUE HERE: motivation for examining implicature rate assumptions:
 
