@@ -59,7 +59,7 @@ set.seed(42)
 
 # Introduction
 
-The past 15 years have seen the rise and development of a bustling and exciting new field at the intersection of linguistics, psychology, and philosophy: *experimental pragmatics* [@bott2004;@Breheny2006;@DegenTanenhaus2015;@Grodner2010;@huang2009;@Geurts2009;@noveck2008] **XXX ADD MORE**. Experimental pragmatics is devoted to experimentally testing theories of how language is used in context. How do listeners draw inferences about the -- often underspecified -- linguistic signal they receive from speakers? How do speakers choose between the many utterance alternatives they have at their disposal?
+The past 15 years have seen the rise and development of a bustling and exciting new field at the intersection of linguistics, psychology, and philosophy: *experimental pragmatics* [@Bott2004;@Breheny2006;@DegenTanenhaus2015;@Grodner2010;@huang2009;@Geurts2009;@noveck2008] **XXX ADD MORE**. Experimental pragmatics is devoted to experimentally testing theories of how language is used in context. How do listeners draw inferences about the -- often underspecified -- linguistic signal they receive from speakers? How do speakers choose between the many utterance alternatives they have at their disposal?
 
 The most prominently studied phenomenon in experimental pragmatics is undoubtedly *scalar implicature*. Scalar implicatures arise in virtue of a speaker producing the weaker of two ordered scalemates [@grice1975; hornXXX; @hirschberg1985; @Geurts2010]. Examples are provided in (1) and (2). 
 
@@ -79,9 +79,9 @@ Because the basic reconstruction of the inference is much more easily characteri
 
 1. Are scalar inferences default inferences, in the sense that they arise unless blocked by (marked) contexts [@horn1984; @levinson2000; @Degen2015]?
 
-2. Are scalar inferences default inferences, in the sense that they are computed automatically in online processing and only cancelled by context in a second effortful step if required by context) [@bott2004;@Breheny2006;@DegenTanenhaus2016;@Grodner2010;@huang2009;@Politzer-Ahles2013;Tomlinson2013]?
+2. Are scalar inferences default inferences, in the sense that they are computed automatically in online processing and only cancelled by context in a second effortful step if required by context) [@Bott2004;@Breheny2006;@DegenTanenhaus2016;@Grodner2010;@huang2009;@Politzer-Ahles2013;Tomlinson2013]?
 
-3. What are the (linguistic and extra-linguistic) factors that affect whether a scalar implicature is derived [@Zondervan2010;@DegenTanenhaus2015; @DegenTanenhaus2016; @Degen2015; @DegenGoodman2014; @Bergen2012; @Breheny2006; @Breheny2013;@DeMarneffeTonhauser;@DeNeys2007;@Bonnefon2009;Chemla2011;Potts2015]?
+3. What are the (linguistic and extra-linguistic) factors that affect whether a scalar implicature is derived [@Zondervan2010;@DegenTanenhaus2015; @DegenTanenhaus2016; @Degen2015; @Degen2014; @Bergen2012; @Breheny2006; @Breheny2013;@DeMarneffe2017;@DeNeys2007;@Bonnefon2009;Chemla2011;Potts2015]?
 
 4. How much diversity is there across implicature types, and within scalar implicatures across scale types, in whether or not an implicature is computed [@Doran2012;@VanTiel2014]?
 
@@ -89,18 +89,15 @@ Because the basic reconstruction of the inference is much more easily characteri
 
 In addressing all of these questions, it has been crucial to obtain estimates of **implicature rates**. For 1., implicature rates from experimental tasks can be taken to inform whether scalar implicatures should be considered default inferences. For 2., processing measures on responses that indicate implicatures can be compared to processing measures on responses that indicate literal interpretations. For 3., contextual effects can be examined by comparing implicature rates across contexts. For 4., implicature rates can be compared across scales (or across implicature types). For 5., implicature rates can be compared across age groups.
 
-A standard measure that has stood proxy for implicature rate across many studies is the proportion of 'pragmatic' judgments in truth-value judgment paradigms [@bott2004;@Noveck2001;@Noveck2003;@Chemla2011;@Geurts2009;@DegenTanenhaus2015;@DeNeys2007;Degen2014]. In these kinds of tasks, participants are provided a set of facts, either presented visually or via their own knowledge of the world. They are then asked to judge whether a sentence intended to describe those facts is true or false (or alternatively, whether it is right or wrong, or they are asked whether they agree or disagree with the sentence). The crucial condition for assessing implicature rates in these kinds of studies typically consists of a case where the facts are such that the stronger alternative is true and the utterance is underinformative. For instance, @Bott2004 asked participants to judge sentences like 'Some elephants are mammals', when world knowledge dictates that all elephants are mammals. Similarly, @DegenTanenhaus2015 asked participants to judge sentences like 'You got some of the gumballs' in situations where the visual evidence indicated that the participant received all the gumballs from a gumball machine. In these kinds of scenarios, the story goes, if a participant responds 'FALSE', that indicates that they computed a scalar implicature, eg to the effect of 'Not all elephants are mammals' or 'You didn't get all of the gumballs'. If instead a participant responds 'TRUE', that is taken to indicate that they interpreted the utterance literally as `Some, and possibly all, elephants are mammals' or 'You god some, and possibly all, of the gumballs'.
+A standard measure that has stood proxy for implicature rate across many studies is the proportion of 'pragmatic' judgments in truth-value judgment paradigms [@Bott2004;@Noveck2001;@Noveck2003;@Chemla2011;@Geurts2009;@DegenTanenhaus2015;@DeNeys2007;Degen2014]. In these kinds of tasks, participants are provided a set of facts, either presented visually or via their own knowledge of the world. They are then asked to judge whether a sentence intended to describe those facts is true or false (or alternatively, whether it is right or wrong, or they are asked whether they agree or disagree with the sentence). The crucial condition for assessing implicature rates in these kinds of studies typically consists of a case where the facts are such that the stronger alternative is true and the target utterance is thus also true but underinformative. For instance, @Bott2004 asked participants to judge sentences like 'Some elephants are mammals', when world knowledge dictates that all elephants are mammals. Similarly, @DegenTanenhaus2015 asked participants to judge sentences like 'You got some of the gumballs' in situations where the visual evidence indicated that the participant received all the gumballs from a gumball machine. In these kinds of scenarios, the story goes, if a participant responds 'FALSE', that indicates that they computed a scalar implicature, eg to the effect of 'Not all elephants are mammals' or 'You didn't get all of the gumballs', which is (globally or contextually) false. If instead a participant responds 'TRUE', that is taken to indicate that they interpreted the utterance literally as `Some, and possibly all, elephants are mammals' or 'You got some, and possibly all, of the gumballs'.
 
+Given the centrality of the theoretical notion of 'implicature rate' to much of experimental pragmatics, there is to date a surprising lack of discussion of the basic assumption that it is adequately captured by the  proportion of FALSE responses in truth-value judgment tasks (but see @BenzGotzner; @Geurts2009; @Degen2014; @Katsos2011). Indeed, the scalar implicature acquisition literature was shaken up when @Katsos2011 showed that simply by introducing an additional response option, children started looking much more pragmatic than had been previously observed in a binary judgment paradigm. @Katsos allowed children to distribute 1, 2, or 3 strawberries to a puppet depending on 'how good the puppet said it'. The result was that children gave on average fewer strawberries to the puppet when he produced underinformative utterances compared to when he produced literally true and pragmatically felicitous utterances, suggesting that children do, in fact, display pragmatic ability even at ages when they had previously appeared not to.
 
+But this raises an important question: in truth-value judgment task, how do we know whether an interpretation is literal or the result of an implicature computation? The binary choice task typically used is appealing in part because it allows for a direct mapping from response options -- TRUE and FALSE -- to interpretations -- literal and pragmatic. That the seeming simplicity of this mapping is illusory becomes apparent once a third response option is introduced, as in the @Katsos2011 case. How is the researcher to interpret the intermediate option? @Katsos2011 grouped the intermediate option with the negative endpoint of the scale for the purpose of categorizing judgments as literal vs. pragmatic. But it seems just as plausible that they could have grouped it with the positive endpoint of the scale and taken the hard line that only truly FALSE responses constitute a full-fledged implicature. The point here is that there has been remarkably little consideration of **linking functions** between behavioral measures and theoretical constructs in experimental pragmatics, a problem in many subfields of psycholinguistics @TanenhausXXX. We argue that it is time to engage more seriously with these issues. 
 
-People who have discussed issues with the TVJP:
-@BenzGotzner; @Geurts2009; @Geurts2010; @Katsos2011
+We begin by reporting an experiment that addresses the following question: do the number of response options provided in a truth-value judgment task and the way that responses are grouped into pragmatic ('SI') and literal ('no SI') change inferences about scalar implicature rates? Note that this way of asking the question presupposes two things: first, that whatever participants are doing in a truth-value judgment task, the behavioral measure can be interpreted as providing a measure of **interpretation**. And second, that listeners either do or do not compute an implicature on any given occasion. In the Discussion we will discuss both of these issues. First, following @Degen2014, we will offer some remarks on why truth-value judgment tasks are better thought of as measuring participants' estimates of speakers' **production** probabilities. This will suggest a completely different class of linking functions. And second, we discuss an alternative conception of scalar implicature as a probabilistic phenomeonen, a view that has recently rose to prominence in the subfield of probabilistic pragmatics. This alternative conception of scalar implicature, we argue, affords developing and testing quantitative linking functions in a rigorous and motivated way.
 
-
-
-
-
-* @demarneffetonhauser for investigations of scalar adjectives, 
+Consider a setup in which a listener is presented a card with a depiction of either one or two animals (see the figure below for an example). As in a standard truth-value judgment task, the listener then observes an underinformative utterance about this card (e.g., 'There is a cat or a dog on the card') and is asked to provide a judgment on a scale from 2 to 5 response options, with endpoints 'wrong' and 'right'. In the binary case, this reproduces the standard truth-value judgment task. **XXX say briefly sth about wrong/right vs true/false and agree/disagree**. The figure below exemplifies (some of) the researcher's options for grouping responses. Under what we will call the 'Strong link' assumption, only the negative endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Under the 'Weak link' assumption, in contrast, any response that does not correspond to the positive endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Intermediate grouping schemes are also possible, but these are the ones we will consider here. Note that for the binary case, the Weak and Strong link return the same categorization scheme, but for any number of response options greater than 2, the Weak and Strong link can in principle lead to differences in inferences about implicature rate. 
 
 
 ```{r linkvisualization, fig.env = "figure", fig.align='center', fig.width=5, set.cap.width=T, num.cols.cap=1,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
@@ -109,38 +106,15 @@ grid::grid.raster(link_img)
 ```
 
 
-* In a truth-value judgment task, how do we know whether an interpretation is literal or the result of an implicature computation?
+Let's examine an example. Assume three response options (wrong, neither, right). Assume further that a third of participants each gave each of the three responses, i.e., the distributions of responses is 1/3, 1/3, and 1/3. Under the Strong link, we infer that this task yielded an implicature rate of 2/3. Under the Weak link, we infer that this task yielded an implicature rate of 1/3. This is quite a drastic difference if we are for instance interested in whether scalar implicatures are inference defaults and we would like to interpret an implicature rate of above an arbitrary threshold (e.g., 50%) as evidence for such a claim. Under the Strong link, we would conclude that scalar implicatures are not defaults. Under the Weak link, we would conclude that they are. 
 
-Explain the setup
-* the speaker produces weaker alternative from the scale
-* the facts are such that the stronger alternative is true  
 
-Traditional Linking Hypotheses:
-* If an implicature is calculated, the participant chooses a Non-True/Non-Right response
-* If an implicature is calculated, the participant chooses the Wrong/False response
-* If an implicature is calculated, the participant chooses the lower end of the scale (2: wrong/False, 3: wrong, 4: wrong/kinda-wrong, 5: wrong/kinda-wrong)
+In the experiment reported in the following section, we presented participants with exactly this setup. Different groups of participants were presented with different numbers of response options. We categorized their responses according to the Weak and the Strong link and tested whether number of response options and categorization scheme leads to different conclusions about implicature rates.
 
-Questions:
-* Do these linking hypotheses give us different measures of implicature computation?
-* If they do differ, which one is most stable?
 
-Alternative Linking Hypothesis:
-* RSA: Response behavior across conditions (utterance-card combinations) and dependent measures can be predicted by a linking hypothesis that assumes that participants are behaving like soft-optimal RSA speakers and provide a particular response (eg TRUE) to an utterance u if the RSA speaker probability of u (given the card) is within a particular probability interval (eg, within the interval [theta, 1]).
+# Experiment
 
-* Differences between traditional approaches and RSA: 1. The traditional linking hypotheses are based on a binary implicature/literal theory of pragmatic reasoning but RSA gives a continuous measure of pragmatic reasoning and allows for better predicting response behavior with multiple options.
-
-# Background
-
-* discussing the ways people in tha past have measured the "implicature rate".
-* it seems like the literature takes the n(not-True)/n(Total) as the proporition of responses caused by implicature calculation
-* BUT, I remember that Jesse Snedeker said it's NOT n(not-True)/n(Total) but it is n(False)/n(Total)
-* However, this is probably not a consensus in the field because Katsos & Bishop consider the mid-point response "big" on the scale small-big-huge (strawberry) to be the result of implicture caculation
-
-* what is the most common measure of "implicature rate" in the literature?
-Binary True/False: Noveck 2001, Chemla & Spector 2011, 
-Ternary: Katsos & Bishop 2011
-
-# Methods
+## Methods
 
 ```{r importData, warning=FALSE, echo=FALSE}
 data <- read_csv("experiments/main/3_processed_data/data_main.csv")
@@ -170,7 +144,7 @@ implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type,
                                          exhaustive = "XY_X", scalar = "XY_XorY")
 ```
 
-## Participants
+###  Participants
 
 ```{r participants}
 participants_info <-
@@ -181,12 +155,11 @@ participants_info <-
 
 200 participants were recruited using Amazon Mechanical Turk (binary=`r participants_info$count[1]`, ternary`r participants_info$count[4]`, quaternary=`r participants_info$count[2]`, quinary=`r participants_info$count[3]`). No participant was excluded from the final analysis.
 
-## Procedure
+### Procedure
 
-The study was administered online and through Amazon Mechanical Turk. Participants were introduced to a set of cards with pictures of one or two animals (Figure \@ref(fig:stimuli)). They were told that a blindfolded fictional character called Bob is going to guess what animals are on the card. In each trial, participants saw a card as well as a sentence representing Bob's guess. For example they saw a card with a cat on it and read the sentence "there is a cat on the card." The study ended after 24 trials. At the end participants were asked about their   
-You can access and view [the online study here]().
+The study was administered online through Amazon Mechanical Turk. Participants were introduced to a set of cards with pictures of one or two animals (Figure \@ref(fig:stimuli)). They were told that a blindfolded fictional character called Bob is going to guess what animals are on the card. On each trial, participants saw a card as well as a sentence representing Bob's guess. For example, they saw a card with a cat on it and read the sentence "There is a cat on the card." The study ended after 24 trials. At the end participants optionally provided demographic information. You can access and view [the online study here](**XXX masoud insert link**).
 
-## Design and Materials
+### Design and Materials
 
 ```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=3, fig.height=1.5, set.cap.width=T, num.cols.cap=1, fig.width=1.5,fig.cap = "Cards used in the connective guessing game."}
 cards_img <- jpeg::readJPEG("experiments/figs/cards.jpg")
@@ -204,7 +177,7 @@ trials_img <- jpeg::readJPEG("experiments/figs/trialTypes.jpg")
 grid::grid.raster(trials_img)
 ```
 
-## Pre-registered Analysis
+## Results
 
 <!--We used `r cite_r("r-references.bib")` for all our analyses.-->
 
@@ -216,7 +189,6 @@ This study set out to test two hypotheses. First, that the proportion of pragmat
 
 A second hypothesis was that the definition of what responses count as participants computing an implicature may affect the estimated rate of implicature in the experimental task. 
 
-# Results
 
 ```{r binaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' two-alternative forced choice judgments in the connective guessing game."}
 
@@ -426,7 +398,7 @@ ggplot(results, aes(x=response,y=proportion)) +
 * make sure to break down based on whether participants had logical training or not.
 
 
-# Analysis
+### Analysis
 
 ```{r implicatureResultss}
 implicature_results<-
@@ -458,10 +430,13 @@ summary(implicature_analysis_a)
 
 
 
-# Modeling
-
 # Discussion
 
+
+Alternative Linking Hypothesis:
+* RSA: Response behavior across conditions (utterance-card combinations) and dependent measures can be predicted by a linking hypothesis that assumes that participants are behaving like soft-optimal RSA speakers and provide a particular response (eg TRUE) to an utterance u if the RSA speaker probability of u (given the card) is within a particular probability interval (eg, within the interval [theta, 1]).
+
+* Differences between traditional approaches and RSA: 1. The traditional linking hypotheses are based on a binary implicature/literal theory of pragmatic reasoning but RSA gives a continuous measure of pragmatic reasoning and allows for better predicting response behavior with multiple options.
 
 \newpage
 
