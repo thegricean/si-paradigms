@@ -33,7 +33,7 @@ mask              : no
 class             : "man"
 output            : papaja::apa6_pdf
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ```{r load_packages, include = FALSE}
@@ -48,7 +48,7 @@ library(jpeg)
 library(lme4)
 library(ggthemes)
 library(forcats)
-# library(brms)
+library(brms)
 theme_set(theme_bw(18))
 ```
 
@@ -157,20 +157,20 @@ participants_info <-
 
 ### Procedure
 
-The study was administered online through Amazon Mechanical Turk. Participants were introduced to a set of cards with pictures of one or two animals (Figure \@ref(fig:stimuli)). They were told that a blindfolded fictional character called Bob is going to guess what animals are on the card. On each trial, participants saw a card as well as a sentence representing Bob's guess. For example, they saw a card with a cat on it and read the sentence "There is a cat on the card." The study ended after 24 trials. At the end participants optionally provided demographic information. You can access and view [the online study here](**XXX masoud insert link**).
+The study was administered online through Amazon Mechanical Turk. Participants were introduced to a set of cards with pictures of one or two animals (Figure \@ref(fig:stimuli)). They were told that a blindfolded fictional character called Bob is going to guess what animals are on the card. On each trial, participants saw a card as well as a sentence representing Bob's guess. For example, they saw a card with a cat on it and read the sentence "There is a cat on the card." The study ended after 24 trials. At the end participants optionally provided demographic information. We also asked participants if they had any prior training in logic. You can access and view on the study's [online repository](https://github.com/thegricean/si-paradigms/).
 
 ### Design and Materials
 
-```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=3, fig.height=1.5, set.cap.width=T, num.cols.cap=1, fig.width=1.5,fig.cap = "Cards used in the connective guessing game."}
+```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=2, fig.height=1.5, set.cap.width=T, num.cols.cap=1, fig.width=1.5,fig.cap = "Cards used in the connective guessing game."}
 cards_img <- jpeg::readJPEG("experiments/figs/cards.jpg")
 grid::grid.raster(cards_img)
 ```
 
-The design had two main manipulaitons: the type of card and the type of guess. There were two types of cards. Cards with only one animal on them and cards with two animals. Animals were chosen from the following set: cat, dog, and elephant  There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*).
+The study had two main manipulaitons within participants: the type of card and the type of guess. There were two types of cards. Cards with only one animal on them and cards with two animals. Animals were chosen from the following set: cat, dog, and elephant  There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*). In each trial, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: cat, Guess: *There is an elephant*), a partial overlap (e.g. Image: cat, Guess: *There is a cat or a dog*), or a total overlap (e.g. Image: cat and dog, Guess: *There is a cat or a dog*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. Three trials were randomly selected from each of the 8 trial-types, for a total of 24 trials. The order of these 24 trials was randomized as well. 
 
-In each trial, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: dog, Guess: *There is a cat or an elephant*), a partial overlap (e.g. Image: Cat, Guess: *There is a cat or an elephant*), or a total overlap (e.g. Image: cat and elephant, Guess: *There is a cat or an elephant*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. 
+Participants could derive implicatures in two trial types. First, the trial type in which two animals were present on the card (e.g. cat and dog) but Bob guessed only one of them (e.g. "there is a cat"). Such trials can have a literal interpretation (cat and possibly more) or an exhaustive interpretation (only cat). We refer to them as "exhaustive". The second trial type with implicatures was the one in which two animals were on the card (e.g. cat and dog) and Bob used a disjunciton (e.g. cat or dog). These trials can have a literal (inclusive) interpretation (e.g. cat or dog or both), or an exclusive interpretation (e.g. cat or dog, not both). We refer to these trials as "scalar". The following four trial types were used as experimental control: two trial types where there was no overlap between the guess (e.g. elephant) and the animal(s) on the card (e.g. cat, cat and dog); and two trial types where the animal(s) on the card were correctly guessed. For example, if there was only a cat on the card, Bob said "there is a cat" and if there was a cat and a dog, Bob said "there is a cat and a dog". 
 
-The study used five different types of measurements. 1. two-options (true vs. false) 2. two-options (wrong vs. right) 3. three-options (wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda right, right) 5. five-options (wrong, kinda wrong, neither, kinda right, right).
+The study also had a between participant manipulation of the number of response options in the forced choice task. Participants were randomly assigned to one of four different conditions. The conditions differed with respect to the number of response options: binary (wrong vs. right), ternary (wrong, neither, right), quaternary (wrong, kinda wrong, kinda right, right), and quinary (wrong, kinda wrong, neither, kinda right, right). We wanted to see if the number of response options in the forced choice task would affect our estimate of the task's "implicature rate".
 
 ```{r trials, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=4, fig.height=2, set.cap.width=T, num.cols.cap=1, fig.width=1.5, fig.cap = "Trial types represented by example cards and guesses."}
 trials_img <- jpeg::readJPEG("experiments/figs/trialTypes.jpg")
@@ -181,16 +181,7 @@ grid::grid.raster(trials_img)
 
 <!--We used `r cite_r("r-references.bib")` for all our analyses.-->
 
-We are primarily concerned with the "rate of implicatures" in an experimental study. Two trial types are predicted to include pragmatic implicatures. First, trials where there are two animals on the card but the fictional character guesses using the connective *or*; for example "cat or dog" when the card has both a cat and a dog on it. We call such trials "scalar" trials. Second, trials where there are two animals on the card but the character guesses only one; for example "cat" when the card has a cat and a dog on it. We call such trials "exhaustive". In our assessment of implicature rate we focus on these two types of trials.
-
-We define "implicature rate" in two ways: 
-
-This study set out to test two hypotheses. First, that the proportion of pragmatic vs. literal responses in a truth values judgement task changes based on the number of response options available to the participants. We test this hypothesis formally using a binomial mixed effects model with the fixed effect of response type and the random intercept for participants as well as random intercept and slope for 
-
-A second hypothesis was that the definition of what responses count as participants computing an implicature may affect the estimated rate of implicature in the experimental task. 
-
-
-```{r binaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' two-alternative forced choice judgments in the connective guessing game."}
+```{r binaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game."}
 
 binary_summary<-
   data %>%
@@ -235,9 +226,14 @@ binary_plot_g <- with(binary_plot_g$layout[strips,],
 binary_plot_g$widths[[11]] <- unit(2.5,"cm")
 
 grid.draw(binary_plot_g)
+
+binaryExh_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+binaryScalar_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
 ```
 
-```{r ternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+Here we present the proportion that participants chose the response options in each of the 8 trial types of the binary, ternary, quaternary, and quinary tasks. Figure \@ref(fig:binaryPlot) shows the proportion of "right" and "wrong" responses in the binary task. Starting from the leftmost column, participants considered a guess "wrong" if the guessed animal was not on the card. Moving to the second column, participants considered a guess "right" if the animal on the card was mentioned. However, if only one of the two animals on the card was mentioned (exhaustive trials), `r round(binaryExh_wrong$proportion*100)`% of the times participants considered the guess "wrong". Moving to the third column, if a conjunction of animals was guessed while only one animal was on the card, participants considered the guess to be "wrong". If a conjunction of animals was guessed and both animals were present on the card, all participants considered the guess to be "right" as expected. Moving to the forth column, if a disjunction of animals was guessed and only one of the animals was on the card, participants considered the guess to be "right" almost all the time. However, if both animals were present (scalar trials), `r round(binaryScalar_wrong$proportion*100)`% of the times participants considered the guess to be "wrong".
+
+```{r ternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game."}
 
 ternary_summary<-
   data %>%
@@ -282,9 +278,16 @@ ternary_plot_g <- with(ternary_plot_g$layout[strips,],
 ternary_plot_g$widths[[11]] <- unit(2.5,"cm")
 
 grid.draw(ternary_plot_g)
+
+ternaryExh_wrong <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+ternaryScalar_wrong <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+ternaryExh_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Neither")
+ternaryScalar_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
 ```
 
-```{r quaternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+Figure \@ref(fig:ternaryPlot) shows the proportion of "right", "neither", and "wrong" responses in the ternary task. Similar to the binary task, participants considered a guess wrong when the mentioned animal was not on the card. They considered the guess "right" when the mentioned animal was on the card. However, in exhaustive trials when the fictional character only guessed one of the two animals on the card, participants considered the guess "wrong" `r round(ternaryExh_wrong$proportion*100)`% of the time and neither wrong nor right `r round(ternaryExh_neither$proportion*100)`% of the time. If a conjunction of animals was guessed and only one animal was present on the card, participants considered the guess "wrong". As expected, when a conjunction was used and both animals were present, participants considered the guess "right". Similarly, participants considerd the guess "right" when a disjunction was used and only one of the animals was on the card. However, in scalar trials that both animals were on the card and a disjunction was gueassed, participants judged the guess "wrong" `r round(ternaryScalar_wrong$proportion*100)`% of the time and "neither" `r round(ternaryScalar_neither$proportion*100)`% of the time.
+
+```{r quaternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game."}
 
 quaternary_summary<-
   data %>%
@@ -329,9 +332,19 @@ quaternary_plot_g <- with(quaternary_plot_g$layout[strips,],
 quaternary_plot_g$widths[[11]] <- unit(2.5,"cm")
 
 grid.draw(quaternary_plot_g)
+
+quaternaryExh_kindaRight <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Right")
+quaternaryExh_wrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+quaternaryExh_kindaWrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Wrong")
+
+quaternaryScalar_wrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+quaternaryScalar_kindaWrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Wrong")
+quaternaryScalar_kindaRight <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
 ```
 
-```{r quinaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Adults' three-alternative forced choice judgments in the connective guessing game."}
+Figure \@ref(fig:quaternaryPlot) shows the proportion of "right", "kinda right", "kinda wrong", and "wrong" responses in the quaternary task. Similar to the results seen previously, the control trials turned outas expected. Participants considered a guess "wrong" if the animal guessed was not on the card and "right" if it was the only animal on the card. If a conjunctin of animals was guessed and both animals were on the card the guess was "right". However, when only one of the animals on the card was guessed (exhaustive trials), participants judged the guess "wrong" `r round(quaternaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryExh_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryExh_kindaRight$proportion*100)`% of the times. Perhaps surprisingly, when a conjunction was used and only one of the animals was on the card, participants considered the guess "wrong" most of the time, but they often considered it "kinda wrong" or even "kinda right". This suggests that perhaps participants considered a notion of partially true or correct statement in our experimental setting. Disjunctive guesses with one or two animals on the card showed similar response patterns with participants choosing the "kinda right" and "right" options most of the time. When both animals were on the card with a disjunctive guess (scalar trials), participants judged the guess "wrong" `r round(quaternaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryScalar_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryScalar_kindaRight$proportion*100)`% of the times.
+
+```{r quinaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game."}
 
 quinary_summary<-
   data %>%
@@ -376,29 +389,33 @@ quinary_plot_g <- with(quinary_plot_g$layout[strips,],
 quinary_plot_g$widths[[11]] <- unit(2.5,"cm")
 
 grid.draw(quinary_plot_g)
+
+quinaryExh_kindaRight <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Right")
+quinaryExh_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+quinaryExh_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Wrong")
+quinaryExh_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Neither")
+
+quinaryyScalar_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+quinaryScalar_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Wrong")
+quinaryScalar_kindaRight <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
+quinaryScalar_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
 ```
 
+Finally, Figure \@ref(fig:quinaryPlot) shows the proportion of "right", "kinda right", "neither", "kinda wrong", and "wrong" responses in the quinary task. Since the results for the control trials were identical to previous tasks, we do not repeat them here. In exhaustive trials where two animals were on the card and only one of them was guessed, participants chose "kinda right" the majority of times (`r round(quinaryExh_kindaRight$proportion*100)`%). Again perhaps surprisingly, when only one animal was on the card and the guess was a conjunction, responses were equally split among "wrong", "kinda wrong", and "kinda right" responses. With disjunctive guesses, partitipants were more likely to choose "right" and "kinda right" options. When only one animal was on the card, participants considered the disjunctive guess as "right" more often. When both animals were on the card (scalar trials), participants judged the disjunctive guess as "kinda right" `r round(quinaryScalar_kindaRight$proportion*100)`% of the time.
 
-```{r}
-results<-
-  data %>%
-  group_by(response_type, trial_type, response) %>%
-  summarize(counts = n()) %>%
-  group_by(trial_type, response_type) %>%
-  mutate(total = sum(counts), proportion = counts/total)
-```
-
-```{r}
-ggplot(results, aes(x=response,y=proportion)) +
-  geom_bar(stat="identity") +
-  facet_grid(response_type~trial_type, drop = TRUE) +
-  theme_few()
-```
-
-* make sure to break down based on whether participants had logical training or not.
-
+Comparing the response patterns in binary to quinary tasks (Figures \@ref(fig:binaryPlot) to \@ref(fig:quinaryPlot)), we can observe that in implicature trials, participants are less likely to choose the endpoints of the scale (i.e. "wrong" and "right") as they are given more intermediate options. This raises the possibilty that the strict "wrong/right" responses in the tasks with fewer options (binary and ternary) were not accurately reflecting participant judgments of implicature trials and pushed their judgments to the extreme ends. More generally, the data suggest that participant judgments in contexts that give rise to implicatures fall within the intermrediate level of the response scale and forced choice tasks with few options (especially binary tasks) may risk depicting judgments more extreme than they actually are. 
 
 ### Analysis
+
+Our primary goal in this study was to check whether the estimated "implicature rate" in the experimental task is affected by the linking assumption and the number of response options available in the task. Our analysis in this section focuses on these three elements. As mentioned before, two trial types were predicted to include pragmatic implicatures. First, trials where two animals were on the card but the fictional character guessed with a disjunction (scalar); for example "cat or dog" when the card has both a cat and a dog on it. Second, trials where there were two animals on the card but the character guessed only one (exhaustive); for example "cat" when the card had a cat and a dog on it. We called such trials "exhaustive". In our assessment of implicature rate, we focus on these two trial types.
+
+This study set out to test two linking assumptions. 
+
+We test this hypothesis formally using a binomial mixed effects model with the fixed effect of response type and the random intercept for participants as well as random intercept and slope for 
+
+A second hypothesis was that the definition of what responses count as participants computing an implicature may affect the estimated rate of implicature in the experimental task. 
+
+All the analytical decisions described here were pre-registered in an as.predicted format. You can access the preregistration 
 
 ```{r implicatureResultss}
 implicature_results<-
@@ -410,25 +427,30 @@ implicature_results<-
 ```
 
 ```{r}
-ggplot(implicature_results, aes(x=as.factor(implicature),y=proportion)) +
-  geom_bar(stat="identity", position = "dodge") +
-  facet_grid(response_type~definition + trial_type, drop = TRUE) +
+implicature_results$response_type <- fct_relevel(implicature_results$response_type, "binary", "ternary", "quaternary", "quinary")
+implicature_results$implicature <- as.factor(implicature_results$implicature)
+implicature_results$implicature <- fct_recode(implicature_results$implicature, yes = "1", no = "0")
+```
+
+```{r implicatureRatePlot}
+ggplot(implicature_results, aes(x=response_type,y=proportion)) +
+  geom_bar(aes(fill = implicature), stat="identity") +
+  facet_grid(definition ~ trial_type, drop = TRUE) +
   theme_few() + 
-  labs(x="Implicature")
+  labs(x="Implicature") +
+  theme(text = element_text(size=17), axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 
-```{r}
-implicature_rate$card <- implicature_rate$card %>% tolower()
-
+```{r implicatureRate, echo=FALSE, eval=FALSE}
 implicature_analysis_a <- glmer(implicature ~ definition * response_type + trial_type + (1+response_type|card) + (1|participant), family="binomial", data=implicature_rate)
 
 summary(implicature_analysis_a)
-
-# implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="binomial", data=implicature_rate)
+library(brms)
+implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="bernoulli", data=implicature_rate)
 ```
 
-
+* Was logical training a significant predictor of "implicature rate"? 
 
 # Discussion
 

@@ -1,5 +1,17 @@
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
+
+
+{\centering \includegraphics{writeup_files/figure-latex/linkvisualization-1}
+
+}
+
+\caption{Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true.}\label{fig:linkvisualization}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
 [t]
 
 {\centering \includegraphics{writeup_files/figure-latex/stimuli-1}
@@ -19,6 +31,63 @@
 }
 
 \caption{Trial types represented by example cards and guesses.}\label{fig:trials}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/binaryPlot-1}
+
+}
+
+\caption{Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game.}\label{fig:binaryPlot}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/ternaryPlot-1}
+
+}
+
+\caption{Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game.}\label{fig:ternaryPlot}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/quaternaryPlot-1}
+
+}
+
+\caption{Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game.}\label{fig:quaternaryPlot}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/quinaryPlot-1}
+
+}
+
+\caption{Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game.}\label{fig:quinaryPlot}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/implicatureRatePlot-1.pdf}
+\caption{}
 \end{figure*}
 \efloatseparator
  

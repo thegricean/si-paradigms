@@ -145,16 +145,16 @@ pragmatics; truth-value judgment task \\
 
 
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
 \theoremstyle{definition}
-\newtheorem{example}{Example}[section]
+\newtheorem{example}{Example}
 \theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[section]
+\newtheorem{exercise}{Exercise}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
@@ -433,8 +433,10 @@ animals are on the card. On each trial, participants saw a card as well
 as a sentence representing Bob's guess. For example, they saw a card
 with a cat on it and read the sentence \enquote{There is a cat on the
 card.} The study ended after 24 trials. At the end participants
-optionally provided demographic information. You can access and view
-\href{**XXX\%20masoud\%20insert\%20link**}{the online study here}.
+optionally provided demographic information. We also asked participants
+if they had any prior training in logic. You can access and view on the
+study's \href{https://github.com/thegricean/si-paradigms/}{online
+repository}.
 
 \subsubsection{Design and Materials}\label{design-and-materials}
 
@@ -447,29 +449,52 @@ optionally provided demographic information. You can access and view
 \caption{Cards used in the connective guessing game.}\label{fig:stimuli}
 \end{figure}
 
-The design had two main manipulaitons: the type of card and the type of
-guess. There were two types of cards. Cards with only one animal on them
-and cards with two animals. Animals were chosen from the following set:
-cat, dog, and elephant There were three types of guesses: simple (e.g.
-\emph{There is a cat}), conjunctive (e.g. \emph{There is a cat and a
-dog}), and disjunctive (e.g. \emph{There is a cat or a dog}).
+The study had two main manipulaitons within participants: the type of
+card and the type of guess. There were two types of cards. Cards with
+only one animal on them and cards with two animals. Animals were chosen
+from the following set: cat, dog, and elephant There were three types of
+guesses: simple (e.g. \emph{There is a cat}), conjunctive (e.g.
+\emph{There is a cat and a dog}), and disjunctive (e.g. \emph{There is a
+cat or a dog}). In each trial, the animal labels used in the guess and
+the animal images on the card may have no overlap (e.g.~Image: cat,
+Guess: \emph{There is an elephant}), a partial overlap (e.g.~Image: cat,
+Guess: \emph{There is a cat or a dog}), or a total overlap (e.g.~Image:
+cat and dog, Guess: \emph{There is a cat or a dog}). Crossing the number
+of animals on the card, the type of guess, and the overlap between the
+guess and the card results in 12 different possible trial types. We
+chose 8 trial types (Figure \ref{fig:trials}), balancing the number of
+one-animal vs.~two-animal cards, simple vs.~connective guesses, and
+expected true vs.~false trials. Three trials were randomly selected from
+each of the 8 trial-types, for a total of 24 trials. The order of these
+24 trials was randomized as well.
 
-In each trial, the animal labels used in the guess and the animal images
-on the card may have no overlap (e.g.~Image: dog, Guess: \emph{There is
-a cat or an elephant}), a partial overlap (e.g.~Image: Cat, Guess:
-\emph{There is a cat or an elephant}), or a total overlap (e.g.~Image:
-cat and elephant, Guess: \emph{There is a cat or an elephant}). Crossing
-the number of animals on the card, the type of guess, and the overlap
-between the guess and the card results in 12 different possible trial
-types. We chose 8 trial types (Figure \ref{fig:trials}), balancing the
-number of one-animal vs.~two-animal cards, simple vs.~connective
-guesses, and expected true vs.~false trials.
+Participants could derive implicatures in two trial types. First, the
+trial type in which two animals were present on the card (e.g.~cat and
+dog) but Bob guessed only one of them (e.g. \enquote{there is a cat}).
+Such trials can have a literal interpretation (cat and possibly more) or
+an exhaustive interpretation (only cat). We refer to them as
+\enquote{exhaustive}. The second trial type with implicatures was the
+one in which two animals were on the card (e.g.~cat and dog) and Bob
+used a disjunciton (e.g.~cat or dog). These trials can have a literal
+(inclusive) interpretation (e.g.~cat or dog or both), or an exclusive
+interpretation (e.g.~cat or dog, not both). We refer to these trials as
+\enquote{scalar}. The following four trial types were used as
+experimental control: two trial types where there was no overlap between
+the guess (e.g.~elephant) and the animal(s) on the card (e.g.~cat, cat
+and dog); and two trial types where the animal(s) on the card were
+correctly guessed. For example, if there was only a cat on the card, Bob
+said \enquote{there is a cat} and if there was a cat and a dog, Bob said
+\enquote{there is a cat and a dog}.
 
-The study used five different types of measurements. 1. two-options
-(true vs.~false) 2. two-options (wrong vs.~right) 3. three-options
-(wrong, neither, right) 4. four-options (wrong, kinda wrong, kinda
-right, right) 5. five-options (wrong, kinda wrong, neither, kinda right,
-right).
+The study also had a between participant manipulation of the number of
+response options in the forced choice task. Participants were randomly
+assigned to one of four different conditions. The conditions differed
+with respect to the number of response options: binary (wrong
+vs.~right), ternary (wrong, neither, right), quaternary (wrong, kinda
+wrong, kinda right, right), and quinary (wrong, kinda wrong, neither,
+kinda right, right). We wanted to see if the number of response options
+in the forced choice task would affect our estimate of the task's
+\enquote{implicature rate}.
 
 \begin{figure}[t]
 
@@ -482,18 +507,149 @@ right).
 
 \subsection{Results}\label{results}
 
-We are primarily concerned with the \enquote{rate of implicatures} in an
-experimental study. Two trial types are predicted to include pragmatic
-implicatures. First, trials where there are two animals on the card but
-the fictional character guesses using the connective \emph{or}; for
-example \enquote{cat or dog} when the card has both a cat and a dog on
-it. We call such trials \enquote{scalar} trials. Second, trials where
-there are two animals on the card but the character guesses only one;
-for example \enquote{cat} when the card has a cat and a dog on it. We
-call such trials \enquote{exhaustive}. In our assessment of implicature
-rate we focus on these two types of trials.
+\begin{figure}[t]
 
-We define \enquote{implicature rate} in two ways:
+{\centering \includegraphics{writeup_files/figure-latex/binaryPlot-1} 
+
+}
+
+\caption{Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game.}\label{fig:binaryPlot}
+\end{figure}
+
+Here we present the proportion that participants chose the response
+options in each of the 8 trial types of the binary, ternary, quaternary,
+and quinary tasks. Figure \ref{fig:binaryPlot} shows the proportion of
+\enquote{right} and \enquote{wrong} responses in the binary task.
+Starting from the leftmost column, participants considered a guess
+\enquote{wrong} if the guessed animal was not on the card. Moving to the
+second column, participants considered a guess \enquote{right} if the
+animal on the card was mentioned. However, if only one of the two
+animals on the card was mentioned (exhaustive trials), 14\% of the times
+participants considered the guess \enquote{wrong}. Moving to the third
+column, if a conjunction of animals was guessed while only one animal
+was on the card, participants considered the guess to be
+\enquote{wrong}. If a conjunction of animals was guessed and both
+animals were present on the card, all participants considered the guess
+to be \enquote{right} as expected. Moving to the forth column, if a
+disjunction of animals was guessed and only one of the animals was on
+the card, participants considered the guess to be \enquote{right} almost
+all the time. However, if both animals were present (scalar trials),
+38\% of the times participants considered the guess to be
+\enquote{wrong}.
+
+\begin{figure}[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/ternaryPlot-1} 
+
+}
+
+\caption{Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game.}\label{fig:ternaryPlot}
+\end{figure}
+
+Figure \ref{fig:ternaryPlot} shows the proportion of \enquote{right},
+\enquote{neither}, and \enquote{wrong} responses in the ternary task.
+Similar to the binary task, participants considered a guess wrong when
+the mentioned animal was not on the card. They considered the guess
+\enquote{right} when the mentioned animal was on the card. However, in
+exhaustive trials when the fictional character only guessed one of the
+two animals on the card, participants considered the guess
+\enquote{wrong} 8\% of the time and neither wrong nor right 12\% of the
+time. If a conjunction of animals was guessed and only one animal was
+present on the card, participants considered the guess \enquote{wrong}.
+As expected, when a conjunction was used and both animals were present,
+participants considered the guess \enquote{right}. Similarly,
+participants considerd the guess \enquote{right} when a disjunction was
+used and only one of the animals was on the card. However, in scalar
+trials that both animals were on the card and a disjunction was
+gueassed, participants judged the guess \enquote{wrong} 23\% of the time
+and \enquote{neither} 11\% of the time.
+
+\begin{figure}[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/quaternaryPlot-1} 
+
+}
+
+\caption{Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game.}\label{fig:quaternaryPlot}
+\end{figure}
+
+Figure \ref{fig:quaternaryPlot} shows the proportion of \enquote{right},
+\enquote{kinda right}, \enquote{kinda wrong}, and \enquote{wrong}
+responses in the quaternary task. Similar to the results seen
+previously, the control trials turned outas expected. Participants
+considered a guess \enquote{wrong} if the animal guessed was not on the
+card and \enquote{right} if it was the only animal on the card. If a
+conjunctin of animals was guessed and both animals were on the card the
+guess was \enquote{right}. However, when only one of the animals on the
+card was guessed (exhaustive trials), participants judged the guess
+\enquote{wrong} 2\% of the time, \enquote{kinda wrong} 5\% of the time,
+and \enquote{kinda right} 66\% of the times. Perhaps surprisingly, when
+a conjunction was used and only one of the animals was on the card,
+participants considered the guess \enquote{wrong} most of the time, but
+they often considered it \enquote{kinda wrong} or even \enquote{kinda
+right}. This suggests that perhaps participants considered a notion of
+partially true or correct statement in our experimental setting.
+Disjunctive guesses with one or two animals on the card showed similar
+response patterns with participants choosing the \enquote{kinda right}
+and \enquote{right} options most of the time. When both animals were on
+the card with a disjunctive guess (scalar trials), participants judged
+the guess \enquote{wrong} 6\% of the time, \enquote{kinda wrong} 12\% of
+the time, and \enquote{kinda right} 43\% of the times.
+
+\begin{figure}[t]
+
+{\centering \includegraphics{writeup_files/figure-latex/quinaryPlot-1} 
+
+}
+
+\caption{Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game.}\label{fig:quinaryPlot}
+\end{figure}
+
+Finally, Figure \ref{fig:quinaryPlot} shows the proportion of
+\enquote{right}, \enquote{kinda right}, \enquote{neither},
+\enquote{kinda wrong}, and \enquote{wrong} responses in the quinary
+task. Since the results for the control trials were identical to
+previous tasks, we do not repeat them here. In exhaustive trials where
+two animals were on the card and only one of them was guessed,
+participants chose \enquote{kinda right} the majority of times (72\%).
+Again perhaps surprisingly, when only one animal was on the card and the
+guess was a conjunction, responses were equally split among
+\enquote{wrong}, \enquote{kinda wrong}, and \enquote{kinda right}
+responses. With disjunctive guesses, partitipants were more likely to
+choose \enquote{right} and \enquote{kinda right} options. When only one
+animal was on the card, participants considered the disjunctive guess as
+\enquote{right} more often. When both animals were on the card (scalar
+trials), participants judged the disjunctive guess as \enquote{kinda
+right} 52\% of the time.
+
+Comparing the response patterns in binary to quinary tasks (Figures
+\ref{fig:binaryPlot} to \ref{fig:quinaryPlot}), we can observe that in
+implicature trials, participants are less likely to choose the endpoints
+of the scale (i.e. \enquote{wrong} and \enquote{right}) as they are
+given more intermediate options. This raises the possibilty that the
+strict \enquote{wrong/right} responses in the tasks with fewer options
+(binary and ternary) were not accurately reflecting participant
+judgments of implicature trials and pushed their judgments to the
+extreme ends. More generally, the data suggest that participant
+judgments in contexts that give rise to implicatures fall within the
+intermrediate level of the response scale and forced choice tasks with
+few options (especially binary tasks) may risk depicting judgments more
+extreme than they actually are.
+
+\subsubsection{Analysis}\label{analysis}
+
+The goal of this study is to see if the estimated \enquote{implicature
+rate} in the experimental task is affected by the linking assumptions
+and the number of response options available in the task. Our analysis
+in this section focuses on these three elements. Two trial types are
+predicted to include pragmatic implicatures. First, trials where two
+animals were on the card but the fictional character guessed with a
+disjunction; for example \enquote{cat or dog} when the card has both a
+cat and a dog on it. We called such trials \enquote{scalar}. Second,
+trials where there were two animals on the card but the character
+guessed only one; for example \enquote{cat} when the card had a cat and
+a dog on it. We called such trials \enquote{exhaustive}. In our
+assessment of implicature rate, we focus on these two types of trials.
 
 This study set out to test two hypotheses. First, that the proportion of
 pragmatic vs.~literal responses in a truth values judgement task changes
@@ -506,145 +662,18 @@ A second hypothesis was that the definition of what responses count as
 participants computing an implicature may affect the estimated rate of
 implicature in the experimental task.
 
-\begin{figure}[t]
-
-{\centering \includegraphics{writeup_files/figure-latex/binaryPlot-1} 
-
-}
-
-\caption{Adults' two-alternative forced choice judgments in the connective guessing game.}\label{fig:binaryPlot}
-\end{figure}
-
-\begin{figure}[t]
-
-{\centering \includegraphics{writeup_files/figure-latex/ternaryPlot-1} 
-
-}
-
-\caption{Adults' three-alternative forced choice judgments in the connective guessing game.}\label{fig:ternaryPlot}
-\end{figure}
-
-\begin{figure}[t]
-
-{\centering \includegraphics{writeup_files/figure-latex/quaternaryPlot-1} 
-
-}
-
-\caption{Adults' three-alternative forced choice judgments in the connective guessing game.}\label{fig:quaternaryPlot}
-\end{figure}
-
-\begin{figure}[t]
-
-{\centering \includegraphics{writeup_files/figure-latex/quinaryPlot-1} 
-
-}
-
-\caption{Adults' three-alternative forced choice judgments in the connective guessing game.}\label{fig:quinaryPlot}
-\end{figure}
-
 \begin{figure}
 \centering
-\includegraphics{writeup_files/figure-latex/unnamed-chunk-2-1.pdf}
+\includegraphics{writeup_files/figure-latex/implicatureRatePlot-1.pdf}
 \caption{}
 \end{figure}
 
 \begin{itemize}
 \tightlist
 \item
-  make sure to break down based on whether participants had logical
-  training or not.
+  Was logical training a significant predictor of \enquote{implicature
+  rate}?
 \end{itemize}
-
-\subsubsection{Analysis}\label{analysis}
-
-\begin{figure}
-\centering
-\includegraphics{writeup_files/figure-latex/unnamed-chunk-3-1.pdf}
-\caption{}
-\end{figure}
-
-\begin{verbatim}
-## Warning in (function (fn, par, lower = rep.int(-Inf, n), upper =
-## rep.int(Inf, : failure to converge in 10000 evaluations
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control
-## $checkConv, : Model failed to converge with max|grad| = 0.524298 (tol =
-## 0.001, component 1)
-\end{verbatim}
-
-\begin{verbatim}
-## Generalized linear mixed model fit by maximum likelihood (Laplace
-##   Approximation) [glmerMod]
-##  Family: binomial  ( logit )
-## Formula: implicature ~ definition * response_type + trial_type + (1 +  
-##     response_type | card) + (1 | participant)
-##    Data: implicature_rate
-## 
-##      AIC      BIC   logLik deviance df.resid 
-##   1783.4   1899.0   -871.7   1743.4     2380 
-## 
-## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -7.8815 -0.2261 -0.1198  0.2334 10.0887 
-## 
-## Random effects:
-##  Groups      Name                    Variance Std.Dev. Corr             
-##  participant (Intercept)             5.224316 2.28568                   
-##  card        (Intercept)             0.008402 0.09166                   
-##              response_typequaternary 0.084138 0.29007  -1.00            
-##              response_typequinary    0.003720 0.06099  -0.79  0.81      
-##              response_typeternary    0.044946 0.21201   0.90 -0.89 -0.67
-## Number of obs: 2400, groups:  participant, 200; card, 3
-## 
-## Fixed effects:
-##                                       Estimate Std. Error z value Pr(>|z|)
-## (Intercept)                           -2.64555    0.43138  -6.133 8.63e-10
-## definitionlow                         -0.02508    0.24943  -0.101    0.920
-## response_typequaternary                3.47868    0.61328   5.672 1.41e-08
-## response_typequinary                   3.44163    0.55426   6.209 5.32e-10
-## response_typeternary                   0.29732    0.56967   0.522    0.602
-## trial_typescalar                       0.85657    0.13861   6.180 6.41e-10
-## definitionlow:response_typequaternary -6.08294    0.61009  -9.970  < 2e-16
-## definitionlow:response_typequinary    -5.71913    0.50693 -11.282  < 2e-16
-## definitionlow:response_typeternary    -1.21490    0.36931  -3.290    0.001
-##                                          
-## (Intercept)                           ***
-## definitionlow                            
-## response_typequaternary               ***
-## response_typequinary                  ***
-## response_typeternary                     
-## trial_typescalar                      ***
-## definitionlow:response_typequaternary ***
-## definitionlow:response_typequinary    ***
-## definitionlow:response_typeternary    ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Correlation of Fixed Effects:
-##                     (Intr) dfntnl rspns_typqt rspns_typqn rspns_typt
-## definitinlw         -0.287                                          
-## rspns_typqt         -0.724  0.202                                   
-## rspns_typqn         -0.760  0.224  0.554                            
-## rspns_typtr         -0.643  0.218  0.418       0.510                
-## trl_typsclr         -0.218 -0.001  0.060       0.065       0.007    
-## dfntnlw:rspns_typqt  0.214 -0.408 -0.330      -0.167      -0.101    
-## dfntnlw:rspns_typqn  0.217 -0.492 -0.156      -0.309      -0.116    
-## dfntnlw:rspns_typt   0.220 -0.675 -0.155      -0.170      -0.280    
-##                     trl_ty dfntnlw:rspns_typqt dfntnlw:rspns_typqn
-## definitinlw                                                       
-## rspns_typqt                                                       
-## rspns_typqn                                                       
-## rspns_typtr                                                       
-## trl_typsclr                                                       
-## dfntnlw:rspns_typqt -0.098                                        
-## dfntnlw:rspns_typqn -0.103  0.266                                 
-## dfntnlw:rspns_typt  -0.036  0.298               0.349             
-## convergence code: 0
-## Model failed to converge with max|grad| = 0.524298 (tol = 0.001, component 1)
-## failure to converge in 10000 evaluations
-\end{verbatim}
 
 \section{Discussion}\label{discussion}
 
@@ -665,6 +694,110 @@ the interval {[}theta, 1{]}).
   reasoning and allows for better predicting response behavior with
   multiple options.
 \end{itemize}
+
+A simple visual inspection of our results suggests that any variant of
+the Traditional Linking Hypothesis will yield unsatisfying empirical
+coverage with regards to participants' behavior in truth value judgment
+tasks. Recall that according to this hypothesis, scalar implicature is
+conceptualized as a binary, categorical affair: an implicature is either
+\enquote{calculated,} or it isn't. This assumption has implications for
+how we approach analysis of variation in behavior on a truth value
+judgment task; for example, why did the majority of respondents in the
+binary condition of our experiment answer \enquote{Right} to an
+utterance of cat or dog when the card had a cat and a dog on it?
+
+On the Traditional story, we are forced to say that a) not all
+participants calculated the implicature; or that b) some participants
+who calculated the implicature did not choose the anticipated response
+(i.e. \enquote{Wrong}) due to some other cognitive reflex which
+\enquote{overrode} the implicature; or some mixture of (b) and (c). We
+might similarly posit that one or both of these factors underlie the
+variation in the ternary, quatenary, and quinary conditions (e.g.~why
+were participants roughly split between \enquote{Right} and
+\enquote{Kind of right} when the utterance was cat or dog and the card
+had a cat and a dog?). There is an established cottage industry of
+pragmatics research which approaches the problem of behavioral variation
+in exactly these ways, exploring the factors which \enquote{license}
+implicature calculation or \enquote{suppress} its anticipated behavioral
+expression (c.f. \_\_), but the best we can hope for on this approach is
+an analysis which traces the general qualitative patterns in the data
+(and we should stress that even in this respect, the industry has yet to
+fully deliver the goods!).
+
+The Alternative Linking Hypothesis contrasts with the Traditional
+Linking Hypothesis in that the former is rooted in a quantitative
+formalization of pragmatic competence which provides us a continuous
+measure of pragmatic reasoning. {[}recap RSA model here? Maybe show how
+it gets the right basic qualitative pattern, i.e. \(P_L\)(a and
+b\textbar{} \enquote{a or b}) \(<\) \(P_L\)(a \textbar{} \enquote{or});
+\(P_L\)(a and b\textbar{} \enquote{a or b}) \(<\) \(P_L\)(b \textbar{}
+\enquote{or}) {]}
+
+Following Degen \& Goodman (2014), we proceed on the assumption that
+behavior on sentence verification tasks, such as truth value judgment
+tasks, is best modeled as a function of an individual's mental
+representation of a cooperative interlocutor (\(S_1\) in the language of
+RSA). For a given utterance u and an intended communicated meaning w,
+\(S_1\)(u \textbar{} w) outputs a conditional probability of u given w.
+For example, in the binary condition of our experiment where a
+participant evaluated cat or dog when there were both animals on the
+card, the participant has access to the mental representation of \(S_1\)
+and hence to the \(S_1\) conditional probability of hearing the
+utterance cat or dog given a dog and cat card \(S_1\)(cat or dog
+\textbar{} cat and dog).
+
+One desideratum of a linking hypothesis given this view of pragmatic
+competence is to transform this probability value into a categorical
+output (e.g. \enquote{Right}/''Wrong'' in the case of the binary
+condition). This can be achieved by positing that participants
+\enquote{filter out} low-probability utterances given an intended
+communicated meaning. We model a responder, R, who in the binary
+condition responds \enquote{Right} to an utterance u in world w just in
+case \(S_1\)(u \textbar{} w) exceeds some probability threshold
+\(\theta\):
+
+R(u, w, \(\theta\)) = \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\)
+\(\theta\) = \enquote{Wrong} otherwise
+
+In the experiment conditions where there are more than two choices, we
+model the range of possible behavioral responses for R with the
+introduction of intermediate probability thresholds. For example, in the
+ternary condition, R(u, w, \(\theta_1\) , \(\theta_2\)) is
+\enquote{Right} iff \(S_1\)(u \textbar{} w) \textgreater{} \(\theta_1\)
+and \enquote{Neither} iff \(\theta_1\) \textgreater{} \(S_1\)(u
+\textbar{} w) \textgreater{} \(\theta_2\). To fully generalize the model
+to our five experimental conditions, we say that R takes as its input an
+utterance u and a world state w and a number of threshold variables
+dependent on a variable c, corresponding to the experimental condition
+in which the participant finds herself (e.g.~the range of possible
+responses available to R).
+
+Given c = \enquote{ternary}
+
+R(u, w, \(\theta_1\) , \(\theta_2\))\\
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\) =
+\enquote{Neither} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w) \(>\)
+\(\theta_2\)\\
+= \enquote{Wrong} otherwise
+
+Given c = \enquote{quatenary}
+
+R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\))\\
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\) =
+\enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_2\)\\
+= \enquote{Kinda Wrong} iff \(\theta_2\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_3\) = \enquote{Wrong} otherwise
+
+Given c = \enquote{quinary}
+
+R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\). \(\theta_4\))\\
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\)
+=\enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_2\) = \enquote{Neither} iff \(\theta_2\) \(>\) \(S_1\)(u
+\textbar{} w) \(>\) \(\theta_3\)\\
+= \enquote{Kinda Wrong} iff \(\theta_3\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_4\) = \enquote{Wrong} otherwise
 
 \newpage
 
