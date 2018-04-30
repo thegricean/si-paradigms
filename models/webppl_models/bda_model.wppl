@@ -1,0 +1,176 @@
+var states = [['X'], ['Y'], ['Z'], ['X','Y'], ['X','Z'], ['Y','Z'], ['X','Y','Z']];
+var utterances = ['X', 'Y', 'XorY', 'XandY', 'Z','XorZ','XandZ','YorZ','YandZ','XandYandZ','XorYorZ'];
+
+var statePrior = function() {
+  return uniformDraw(states)
+};
+
+var cost = function(u) {
+  return 1
+};
+
+var utterancePrior = function() {
+  return uniformDraw(utterances);
+};
+
+var literalMeanings = {
+  X: function(state) { return state.includes('X'); },
+  Y: function(state) { return state.includes('Y'); },
+  Z: function(state) { return state.includes('Z'); },
+  XorY: function(state) { return state.includes('X') || state.includes('Y'); },
+  XandY: function(state) { return state.includes('X') && state.includes('Y'); },
+  XorZ: function(state) { return state.includes('X') || state.includes('Z'); },
+  XandZ: function(state) { return state.includes('X') && state.includes('Z'); },
+  YorZ: function(state) { return state.includes('Y') || state.includes('Z'); },
+  YandZ: function(state) { return state.includes('Y') && state.includes('Z'); },
+  XorYorZ: function(state) { return state.includes('X') || state.includes('Y') || state.includes('Z'); },
+  XandYandZ: function(state) { return state.includes('X') && state.includes('Y') && state.includes('Z'); },
+};
+
+var literalListener = cache(function(utt) {
+  return Infer({model: function(){
+    var state = statePrior()
+    //if (flip(0.95)) {
+    var meaning = literalMeanings[utt]
+    condition(meaning(state))
+    //} 
+    
+    return state;
+  }})
+});
+
+// set speaker optimality
+var alpha = 1
+
+// pragmatic speaker
+var speaker = cache(function(state) {
+  return Infer({model: function(){
+    var utt = utterancePrior()
+    factor(alpha * literalListener(utt).score(state))
+    return utt
+  }})
+}); 
+
+var threshold = function(state,threshold) {
+  var supported_utts_string = speaker(state).support().toString();
+  var supported_utts = supported_utts_string.split(',');
+  return filter(function(x) { return Math.exp(speaker(state).score(x)) > threshold; }, supported_utts)
+}
+
+var responder = cache(function(utt,state,theta,cond) {
+  return Infer({model:function(){
+  if (flip(0.01)) {
+    if (cond == 2) {return uniformDraw(["Right","Wrong"])}
+    if (cond == 3) {return uniformDraw(["Right","Wrong","Neither"])}
+    if (cond == 4) {return uniformDraw(["Right", "KindaRight", "Wrong","KindaWrong"])}
+    if (cond == 5) {return uniformDraw(["Right", "KindaRight", "Neither", "Wrong","KindaWrong"])}
+  }       
+  if (cond == 2 && threshold(state,theta).includes(utt)) { return "Right"; } 
+  if (cond == 3 && threshold(state,theta[0]).includes(utt)) {return "Right"; } 
+  if (cond == 3 && threshold(state,theta[1]).includes(utt)) {return "Neither";}
+  if (cond == 4 && threshold(state,theta[0]).includes(utt)) {return "Right"; } 
+  if (cond == 4 && threshold(state,theta[1]).includes(utt)) {return "KindaRight";}
+  if (cond == 4 && threshold(state,theta[2]).includes(utt)) {return "KindaWrong"; }    
+  if (cond == 5 && threshold(state,theta[0]).includes(utt)) {return "Right"; } 
+  if (cond == 5 && threshold(state,theta[1]).includes(utt)) {return "KindaRight";}
+  if (cond == 5 && threshold(state,theta[2]).includes(utt)) {return "Neither"; } 
+  if (cond == 5 && threshold(state,theta[3]).includes(utt)) {return "KindaWrong"; } 
+  else { return "Wrong"; }
+}})})
+
+var prod_data = [
+ {utt: 'X', state: ["X"], nright: 148, cond: 2, total: 150},
+ {utt: 'XandY', state: ["X"], nright: 10, cond: 2, total: 150},
+ {utt: 'XorY', state: ["X"], nright: 145, cond: 2, total: 150},
+ {utt: 'Z', state: ["X"], nright: 1, cond: 2, total: 150},
+ {utt: 'X', state: ["X","Y"], nright: 129, cond: 2, total: 150},
+ {utt: 'XandY', state: ["X","Y"], nright: 150, cond: 2, total: 150},
+ {utt: 'XorY', state: ["X","Y"], nright: 93, cond: 2, total: 150}, 
+ {utt: 'Z', state: ["X","Y"], nright: 149, cond: 2, total: 150}, 
+ 
+ {utt: 'X', state: ["X"], nright: 126, nkindaright: 3, nkindawrong: 0, cond: 4, total: 129},
+ {utt: 'XandY', state: ["X"], nright: 4, nkindaright: 24, nkindawrong: 41, cond: 4, total: 129},
+ {utt: 'XorY', state: ["X"], nright: 64, nkindaright: 54, nkindawrong: 6, cond: 4, total: 129},
+ {utt: 'Z', state: ["X"], nright: 2, nkindaright: 2, nkindawrong: 2, cond: 4, total: 129},
+ {utt: 'X', state: ["X","Y"], nright: 35, nkindaright: 85, nkindawrong: 6, cond: 4, total: 129},
+ {utt: 'XandY', state: ["X","Y"], nright: 125, nkindaright: 2, nkindawrong: 1, cond: 4, total: 129},
+ {utt: 'XorY', state: ["X","Y"], nright: 50, nkindaright: 55, nkindawrong: 16, cond: 4, total: 129},
+ {utt: 'Z', state: ["X","Y"], nright: 0, nkindaright: 2, nkindawrong: 2, cond: 4, total: 129},
+  
+ {utt: 'X', state: ["X"], nright: 159, nkindaright: 2, nneither: 0, nkindawrong: 0, cond: 5, total: 162},
+ {utt: 'XandY', state: ["X"], nright: 5, nkindaright: 46, nneither: 3, nkindawrong: 56, cond: 5, total: 162},
+ {utt: 'XorY', state: ["X"], nright: 106, nkindaright: 49, nneither: 0, nkindawrong: 4, cond: 5, total: 162},
+ {utt: 'Z', state: ["X"], nright: 2, nkindaright: 0, nneither: 0, nkindawrong: 0, cond: 5, total: 162},
+ {utt: 'X', state: ["X","Y"], nright: 41, nkindaright: 116, nneither: 1, nkindawrong: 1, cond: 5, total: 162},
+ {utt: 'XandY', state: ["X","Y"], nright: 158, nkindaright: 2, nneither: 0, nkindawrong: 1, cond: 5, total: 162},
+ {utt: 'XorY', state: ["X","Y"], nright: 60, nkindaright: 85, nneither: 2, nkindawrong: 6, cond: 5, total: 162},
+ {utt: 'XorY', state: ["X","Y"], nright: 2, nkindaright: 0, nneither: 2, nkindawrong: 1, cond: 5, total: 162},
+ 
+ {utt: 'X', state: ["X"], nright: 158, nneither: 0, cond: 3, total: 159},
+ {utt: 'XandY', state: ["X"], nright: 3, nneither: 10, cond: 3, total: 159},
+ {utt: 'XorY', state: ["X"], nright: 159, nneither: 4, cond: 3, total: 159},
+ {utt: 'Z', state: ["X"], nright: 0, nneither: 0, cond: 3, total: 159},
+ {utt: 'X', state: ["X","Y"], nright: 127, nneither: 19, cond: 3, total: 159},
+ {utt: 'XandY', state: ["X","Y"], nright: 159, nneither: 19, cond: 3, total: 159},
+ {utt: 'XorY', state: ["X","Y"], nright: 105, nneither: 18, cond: 3, total: 159},
+ {utt: 'Z', state: ["X","Y"], nright: 0, nneither: 4, cond: 3, total: 159},
+  //rewrite as array of objects {utt: state: successes: }
+ ]
+
+var dataAnalysis2 = function(){
+  // prior over model parameter
+ var binary_theta = uniform({a:0, b:1});
+  var ternary_theta1 = uniform({a:0, b:1});
+  var ternary_theta2 = uniform({a:0, b:ternary_theta1});
+  var quatenary_theta1 = uniform({a:0, b:1});
+  var quatenary_theta2 = uniform({a:0, b:quatenary_theta1});
+  var quatenary_theta3 = uniform({a:0, b:quatenary_theta2});
+  var quinary_theta1 = uniform({a:0, b:1});
+  var quinary_theta2 = uniform({a:0, b:quinary_theta1});
+  var quinary_theta3 = uniform({a:0, b:quinary_theta2});
+  var quinary_theta4 = uniform({a:0, b:quinary_theta3});
+  
+  mapData({data: prod_data}, function(d) {
+    if (d.cond == 2) {
+      var params = binary_theta;
+      return params
+    } 
+    if (d.cond == 3) {
+      var params = [ternary_theta1,ternary_theta2];
+      return params
+    } 
+    if (d.cond == 4) {
+      var params = [quatenary_theta1,quatenary_theta2,quatenary_theta3];
+      return params
+    }
+    if (d.cond == 5) {
+      var params = [quinary_theta1,quinary_theta2,quinary_theta3,quinary_theta4];
+      return params
+    }
+    var responseDist = responder(d.utt, d.state, params, d.cond)
+    observe(Binomial({n:d.total, p:Math.exp(responseDist.score('Right'))}), d.nright)
+    if (d.cond == 3 || d.cond == 5) {
+      observe(Binomial({n:d.total, p: Math.exp(responseDist.score("Neither"))}), 
+              d.nneither); 
+    }
+    if (d.cond == 4 || d.cond == 5) {
+      observe(Binomial({n:d.total, p: Math.exp(responseDist.score("KindaRight"))}), 
+              d.nkindaright); 
+    }
+  if (d.cond == 4 || d.cond == 5) {
+      observe(Binomial({n:d.total, p: Math.exp(responseDist.score("KindaWrong"))}), 
+              d.nkindawrong); 
+    }
+  })
+  return {binary_theta, ternary_theta1, ternary_theta2, quatenary_theta1,quatenary_theta2,quatenary_theta3, quinary_theta1,quinary_theta2,quinary_theta3,quinary_theta4};
+}
+
+
+var posterior_samples = Infer({
+  method: "MCMC",
+  samples: 10000, // how many samples to obtain
+  burn: 1500,     // number of steps for algorithm to adapt
+  model: dataAnalysis2})
+
+posterior_samples
+// dataAnalysis2() 

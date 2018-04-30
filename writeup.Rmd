@@ -48,6 +48,7 @@ library(jpeg)
 library(lme4)
 library(ggthemes)
 library(forcats)
+library(webppl)
 # library(brms)
 theme_set(theme_bw(18))
 ```
@@ -438,46 +439,95 @@ Alternative Linking Hypothesis:
 
 * Differences between traditional approaches and RSA: 1. The traditional linking hypotheses are based on a binary implicature/literal theory of pragmatic reasoning but RSA gives a continuous measure of pragmatic reasoning and allows for better predicting response behavior with multiple options.
 
-A simple visual inspection of our results suggests that any variant of the Traditional Linking Hypothesis will yield unsatisfying empirical coverage with regards to participants’ behavior in truth value judgment tasks. Recall that according to this hypothesis, scalar implicature is conceptualized as a binary, categorical affair: an implicature is either ‘calculated,’ or it isn’t. This assumption has implications for how we approach analysis of variation in behavior on a truth value judgment task; for example, why did the majority of respondents in the binary condition of our experiment answer “Right” to an utterance of cat or dog when the card had a cat and a dog on it? 
+A simple visual inspection of our results suggests that any variant of the Traditional Linking Hypothesis will yield unsatisfying empirical coverage with regards to participants’ behavior in truth value judgment tasks. Recall that according to this hypothesis, scalar implicature is conceptualized as a binary, categorical affair: an implicature is either ‘calculated,’ or it isn’t. This assumption has implications for how we approach analysis of variation in behavior on a truth value judgment task; for example, why did the majority of respondents in the binary condition of our experiment answer “Right” to an utterance of cat or dog when the card had a cat and a dog on it?
 
-On the Traditional story, we are forced to say that a) not all participants calculated the implicature; or that b) some participants who calculated the implicature did not choose the anticipated response (i.e. “Wrong”)  due to some other cognitive reflex which ‘overrode’ the implicature; or some mixture of (b) and (c). We might similarly posit that one or both of these factors underlie the variation in the ternary, quatenary, and quinary conditions (e.g. why were participants roughly split between “Right” and “Kind of right” when the utterance was cat or dog and the card had a cat and a dog?). There is an established cottage industry of pragmatics research which approaches the problem of behavioral variation in exactly these ways, exploring the factors which “license” implicature calculation or “suppress” its anticipated behavioral expression (c.f. __), but the best we can hope for on this approach is an analysis which traces the general qualitative patterns in the data (and we should stress that even in this respect, the industry has yet to fully deliver the goods!).
+On the Traditional story, we are forced to say that a) not all participants calculated the implicature; or that b) some participants who calculated the implicature did not choose the anticipated response (i.e. “Wrong”) due to some other cognitive reflex which ‘overrode’ the implicature; or some mixture of (b) and (c). We might similarly posit that one or both of these factors underlie the variation in the ternary, quatenary, and quinary conditions (e.g. why were participants roughly split between “Right” and “Kind of right” when the utterance was cat or dog and the card had a cat and a dog?). There is an established cottage industry of pragmatics research which approaches the problem of behavioral variation in exactly these ways, exploring the factors which “license” implicature calculation or “suppress” its anticipated behavioral expression (c.f. __), but the best we can hope for on this approach is an analysis which traces the general qualitative patterns in the data.
 
 The Alternative Linking Hypothesis contrasts with the Traditional Linking Hypothesis in that the former is rooted in a quantitative formalization of pragmatic competence which provides us a continuous measure of pragmatic reasoning. [recap RSA model here? Maybe show how it gets the right basic qualitative pattern, i.e. $P_L$(a and b| “a or b”) $<$ $P_L$(a | “or”); $P_L$(a and b| “a or b”) $<$ $P_L$(b | “or”) ]
 
-Following Degen & Goodman (2014), we proceed on the assumption that behavior on sentence verification tasks, such as truth value judgment tasks, is best modeled as a function of an individual’s mental representation of a cooperative interlocutor ($S_1$ in the language of RSA). For a given utterance u and an intended communicated meaning w, $S_1$(u | w) outputs a conditional probability of u given w. For example, in the binary condition of our experiment where a participant evaluated cat or dog when there were both animals on the card, the participant has access to the mental representation of $S_1$ and hence to the $S_1$ conditional probability of hearing the utterance cat or dog given a dog and cat card $S_1$(cat or dog | cat and dog). 
+Following Degen & Goodman (2014), we proceed on the assumption that behavior on sentence verification tasks, such as truth value judgment tasks, is best modeled as a function of an individual’s mental representation of a cooperative interlocutor ($S_1$ in the language of RSA). For a given utterance u and an intended communicated meaning w, $S_1$(u | w) outputs a conditional probability of u given w. For example, in the binary condition of our experiment where a participant evaluated cat or dog when there were both animals on the card, the participant has access to the mental representation of $S_1$ and hence to the $S_1$ conditional probability of hearing the utterance cat or dog given a dog and cat card $S_1$(cat or dog | cat and dog).
 
-One desideratum of a linking hypothesis given this view of pragmatic competence is to transform this probability value into a categorical output (e.g. “Right”/”Wrong” in the case of the binary condition). This can be achieved by positing that participants ‘filter out’ low-probability utterances given an intended communicated meaning. We model a responder, R, who in the binary condition responds “Right” to an utterance u in world w just in case $S_1$(u | w) exceeds some probability threshold $\theta$: 
+One desideratum of a linking hypothesis given this view of pragmatic competence is to transform this probability value into a categorical output (e.g. “Right”/”Wrong” in the case of the binary condition). This can be achieved by positing that participants ‘filter out’ low-probability utterances given an intended communicated meaning. We model a responder, R, who in the binary condition responds “Right” to an utterance u in world w just in case $S_1$(u | w) exceeds some probability threshold $\theta$:
 
 R(u, w, $\theta$) 
-    = “Right” iff $S_1$(u | w) $>$ $\theta$
-    = “Wrong” otherwise 
 
-In the experiment conditions where there are more than two choices, we model the range of possible behavioral responses for R with the introduction of intermediate probability thresholds. For example, in the ternary condition, R(u, w, $\theta_1$ , $\theta_2$)  is “Right” iff $S_1$(u | w) > $\theta_1$ and “Neither” iff $\theta_1$ > $S_1$(u | w) > $\theta_2$. To fully generalize the model to our five experimental conditions, we say that R takes as its input an utterance u and a world state w and a number of threshold variables dependent on a variable c, corresponding to the experimental condition in which the participant finds herself (e.g. the range of possible responses available to R). 
+= “Right” iff $S_1$(u | w) $>$ $\theta$
 
-Given c = “ternary” 
+= “Wrong” otherwise
 
-R(u, w, $\theta_1$ , $\theta_2$)  
-    = “Right” iff $S_1$(u | w) $>$ $\theta_1$
-    = “Neither” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$  
-    = “Wrong” otherwise 
+In the experiment conditions where there are more than two choices, we model the range of possible behavioral responses for R with the introduction of intermediate probability thresholds. For example, in the ternary condition, R(u, w, $\theta_1$ , $\theta_2$) is “Right” iff $S_1$(u | w) > $\theta_1$ and “Neither” iff $\theta_1$ > $S_1$(u | w) > $\theta_2$. To fully generalize the model to our five experimental conditions, we say that R takes as its input an utterance u and a world state w and a number of threshold variables dependent on a variable c, corresponding to the experimental condition in which the participant finds herself (e.g. the range of possible responses available to R).
 
-Given c = “quatenary” 
+Given c = “ternary”
 
-R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$)  
-    = “Right” iff $S_1$(u | w) $>$ $\theta_1$
-    = “Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$  
-    = “Kinda Wrong” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$ 
-    = “Wrong” otherwise 
+R(u, w, $\theta_1$ , $\theta_2$)
 
-Given c = “quinary” 
+= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
 
-R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$. $\theta_4$)  
-    = “Right” iff $S_1$(u | w) $>$ $\theta_1$
-    =“Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
-    = “Neither” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$  
-    = “Kinda Wrong” iff $\theta_3$ $>$ $S_1$(u | w) $>$ $\theta_4$ 
-    = “Wrong” otherwise 
+= “Neither” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
 
+= “Wrong” otherwise
+
+Given c = “quatenary”
+
+R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$)
+
+= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
+
+= “Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
+
+= “Kinda Wrong” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$ 
+
+= “Wrong” otherwise
+
+Given c = “quinary”
+
+R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$. $\theta_4$)
+
+= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
+
+=“Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
+
+= “Neither” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$ 
+
+= “Kinda Wrong” iff $\theta_3$ $>$ $S_1$(u | w) $>$ $\theta_4$ 
+
+= “Wrong” otherwise 
+
+```{r echo=TRUE, message=FALSE}
+bda <- webppl(program_file = "models/webppl_models/bda_model.wppl")
+
+binary_graph <- ggplot(filter(bda, Parameter == "binary_theta"), aes(x=value))+
+  # facet_wrap(~Parameter, scales = "free") +
+  geom_density() +
+  scale_fill_grey(guide=FALSE) +
+  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
+  ggtitle("Threshold distributions, binary condition:")
+
+ternary_graph <- ggplot(filter(bda, Parameter == c("ternary_theta1", "ternary_theta2")), aes(x=value))+
+  facet_wrap(~Parameter, scales = "free") +
+  geom_density() +
+  scale_fill_grey(guide=FALSE) +
+  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
+  ggtitle("Threshold distributions, ternary condition:")
+
+quatenary_graph <- ggplot(filter(bda, Parameter == c("quatenary_theta1", "quatenary_theta2", "quatenary_theta3")), aes(x=value))+
+  facet_wrap(~Parameter, scales = "free") +
+  geom_density() +
+  scale_fill_grey(guide=FALSE) +
+  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
+  ggtitle("Threshold distributions, quatenary condition:")
+
+quinary_graph <- ggplot(filter(bda, Parameter == c("quinary_theta1", "quinary_theta2", "quinary_theta3", "quinary_theta4")), aes(x=value))+
+  facet_wrap(~Parameter, scales = "free") +
+  geom_density() +
+  scale_fill_grey(guide=FALSE) +
+  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
+  ggtitle("Threshold distributions, quinary condition:")
+binary_graph
+ternary_graph
+quatenary_graph
+quinary_graph
+```
 \newpage
 
 # References
