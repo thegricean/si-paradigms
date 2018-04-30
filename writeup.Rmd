@@ -49,7 +49,7 @@ library(lme4)
 library(ggthemes)
 library(forcats)
 library(webppl)
-# library(brms)
+library(brms)
 theme_set(theme_bw(18))
 ```
 
@@ -129,16 +129,16 @@ pragmatic_trials <-
 
 # adding a column that defines pragmatic vs. literal
 
-# high definition only considers the highest point on the scale as "literal"
-pragmatic_trials$high<-1
-pragmatic_trials[pragmatic_trials$response=="Right",]$high <-0
+# high definition only considers the highest point on the scale as "literal" (Weak link in paper)
+pragmatic_trials$weak<-1
+pragmatic_trials[pragmatic_trials$response=="Right",]$weak <-0
 
-# low definition only considers the lowers point on the scale as implicature 
-pragmatic_trials$low<-0
-pragmatic_trials[pragmatic_trials$response=="Wrong",]$low <-1
+# low definition only considers the lowest point on the scale as implicature (Strong link in paper)
+pragmatic_trials$strong<-0
+pragmatic_trials[pragmatic_trials$response=="Wrong",]$strong <-1
 
 implicature_rate <- 
-  pragmatic_trials %>% gather("definition","implicature", high:low)
+  pragmatic_trials %>% gather("definition","implicature", weak:strong)
 
 # changing trial type names to exhaustive vs. scalar
 implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type, 
@@ -211,7 +211,7 @@ binary_plot<-
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="", y="")+
+  labs(x="Response", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=15)) +
   scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
@@ -258,7 +258,7 @@ ternary_plot<-
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="", y="")+
+  labs(x="Response", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=15)) +
   scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE)
@@ -305,9 +305,9 @@ quaternary_plot<-
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="", y="")+
+  labs(x="Response", y="Proportion of response")+
   theme_few() +
-  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(text = element_text(size=17), axis.text.x = element_text(angle = 45, hjust = 1,vjust=1)) +
   scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE)
 
 cat <- 
@@ -352,9 +352,9 @@ quinary_plot<-
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="", y="")+
+  labs(x="Response", y="Proportion of response")+
   theme_few() +
-  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  theme(text = element_text(size=17), axis.text.x = element_text(angle = 45, hjust = 1, vjust=1)) +
   scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE)
 
 cat <- 
@@ -392,7 +392,7 @@ results<-
 ```{r}
 ggplot(results, aes(x=response,y=proportion)) +
   geom_bar(stat="identity") +
-  facet_grid(response_type~trial_type, drop = TRUE) +
+  facet_grid(trial_type~response_type, drop = TRUE) +
   theme_few()
 ```
 
@@ -407,22 +407,26 @@ implicature_results<-
   group_by(response_type, trial_type, implicature, definition) %>%
   summarize(counts = n()) %>%
   group_by(response_type, trial_type, definition) %>%
-  mutate(total = sum(counts), proportion = counts/total)
+  mutate(total = sum(counts), proportion = counts/total) %>%
+  ungroup() %>%
+  mutate(response_type=fct_relevel(response_type,"binary","ternary","quaternary","quinary"))
+  
+dodge = position_dodge(.9)
 ```
 
 ```{r}
-ggplot(implicature_results, aes(x=as.factor(implicature),y=proportion)) +
-  geom_bar(stat="identity", position = "dodge") +
-  facet_grid(response_type~definition + trial_type, drop = TRUE) +
+ggplot(implicature_results[implicature_results$implicature == 1,], aes(x=definition,y=proportion,fill=definition)) +
+  geom_bar(stat="identity") +
+  facet_grid(trial_type~response_type, drop = TRUE) +
   theme_few() + 
-  labs(x="Implicature")
+  labs(x="Link",y="Inferred implicature rate")
 ```
 
 
 ```{r}
 implicature_rate$card <- implicature_rate$card %>% tolower()
 
-implicature_analysis_a <- glmer(implicature ~ definition * response_type + trial_type + (1+response_type|card) + (1|participant), family="binomial", data=implicature_rate)
+implicature_analysis_a <- glmer(implicature ~ definition * response_type * trial_type + (1|card) + (1|participant), family="binomial", data=implicature_rate)
 
 summary(implicature_analysis_a)
 
