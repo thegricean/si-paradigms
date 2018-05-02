@@ -49,6 +49,8 @@ library(lme4)
 library(ggthemes)
 library(forcats)
 library(brms)
+library(DescTools)
+library(binom)
 theme_set(theme_bw(18))
 ```
 
@@ -99,15 +101,12 @@ We begin by reporting an experiment that addresses the following question: do th
 
 Consider a setup in which a listener is presented a card with a depiction of either one or two animals (see the figure below for an example). As in a standard truth-value judgment task, the listener then observes an underinformative utterance about this card (e.g., 'There is a cat or a dog on the card') and is asked to provide a judgment on a scale from 2 to 5 response options, with endpoints 'wrong' and 'right'. In the binary case, this reproduces the standard truth-value judgment task. **XXX say briefly sth about wrong/right vs true/false and agree/disagree**. The figure below exemplifies (some of) the researcher's options for grouping responses. Under what we will call the 'Strong link' assumption, only the negative endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Under the 'Weak link' assumption, in contrast, any response that does not correspond to the positive endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Intermediate grouping schemes are also possible, but these are the ones we will consider here. Note that for the binary case, the Weak and Strong link return the same categorization scheme, but for any number of response options greater than 2, the Weak and Strong link can in principle lead to differences in inferences about implicature rate. 
 
-
-```{r linkvisualization, fig.env = "figure", fig.align='center', fig.width=5, set.cap.width=T, num.cols.cap=1,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
+```{r linkvisualization, fig.asp=0.2,fig.cap = "Strong and weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
 link_img <- png::readPNG("writeup_files/figures/link-visualization.png")
 grid::grid.raster(link_img)
 ```
 
-
 Let's examine an example. Assume three response options (wrong, neither, right). Assume further that a third of participants each gave each of the three responses, i.e., the distributions of responses is 1/3, 1/3, and 1/3. Under the Strong link, we infer that this task yielded an implicature rate of 2/3. Under the Weak link, we infer that this task yielded an implicature rate of 1/3. This is quite a drastic difference if we are for instance interested in whether scalar implicatures are inference defaults and we would like to interpret an implicature rate of above an arbitrary threshold (e.g., 50%) as evidence for such a claim. Under the Strong link, we would conclude that scalar implicatures are not defaults. Under the Weak link, we would conclude that they are. 
-
 
 In the experiment reported in the following section, we presented participants with exactly this setup. Different groups of participants were presented with different numbers of response options. We categorized their responses according to the Weak and the Strong link and tested whether number of response options and categorization scheme leads to different conclusions about implicature rates.
 
@@ -128,16 +127,16 @@ pragmatic_trials <-
 
 # adding a column that defines pragmatic vs. literal
 
-# high definition only considers the highest point on the scale as "literal"
-pragmatic_trials$high<-1
-pragmatic_trials[pragmatic_trials$response=="Right",]$high <-0
+# weak definition only considers the highest point on the scale as "literal"
+pragmatic_trials$weak<-1
+pragmatic_trials[pragmatic_trials$response=="Right",]$weak <-0
 
-# low definition only considers the lowers point on the scale as implicature 
-pragmatic_trials$low<-0
-pragmatic_trials[pragmatic_trials$response=="Wrong",]$low <-1
+# strong definition only considers the lowest point on the scale as implicature 
+pragmatic_trials$strong<-0
+pragmatic_trials[pragmatic_trials$response=="Wrong",]$strong <-1
 
 implicature_rate <- 
-  pragmatic_trials %>% gather("definition","implicature", high:low)
+  pragmatic_trials %>% gather("definition","implicature", weak:strong)
 
 # changing trial type names to exhaustive vs. scalar
 implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type, 
@@ -161,18 +160,18 @@ The study was administered online through Amazon Mechanical Turk. Participants w
 
 ### Design and Materials
 
-```{r stimuli, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=2, fig.height=1.5, set.cap.width=T, num.cols.cap=1, fig.width=1.5,fig.cap = "Cards used in the connective guessing game."}
+```{r stimuli, fig.asp=0.35, fig.cap = "Cards used in the connective guessing game."}
 cards_img <- jpeg::readJPEG("experiments/figs/cards.jpg")
 grid::grid.raster(cards_img)
 ```
 
 The study had two main manipulaitons within participants: the type of card and the type of guess. There were two types of cards. Cards with only one animal on them and cards with two animals. Animals were chosen from the following set: cat, dog, and elephant  There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*). In each trial, the animal labels used in the guess and the animal images on the card may have no overlap (e.g. Image: cat, Guess: *There is an elephant*), a partial overlap (e.g. Image: cat, Guess: *There is a cat or a dog*), or a total overlap (e.g. Image: cat and dog, Guess: *There is a cat or a dog*). Crossing the number of animals on the card, the type of guess, and the overlap between the guess and the card results in 12 different possible trial types. We chose 8 trial types (Figure \@ref(fig:trials)), balancing the number of one-animal vs. two-animal cards, simple vs. connective guesses, and expected true vs. false trials. Three trials were randomly selected from each of the 8 trial-types, for a total of 24 trials. The order of these 24 trials was randomized as well. 
 
-Participants could derive implicatures in two trial types. First, the trial type in which two animals were present on the card (e.g. cat and dog) but Bob guessed only one of them (e.g. "there is a cat"). Such trials can have a literal interpretation (cat and possibly more) or an exhaustive interpretation (only cat). We refer to them as "exhaustive". The second trial type with implicatures was the one in which two animals were on the card (e.g. cat and dog) and Bob used a disjunciton (e.g. cat or dog). These trials can have a literal (inclusive) interpretation (e.g. cat or dog or both), or an exclusive interpretation (e.g. cat or dog, not both). We refer to these trials as "scalar". The following four trial types were used as experimental control: two trial types where there was no overlap between the guess (e.g. elephant) and the animal(s) on the card (e.g. cat, cat and dog); and two trial types where the animal(s) on the card were correctly guessed. For example, if there was only a cat on the card, Bob said "there is a cat" and if there was a cat and a dog, Bob said "there is a cat and a dog". 
+Participants could derive implicatures in two trial types. First, the trial type in which two animals were present on the card (e.g. cat and dog) but Bob guessed only one of them (e.g. "there is a cat"). Such trials can have a literal interpretation (cat and possibly more) or an exhaustive interpretation (only cat). We refer to them as "exhaustive". The second trial type with implicatures was the one in which two animals were on the card (e.g. cat and dog) and Bob used a disjunciton (e.g. cat or dog). These trials can have a literal (inclusive) interpretation (e.g. cat or dog or both), or an exclusive interpretation (e.g. cat or dog, not both). We refer to these trials as "scalar". The following four trial types were used as experimental control: two trial types where there was no overlap between the guess (e.g. elephant) and the animal(s) on the card (e.g. cat, cat and dog); and two trial types where the animal(s) on the card were correctly guessed. For example, if there was only a cat on the card, Bob said "there is a cat" and if there was a cat and a dog, Bob said "there is a cat and a dog". Since the fictional character was blindfolded and did not see the outcome of the game, the ignorance inference commonly associated with disjunction was already common ground in the experimental setting. If the character was seeing the cards or knew what was on them, a disjunction would have violated the expectation that the speaker does not know which alternative actually holds. Our study controls for the possibile effect of ignorance violations on exclusivity and exhaustive inferences. 
 
 The study also had a between participant manipulation of the number of response options in the forced choice task. Participants were randomly assigned to one of four different conditions. The conditions differed with respect to the number of response options: binary (wrong vs. right), ternary (wrong, neither, right), quaternary (wrong, kinda wrong, kinda right, right), and quinary (wrong, kinda wrong, neither, kinda right, right). We wanted to see if the number of response options in the forced choice task would affect our estimate of the task's "implicature rate".
 
-```{r trials, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=4, fig.height=2, set.cap.width=T, num.cols.cap=1, fig.width=1.5, fig.cap = "Trial types represented by example cards and guesses."}
+```{r trials, fig.asp=0.35, fig.cap = "Trial types represented by example cards and guesses."}
 trials_img <- jpeg::readJPEG("experiments/figs/trialTypes.jpg")
 grid::grid.raster(trials_img)
 ```
@@ -181,30 +180,99 @@ grid::grid.raster(trials_img)
 
 <!--We used `r cite_r("r-references.bib")` for all our analyses.-->
 
-```{r binaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game."}
-
+```{r binaryData}
 binary_summary<-
   data %>%
   filter(response_type=="binary") %>%
   group_by(card_type, guess_type, response) %>%
   summarize(count=n()) %>%
   group_by(card_type, guess_type) %>%
-  mutate(total = sum(count), proportion=count/total)
+  mutate(total = sum(count), est=count/total)
+
+binary_summary_X_cat <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+binary_summary_X_cat_confint <-
+  binary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_cat <- binary_summary_X_cat %>% full_join(binary_summary_X_cat_confint, by="est")
+
+binary_summary_XY_cat <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+binary_summary_XY_cat_confint <-
+  binary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_cat <- binary_summary_XY_cat %>% full_join(binary_summary_XY_cat_confint, by="est")
+
+binary_summary_XY_ele <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+binary_summary_XY_ele_confint <-
+  binary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_ele <- binary_summary_XY_ele %>% full_join(binary_summary_XY_ele_confint, by="est") %>% unique()
+
+binary_summary_X_ele <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+binary_summary_X_ele_confint <-
+  binary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_ele <- binary_summary_X_ele %>% full_join(binary_summary_X_ele_confint, by="est") %>% unique()
+
+binary_summary_XY_and <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+binary_summary_XY_and_confint <-
+  binary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_and <- binary_summary_XY_and %>% full_join(binary_summary_XY_and_confint, by="est") %>% unique()
+
+binary_summary_X_and <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+binary_summary_X_and_confint <-
+  binary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_and <- binary_summary_X_and %>% full_join(binary_summary_X_and_confint, by="est") %>% unique()
+
+binary_summary_XY_or <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+binary_summary_XY_or_confint <-
+  binary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_or <- binary_summary_XY_or %>% full_join(binary_summary_XY_or_confint, by="est") %>% unique()
+
+binary_summary_X_or <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+binary_summary_X_or_confint <-
+  binary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_or <- binary_summary_X_or %>% full_join(binary_summary_X_or_confint, by="est") %>% unique()
+
+binary_summary <- bind_rows(binary_summary_X_cat, binary_summary_XY_cat, binary_summary_XY_ele, binary_summary_X_ele,
+                                binary_summary_XY_and, binary_summary_X_and, binary_summary_XY_or, binary_summary_X_or)
 
 binary_summary$response <- factor(binary_summary$response, levels = c("Wrong","Right"))
 binary_summary$guess_type <- factor(binary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
 binary_summary$guess_type <- recode(binary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+binary_summary <- binary_summary %>% rename(proportion = "est")
+```
 
+```{r binaryPlot, fig.height=3.5, fig.cap = "Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game."}
 binary_plot<-
   binary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
-#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
   labs(x="", y="")+
   theme_few() +
-  theme(text = element_text(size=15)) +
-  scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
+  theme(text = element_text(size=12)) +
+  scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
 
 cat <- 
   readJPEG("experiments/figs/cat_card.jpg") %>%
@@ -233,30 +301,99 @@ binaryScalar_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="ca
 
 Here we present the proportion that participants chose the response options in each of the 8 trial types of the binary, ternary, quaternary, and quinary tasks. Figure \@ref(fig:binaryPlot) shows the proportion of "right" and "wrong" responses in the binary task. Starting from the leftmost column, participants considered a guess "wrong" if the guessed animal was not on the card. Moving to the second column, participants considered a guess "right" if the animal on the card was mentioned. However, if only one of the two animals on the card was mentioned (exhaustive trials), `r round(binaryExh_wrong$proportion*100)`% of the times participants considered the guess "wrong". Moving to the third column, if a conjunction of animals was guessed while only one animal was on the card, participants considered the guess to be "wrong". If a conjunction of animals was guessed and both animals were present on the card, all participants considered the guess to be "right" as expected. Moving to the forth column, if a disjunction of animals was guessed and only one of the animals was on the card, participants considered the guess to be "right" almost all the time. However, if both animals were present (scalar trials), `r round(binaryScalar_wrong$proportion*100)`% of the times participants considered the guess to be "wrong".
 
-```{r ternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game."}
-
+```{r ternaryData}
 ternary_summary<-
   data %>%
   filter(response_type=="ternary") %>%
   group_by(card_type, guess_type, response) %>%
   summarize(count=n()) %>%
   group_by(card_type, guess_type) %>%
-  mutate(total = sum(count), proportion=count/total)
+  mutate(total = sum(count), est=count/total)
+
+ternary_summary_X_cat <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+ternary_summary_X_cat_confint <-
+  ternary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_cat <- ternary_summary_X_cat %>% full_join(ternary_summary_X_cat_confint, by="est")
+
+ternary_summary_XY_cat <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+ternary_summary_XY_cat_confint <-
+  ternary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_cat <- ternary_summary_XY_cat %>% full_join(ternary_summary_XY_cat_confint, by="est")
+
+ternary_summary_XY_ele <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+ternary_summary_XY_ele_confint <-
+  ternary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_ele <- ternary_summary_XY_ele %>% full_join(ternary_summary_XY_ele_confint, by="est") %>% unique()
+
+ternary_summary_X_ele <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+ternary_summary_X_ele_confint <-
+  ternary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_ele <- ternary_summary_X_ele %>% full_join(ternary_summary_X_ele_confint, by="est") %>% unique()
+
+ternary_summary_XY_and <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+ternary_summary_XY_and_confint <-
+  ternary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_and <- ternary_summary_XY_and %>% full_join(ternary_summary_XY_and_confint, by="est") %>% unique()
+
+ternary_summary_X_and <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+ternary_summary_X_and_confint <-
+  ternary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_and <- ternary_summary_X_and %>% full_join(ternary_summary_X_and_confint, by="est") %>% unique()
+
+ternary_summary_XY_or <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+ternary_summary_XY_or_confint <-
+  ternary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_or <- ternary_summary_XY_or %>% full_join(ternary_summary_XY_or_confint, by="est") %>% unique()
+
+ternary_summary_X_or <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+ternary_summary_X_or_confint <-
+  ternary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_or <- ternary_summary_X_or %>% full_join(ternary_summary_X_or_confint, by="est") %>% unique()
+
+ternary_summary <- bind_rows(ternary_summary_X_cat, ternary_summary_XY_cat, ternary_summary_XY_ele, ternary_summary_X_ele,
+                                ternary_summary_XY_and, ternary_summary_X_and, ternary_summary_XY_or, ternary_summary_X_or)
 
 ternary_summary$response <- factor(ternary_summary$response, levels = c("Wrong","Neither", "Right"))
 ternary_summary$guess_type <- factor(ternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
 ternary_summary$guess_type <- recode(ternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+ternary_summary <- ternary_summary %>% rename(proportion = "est")
+```
 
+```{r ternaryPlot, fig.height=3.5, fig.cap = "Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game."}
 ternary_plot<-
   ternary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
-#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
   labs(x="", y="")+
   theme_few() +
-  theme(text = element_text(size=15)) +
-  scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE)
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
 
 cat <- 
   readJPEG("experiments/figs/cat_card.jpg") %>%
@@ -287,20 +424,89 @@ ternaryScalar_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=
 
 Figure \@ref(fig:ternaryPlot) shows the proportion of "right", "neither", and "wrong" responses in the ternary task. Similar to the binary task, participants considered a guess wrong when the mentioned animal was not on the card. They considered the guess "right" when the mentioned animal was on the card. However, in exhaustive trials when the fictional character only guessed one of the two animals on the card, participants considered the guess "wrong" `r round(ternaryExh_wrong$proportion*100)`% of the time and neither wrong nor right `r round(ternaryExh_neither$proportion*100)`% of the time. If a conjunction of animals was guessed and only one animal was present on the card, participants considered the guess "wrong". As expected, when a conjunction was used and both animals were present, participants considered the guess "right". Similarly, participants considerd the guess "right" when a disjunction was used and only one of the animals was on the card. However, in scalar trials that both animals were on the card and a disjunction was gueassed, participants judged the guess "wrong" `r round(ternaryScalar_wrong$proportion*100)`% of the time and "neither" `r round(ternaryScalar_neither$proportion*100)`% of the time.
 
-```{r quaternaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game."}
-
+```{r quaternaryData}
 quaternary_summary<-
   data %>%
   filter(response_type=="quaternary") %>%
   group_by(card_type, guess_type, response) %>%
   summarize(count=n()) %>%
   group_by(card_type, guess_type) %>%
-  mutate(total = sum(count), proportion=count/total)
+  mutate(total = sum(count), est=count/total)
+
+quaternary_summary_X_cat <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+quaternary_summary_X_cat_confint <-
+  quaternary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_cat <- quaternary_summary_X_cat %>% full_join(quaternary_summary_X_cat_confint, by="est")
+
+quaternary_summary_XY_cat <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+quaternary_summary_XY_cat_confint <-
+  quaternary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_cat <- quaternary_summary_XY_cat %>% full_join(quaternary_summary_XY_cat_confint, by="est")
+
+quaternary_summary_XY_ele <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+quaternary_summary_XY_ele_confint <-
+  quaternary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_ele <- quaternary_summary_XY_ele %>% full_join(quaternary_summary_XY_ele_confint, by="est") %>% unique()
+
+quaternary_summary_X_ele <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+quaternary_summary_X_ele_confint <-
+  quaternary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_ele <- quaternary_summary_X_ele %>% full_join(quaternary_summary_X_ele_confint, by="est") %>% unique()
+
+quaternary_summary_XY_and <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quaternary_summary_XY_and_confint <-
+  quaternary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_and <- quaternary_summary_XY_and %>% full_join(quaternary_summary_XY_and_confint, by="est") %>% unique()
+
+quaternary_summary_X_and <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quaternary_summary_X_and_confint <-
+  quaternary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_and <- quaternary_summary_X_and %>% full_join(quaternary_summary_X_and_confint, by="est") %>% unique()
+
+quaternary_summary_XY_or <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+quaternary_summary_XY_or_confint <-
+  quaternary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_or <- quaternary_summary_XY_or %>% full_join(quaternary_summary_XY_or_confint, by="est") %>% unique()
+
+quaternary_summary_X_or <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+quaternary_summary_X_or_confint <-
+  quaternary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_or <- quaternary_summary_X_or %>% full_join(quaternary_summary_X_or_confint, by="est") %>% unique()
+
+quaternary_summary <- bind_rows(quaternary_summary_X_cat, quaternary_summary_XY_cat, quaternary_summary_XY_ele, quaternary_summary_X_ele,
+                                quaternary_summary_XY_and, quaternary_summary_X_and, quaternary_summary_XY_or, quaternary_summary_X_or)
 
 quaternary_summary$response <- factor(quaternary_summary$response, levels = c("Wrong","Kinda Wrong", "Kinda Right", "Right"))
 quaternary_summary$guess_type <- factor(quaternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
 quaternary_summary$guess_type <- recode(quaternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+quaternary_summary <- quaternary_summary %>% rename(proportion = "est")
+```
 
+```{r quaternaryPlot, fig.height=4, fig.cap = "Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game."}
 quaternary_plot<-
   quaternary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
@@ -309,8 +515,9 @@ quaternary_plot<-
   facet_grid(card_type~guess_type) +
   labs(x="", y="")+
   theme_few() +
-  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
-  scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE)
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE) + 
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
 
 cat <- 
   readJPEG("experiments/figs/cat_card.jpg") %>%
@@ -344,20 +551,89 @@ quaternaryScalar_kindaRight <- quaternary_summary %>% filter(card_type=="XY", gu
 
 Figure \@ref(fig:quaternaryPlot) shows the proportion of "right", "kinda right", "kinda wrong", and "wrong" responses in the quaternary task. Similar to the results seen previously, the control trials turned outas expected. Participants considered a guess "wrong" if the animal guessed was not on the card and "right" if it was the only animal on the card. If a conjunctin of animals was guessed and both animals were on the card the guess was "right". However, when only one of the animals on the card was guessed (exhaustive trials), participants judged the guess "wrong" `r round(quaternaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryExh_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryExh_kindaRight$proportion*100)`% of the times. Perhaps surprisingly, when a conjunction was used and only one of the animals was on the card, participants considered the guess "wrong" most of the time, but they often considered it "kinda wrong" or even "kinda right". This suggests that perhaps participants considered a notion of partially true or correct statement in our experimental setting. Disjunctive guesses with one or two animals on the card showed similar response patterns with participants choosing the "kinda right" and "right" options most of the time. When both animals were on the card with a disjunctive guess (scalar trials), participants judged the guess "wrong" `r round(quaternaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryScalar_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryScalar_kindaRight$proportion*100)`% of the times.
 
-```{r quinaryPlot, fig.env = "figure", fig.pos = "t", fig.align='center', fig.width=8, fig.height=4, set.cap.width=T, num.cols.cap=1, fig.cap = "Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game."}
-
+```{r quinaryData}
 quinary_summary<-
   data %>%
   filter(response_type=="quinary") %>%
   group_by(card_type, guess_type, response) %>%
   summarize(count=n()) %>%
   group_by(card_type, guess_type) %>%
-  mutate(total = sum(count), proportion=count/total)
+  mutate(total = sum(count), est=count/total)
+
+quinary_summary_X_cat <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+quinary_summary_X_cat_confint <-
+  quinary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_cat <- quinary_summary_X_cat %>% full_join(quinary_summary_X_cat_confint, by="est")
+
+quinary_summary_XY_cat <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+quinary_summary_XY_cat_confint <-
+  quinary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_cat <- quinary_summary_XY_cat %>% full_join(quinary_summary_XY_cat_confint, by="est")
+
+quinary_summary_XY_ele <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+quinary_summary_XY_ele_confint <-
+  quinary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_ele <- quinary_summary_XY_ele %>% full_join(quinary_summary_XY_ele_confint, by="est") %>% unique()
+
+quinary_summary_X_ele <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+quinary_summary_X_ele_confint <-
+  quinary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_ele <- quinary_summary_X_ele %>% full_join(quinary_summary_X_ele_confint, by="est") %>% unique()
+
+quinary_summary_XY_and <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quinary_summary_XY_and_confint <-
+  quinary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_and <- quinary_summary_XY_and %>% full_join(quinary_summary_XY_and_confint, by="est") %>% unique()
+
+quinary_summary_X_and <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quinary_summary_X_and_confint <-
+  quinary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_and <- quinary_summary_X_and %>% full_join(quinary_summary_X_and_confint, by="est") %>% unique()
+
+quinary_summary_XY_or <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+quinary_summary_XY_or_confint <-
+  quinary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_or <- quinary_summary_XY_or %>% full_join(quinary_summary_XY_or_confint, by="est") %>% unique()
+
+quinary_summary_X_or <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+quinary_summary_X_or_confint <-
+  quinary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_or <- quinary_summary_X_or %>% full_join(quinary_summary_X_or_confint, by="est") %>% unique()
+
+quinary_summary <- bind_rows(quinary_summary_X_cat, quinary_summary_XY_cat, quinary_summary_XY_ele, quinary_summary_X_ele,
+                                quinary_summary_XY_and, quinary_summary_X_and, quinary_summary_XY_or, quinary_summary_X_or)
 
 quinary_summary$response <- factor(quinary_summary$response, levels = c("Wrong","Kinda Wrong", "Neither", "Kinda Right", "Right"))
 quinary_summary$guess_type <- factor(quinary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
 quinary_summary$guess_type <- recode(quinary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+quinary_summary <- quinary_summary %>% rename(proportion = "est")
+```
 
+```{r quinaryPlot, fig.height=4, fig.cap = "Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game."}
 quinary_plot<-
   quinary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
@@ -366,8 +642,9 @@ quinary_plot<-
   facet_grid(card_type~guess_type) +
   labs(x="", y="")+
   theme_few() +
-  theme(text = element_text(size=17), axis.text.x = element_text(angle = 90, hjust = 1)) +
-  scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE)
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
 
 cat <- 
   readJPEG("experiments/figs/cat_card.jpg") %>%
@@ -405,17 +682,7 @@ Finally, Figure \@ref(fig:quinaryPlot) shows the proportion of "right", "kinda r
 
 Comparing the response patterns in binary to quinary tasks (Figures \@ref(fig:binaryPlot) to \@ref(fig:quinaryPlot)), we can observe that in implicature trials, participants are less likely to choose the endpoints of the scale (i.e. "wrong" and "right") as they are given more intermediate options. This raises the possibilty that the strict "wrong/right" responses in the tasks with fewer options (binary and ternary) were not accurately reflecting participant judgments of implicature trials and pushed their judgments to the extreme ends. More generally, the data suggest that participant judgments in contexts that give rise to implicatures fall within the intermrediate level of the response scale and forced choice tasks with few options (especially binary tasks) may risk depicting judgments more extreme than they actually are. 
 
-### Analysis
-
-Our primary goal in this study was to check whether the estimated "implicature rate" in the experimental task is affected by the linking assumption and the number of response options available in the task. Our analysis in this section focuses on these three elements. As mentioned before, two trial types were predicted to include pragmatic implicatures. First, trials where two animals were on the card but the fictional character guessed with a disjunction (scalar); for example "cat or dog" when the card has both a cat and a dog on it. Second, trials where there were two animals on the card but the character guessed only one (exhaustive); for example "cat" when the card had a cat and a dog on it. We called such trials "exhaustive". In our assessment of implicature rate, we focus on these two trial types.
-
-This study set out to test two linking assumptions. 
-
-We test this hypothesis formally using a binomial mixed effects model with the fixed effect of response type and the random intercept for participants as well as random intercept and slope for 
-
-A second hypothesis was that the definition of what responses count as participants computing an implicature may affect the estimated rate of implicature in the experimental task. 
-
-All the analytical decisions described here were pre-registered in an as.predicted format. You can access the preregistration 
+## Analysis
 
 ```{r implicatureResultss}
 implicature_results<-
@@ -424,36 +691,60 @@ implicature_results<-
   summarize(counts = n()) %>%
   group_by(response_type, trial_type, definition) %>%
   mutate(total = sum(counts), proportion = counts/total)
-```
 
-```{r}
+implicature_plot <- 
+  implicature_results %>% filter(implicature==1)
+
+binomial_confint<- binom.confint(implicature_plot$counts, implicature_plot$total, method="logit") %>%
+  rename(counts = "x", total="n")
+
+implicature_results <- implicature_plot %>% full_join(binomial_confint, by=c("total", "counts")) %>% unique
+
 implicature_results$response_type <- fct_relevel(implicature_results$response_type, "binary", "ternary", "quaternary", "quinary")
 implicature_results$implicature <- as.factor(implicature_results$implicature)
-implicature_results$implicature <- fct_recode(implicature_results$implicature, yes = "1", no = "0")
 ```
 
-```{r implicatureRatePlot}
+Our primary goal in this study was to check whether the estimated "implicature rate" in the experimental task is affected by the linking assumption and the number of response options available in the task. Our analysis in this section focuses on these three elements. As mentioned before, two trial types were predicted to include pragmatic implicatures. First, trials where two animals were on the card but the fictional character guessed with a disjunction (scalar); for example "cat or dog" when the card has both a cat and a dog on it. Second, trials where there were two animals on the card but the character guessed only one (exhaustive); for example "cat" when the card had a cat and a dog on it. We called such trials "exhaustive". In our assessment of implicature rate, we focus on these two trial types.
+
+We considered two linking assumptions. First we defined a weak (lenient) linking assumption in which any response lower than the maximum point on the scale (i.e. "right") is considered evidence for implicature computation. Second, we defined a strong (strict) linking assumption that only considered the lowest point on the scale (i.e. "wrong") as evidence for implicature computation. For each condition in our study (binary, ternary, quaternary, and quinary) and each implicature trial type (exhaustive and scalar), we computed a weak and a strong implicature rate. Figure \@ref(fig:implicatureRatePlot) shows these computed rates.
+
+Comparing the strong and weak rows on Figure \@ref(fig:implicatureRatePlot), we see that a weak linking assumption tends to estimate higher implicature rates, especially in tasks with more response options. With a strong linking assumption, the binary and possibly ternary judgment tasks derive higher implicature rates than quaternary and quinary tasks. With a weak linking assumption, the pattern is reversed. Quaternary and quinary tasks estimate higher rates than binary and ternary tasks. The patterns show that estimates of "implicature rate" depend on linking assumptions and the number of responses available to participants in the study.
+
+Comparing the exhaustive and scalar columns of Figure \@ref(fig:implicatureRatePlot), we see that with a strong linking assumption, there are slightly higher rates for scalar implicatures in the binary and ternary tasks. With a weak linking assumption, there may be slightly higher rates for scalar implicatures in the binary and ternary while the rates may be lower in the quaternary and quinary tasks. In what follows, we test the effect of linking assumption and response options on exhaustive and scalar implicature rates more formally.
+
+```{r implicatureRatePlot, fig.width=5, fig.height=3, fig.cap = "Implicature rate in exhaustive and scalar trials of the binary, ternary, quaternary, and quinary versions of the guessing game, computed once with a strong linking assumption and once with a weak linking assumption."}
 ggplot(implicature_results, aes(x=response_type,y=proportion)) +
-  geom_bar(aes(fill = implicature), stat="identity") +
+  geom_bar(aes(fill=definition), stat="identity") +
   facet_grid(definition ~ trial_type, drop = TRUE) +
   theme_few() + 
   labs(x="Implicature") +
-  theme(text = element_text(size=17), axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1)) +
+  geom_linerange(aes(ymin=lower,ymax=upper)) + guides(fill=FALSE)
 ```
 
 
 ```{r implicatureRate, echo=FALSE, eval=FALSE}
-implicature_analysis_a <- glmer(implicature ~ definition * response_type + trial_type + (1+response_type|card) + (1|participant), family="binomial", data=implicature_rate)
+implicature_analysis_a <- glmer(implicature ~ definition + response_type + (1|card) + (1|participant), family="binomial", data=implicature_rate)
 
 summary(implicature_analysis_a)
+
 library(brms)
-implicature_analysis_b <- brm(implicature ~ definition * response_type + trial_type + (1+response_type|trial_type) + (1|participant), family="bernoulli", data=implicature_rate)
+
+implicature_analysis_b <- brm(implicature ~ definition * response_type * trial_type + (definition*trial_type*response_type|card) + (definition*trial_type|participant), family="bernoulli", data=implicature_rate, control = list(adapt_delta = 0.99))
+
+saveRDS(implicature_analysis_b, file = "implicature_analysis_b")
+
+summary(implicature_analysis_b)
 ```
+
+For our formal analysis, we use a binomial mixed effects model with the fixed effect of response type (binary, ternary, quaternary, quinary), linking assumption (strong vs. weak), and trial type (exhaustive vs. scalar), as wellas the random intercept for participants as well as random intercept and slope for items (the card they saw). 
+
+All the analytical decisions described here were pre-registered and you can access them through the following link: [https://aspredicted.org/tq3sz.pdf](https://aspredicted.org/tq3sz.pdf)
+
 
 * Was logical training a significant predictor of "implicature rate"? 
 
 # Discussion
-
 
 Alternative Linking Hypothesis:
 * RSA: Response behavior across conditions (utterance-card combinations) and dependent measures can be predicted by a linking hypothesis that assumes that participants are behaving like soft-optimal RSA speakers and provide a particular response (eg TRUE) to an utterance u if the RSA speaker probability of u (given the card) is within a particular probability interval (eg, within the interval [theta, 1]).
