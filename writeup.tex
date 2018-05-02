@@ -666,7 +666,19 @@ more response options. With a strong linking assumption, the binary and
 possibly ternary judgment tasks derive higher implicature rates than
 quaternary and quinary tasks. With a weak linking assumption, the
 pattern is reversed. Quaternary and quinary tasks estimate higher rates
-than binary and ternary tasks.
+than binary and ternary tasks. The patterns show that estimates of
+\enquote{implicature rate} depend on linking assumptions and the number
+of responses available to participants in the study.
+
+Comparing the exhaustive and scalar columns of Figure
+\ref{fig:implicatureRatePlot}, we see that with a strong linking
+assumption, there are slightly higher rates for scalar implicatures in
+the binary and ternary tasks. With a weak linking assumption, there may
+be slightly higher rates for scalar implicatures in the binary and
+ternary while the rates may be lower in the quaternary and quinary
+tasks. In what follows, we test the effect of linking assumption and
+response options on exhaustive and scalar implicature rates more
+formally.
 
 \begin{figure}
 \centering
@@ -677,9 +689,11 @@ of the guessing game, computed once with a strong linking assumption and
 once with a weak linking assumption.}
 \end{figure}
 
-We test this hypothesis formally using a binomial mixed effects model
-with the fixed effect of response type and the random intercept for
-participants as well as random intercept and slope for
+For our formal analysis, we use a binomial mixed effects model with the
+fixed effect of response type (binary, ternary, quaternary, quinary),
+linking assumption (strong vs.~weak), and trial type (exhaustive
+vs.~scalar), as wellas the random intercept for participants as well as
+random intercept and slope for items (the card they saw).
 
 All the analytical decisions described here were pre-registered and you
 can access them through the following link:
@@ -692,89 +706,110 @@ can access them through the following link:
   rate}?
 \end{itemize}
 
-\section{Discussion}\label{discussion}
+\section{\# Discussion}\label{discussion}
 
-Alternative Linking Hypothesis: * RSA: Response behavior across
-conditions (utterance-card combinations) and dependent measures can be
-predicted by a linking hypothesis that assumes that participants are
-behaving like soft-optimal RSA speakers and provide a particular
-response (eg TRUE) to an utterance u if the RSA speaker probability of u
-(given the card) is within a particular probability interval (eg, within
-the interval {[}theta, 1{]}).
+On the traditional view of the link between implicature and behavior in
+sentence verification tasks, scalar implicature is conceptualized as a
+binary, categorical affair - that is, an implicature is either
+\enquote{calculated} or it isn't, and the behavioral reflexes of this
+categorical interpretation process should be straightforwardly observed
+in experimental paradigms. This assumption has concerning implications
+for how we must approach analysis of variation in behavior on a truth
+value judgment task; for example, why did the majority of respondents in
+the binary condition of our experiment answer \enquote{Right} to an
+utterance of cat or dog when the card had both a cat and a dog on it?
 
-\begin{itemize}
-\tightlist
-\item
-  Differences between traditional approaches and RSA: 1. The traditional
-  linking hypotheses are based on a binary implicature/literal theory of
-  pragmatic reasoning but RSA gives a continuous measure of pragmatic
-  reasoning and allows for better predicting response behavior with
-  multiple options.
-\end{itemize}
-
-A simple visual inspection of our results suggests that any variant of
-the Traditional Linking Hypothesis will yield unsatisfying empirical
-coverage with regards to participants' behavior in truth value judgment
-tasks. Recall that according to this hypothesis, scalar implicature is
-conceptualized as a binary, categorical affair: an implicature is either
-\enquote{calculated,} or it isn't. This assumption has implications for
-how we approach analysis of variation in behavior on a truth value
-judgment task; for example, why did the majority of respondents in the
-binary condition of our experiment answer \enquote{Right} to an
-utterance of cat or dog when the card had a cat and a dog on it?
-
-On the Traditional story, we are forced to say that a) not all
-participants calculated the implicature; or that b) some participants
-who calculated the implicature did not choose the anticipated response
-(i.e. \enquote{Wrong}) due to some other cognitive reflex which
-\enquote{overrode} the implicature; or some mixture of (b) and (c). We
-might similarly posit that one or both of these factors underlie the
-variation in the ternary, quatenary, and quinary conditions (e.g.~why
-were participants roughly split between \enquote{Right} and
+To explain the data on the traditional view, are forced to say that a)
+not all participants calculated the implicature; or that b) some
+participants who calculated the implicature did not choose the
+anticipated response (i.e. \enquote{Wrong}) due to some other cognitive
+reflex which \enquote{overrode} the implicature; or some mixture of (b)
+and (c). We might similarly posit that one or both of these factors
+underlie the variation in the ternary, quatenary, and quinary conditions
+(e.g.~why were participants roughly split between \enquote{Right} and
 \enquote{Kind of right} when the utterance was cat or dog and the card
-had a cat and a dog?). There is an established cottage industry of
-pragmatics research which approaches the problem of behavioral variation
-in exactly these ways, exploring the factors which \enquote{license}
-implicature calculation or \enquote{suppress} its anticipated behavioral
-expression (c.f. \_\_), but the best we can hope for on this approach is
-an analysis which traces the general qualitative patterns in the data
-(and we should stress that even in this respect, the industry has yet to
-fully deliver the goods!).
+had a cat and a dog?). However, the best we can hope for on this
+approach is an analysis which traces the general qualitative patterns in
+the data.
 
-The Alternative Linking Hypothesis contrasts with the Traditional
-Linking Hypothesis in that the former is rooted in a quantitative
+We contrast the above view of implicature and its behavioral reflexes
+with an alternative linking hypothesis which assumes that participants'
+behavior can be represented using the model of a soft-optimal pragmatic
+speaker in the RSA framework. This alternative linking hypothesis
+contrasts with the traditional view in it is rooted in a quantitative
 formalization of pragmatic competence which provides us a continuous
-measure of pragmatic reasoning. {[}recap RSA model here? Maybe show how
-it gets the right basic qualitative pattern, i.e. \(P_L\)(a and
-b\textbar{} \enquote{a or b}) \(<\) \(P_L\)(a \textbar{} \enquote{or});
-\(P_L\)(a and b\textbar{} \enquote{a or b}) \(<\) \(P_L\)(b \textbar{}
-\enquote{or}) {]}
+measure of pragmatic reasoning. Recall that in RSA, pragmatically
+competent listeners are modeled as a continuous probabilistic
+distribution of possible meanings given an utterance which that listener
+hears. The probability with which this listener \(L_1\) ascribes a
+meaning s to an utterance u depends upon a prior probability
+distribution of potential states of the world \(P_w\), and upon
+reasoning about the communicative behavior of a speaker \(S_1\). \(S_1\)
+in turn is modeled as a continuous probabilistic distribution of
+possible utterances given an intended state of affairs the speaker
+intends to communicate. This distribution is sensitive to a rationality
+parameter \(\alpha\), the production cost \(C\) of potential utterances,
+and a representation of a literal listener \(L_0\) whose interpretation
+of an utterance is in turn a function of that utterance's truth
+conditional content \([[u]](s)\) and her prior beliefs about the state
+of the world \(P_w(s)\).
 
-Following Degen \& Goodman (2014), we proceed on the assumption that
-behavior on sentence verification tasks, such as truth value judgment
-tasks, is best modeled as a function of an individual's mental
+\begin{verbatim}
+$P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)$
+
+$P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) $
+
+$P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
+\end{verbatim}
+
+In this framework, individuals never categorically draw (or fail to
+draw) pragmatic inferences about the utterances they hear. For example,
+exclusivity readings of disjunction or are represented in RSA as
+relatively low conditional probability of a conjunctive meaning on the
+\(P_L\) distribution, given an utterance of or. Thus, it is not even
+possible to talk about \enquote{rate} of implicature calculation in the
+RSA framework. The upshot, as we show below, is that this view of
+pragmatic competence does allow us to talk explicitly and quantitatively
+about rates of observed behavior in sentence verification tasks.
+
+First, following Degen \& Goodman (2014), we proceed on the assumption
+that behavior on sentence verification tasks, such as truth value
+judgment tasks, is best modeled as a function of an individual's mental
 representation of a cooperative interlocutor (\(S_1\) in the language of
-RSA). For a given utterance u and an intended communicated meaning w,
-\(S_1\)(u \textbar{} w) outputs a conditional probability of u given w.
-For example, in the binary condition of our experiment where a
-participant evaluated cat or dog when there were both animals on the
+RSA) rather than of a pragmatic listener who interprets utterances
+(\(P_{L_1}\)). In their paper, Degen \& Goodman argue that sentence
+verification tasks are relatively more sensitive to contextual
+manipulations (such as manipulation of the Question Under Discussion)
+than are sentence interpretation tasks, and that this follows if
+sentence interpretation tasks - but not sentence verification tasks -
+require an additional layer of counterfactual reasoning about the
+intentions of a cooperative speaker.
+
+A main desideratum of a behavioral linking hypothesis given the RSA view
+of pragmatic competence is to transform continuous probability
+distributions into categorical outputs (e.g.~responses of
+\enquote{Right}/''Wrong'' in the case of the binary condition of our
+experiment). For a given utterance u and an intended communicated
+meaning w, \(S_1\)(u \textbar{} w) outputs a conditional probability of
+u given w. For example, in the binary condition of our experiment where
+a participant evaluated cat or dog when there were both animals on the
 card, the participant has access to the mental representation of \(S_1\)
 and hence to the \(S_1\) conditional probability of hearing the
-utterance cat or dog given a dog and cat card \(S_1\)(cat or dog
-\textbar{} cat and dog).
-
-One desideratum of a linking hypothesis given this view of pragmatic
-competence is to transform this probability value into a categorical
-output (e.g. \enquote{Right}/''Wrong'' in the case of the binary
-condition). This can be achieved by positing that participants
-\enquote{filter out} low-probability utterances given an intended
-communicated meaning. We model a responder, R, who in the binary
-condition responds \enquote{Right} to an utterance u in world w just in
-case \(S_1\)(u \textbar{} w) exceeds some probability threshold
+utterance cat or dog given a dog and cat card: \(S_1\)(cat or dog
+\textbar{} cat and dog). According to the linking hypothesis advanced
+here, the participant provides a particular response to u if the RSA
+speaker probability of u lies within a particular probability interval,
+given an observed state of the world (i.e.~the configuration of animals
+on the card in our experiment). We model a responder, R, who in the
+binary condition responds \enquote{Right} to an utterance u in world w
+just in case \(S_1\)(u \textbar{} w) exceeds some probability threshold
 \(\theta\):
 
-R(u, w, \(\theta\)) = \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\)
-\(\theta\) = \enquote{Wrong} otherwise
+R(u, w, \(\theta\))
+
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta\)
+
+= \enquote{Wrong} otherwise
 
 In the experiment conditions where there are more than two choices, we
 model the range of possible behavioral responses for R with the
@@ -784,39 +819,94 @@ ternary condition, R(u, w, \(\theta_1\) , \(\theta_2\)) is
 and \enquote{Neither} iff \(\theta_1\) \textgreater{} \(S_1\)(u
 \textbar{} w) \textgreater{} \(\theta_2\). To fully generalize the model
 to our five experimental conditions, we say that R takes as its input an
-utterance u and a world state w and a number of threshold variables
+utterance u, a world state w, and a number of threshold variables
 dependent on a variable c, corresponding to the experimental condition
 in which the participant finds herself (e.g.~the range of possible
 responses available to R).
 
 Given c = \enquote{ternary}
 
-R(u, w, \(\theta_1\) , \(\theta_2\))\\
-= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\) =
-\enquote{Neither} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w) \(>\)
-\(\theta_2\)\\
+R(u, w, \(\theta_1\) , \(\theta_2\))
+
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\)
+
+= \enquote{Neither} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w) \(>\)
+\(\theta_2\)
+
 = \enquote{Wrong} otherwise
 
 Given c = \enquote{quatenary}
 
-R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\))\\
-= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\) =
-\enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
-\(>\) \(\theta_2\)\\
+R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\))
+
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\)
+
+= \enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_2\)
+
 = \enquote{Kinda Wrong} iff \(\theta_2\) \(>\) \(S_1\)(u \textbar{} w)
-\(>\) \(\theta_3\) = \enquote{Wrong} otherwise
+\(>\) \(\theta_3\)
+
+= \enquote{Wrong} otherwise
 
 Given c = \enquote{quinary}
 
-R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\). \(\theta_4\))\\
-= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\)
-=\enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
-\(>\) \(\theta_2\) = \enquote{Neither} iff \(\theta_2\) \(>\) \(S_1\)(u
-\textbar{} w) \(>\) \(\theta_3\)\\
-= \enquote{Kinda Wrong} iff \(\theta_3\) \(>\) \(S_1\)(u \textbar{} w)
-\(>\) \(\theta_4\) = \enquote{Wrong} otherwise
+R(u, w, \(\theta_1\) , \(\theta_2\), \(\theta_3\). \(\theta_4\))
 
-\newpage
+= \enquote{Right} iff \(S_1\)(u \textbar{} w) \(>\) \(\theta_1\)
+
+=\enquote{Kinda Right} iff \(\theta_1\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_2\)
+
+= \enquote{Neither} iff \(\theta_2\) \(>\) \(S_1\)(u \textbar{} w) \(>\)
+\(\theta_3\)
+
+= \enquote{Kinda Wrong} iff \(\theta_3\) \(>\) \(S_1\)(u \textbar{} w)
+\(>\) \(\theta_4\)
+
+= \enquote{Wrong} otherwise
+
+Bayesian statistical methods provide us a means for estimating the
+values of these probability thresholds in our RSA model. The basis for
+the model is a set of possible states of the world, given a universe of
+three animals - X, Y, and Z - that each may be on some card. We next
+define a set of possible sentences a speaker might utter, assuming the
+speaker intends to communicate which animals are on the card. We assume
+a uniform prior probability of different states of the world and a
+uniform cost function on utterances. We define a literal listener
+\(L_0\), a pragmatic speaker \(S_1\), and a responder \(R\) according to
+our definitions above. Lastly, and assuming a uniform prior distribution
+over possible values of probability thresholds, we use Bayesian
+inference to recover a posterior distribution of these thresholds in
+each experimental condition, given the actual observed rate of response
+in each condition of the experiment. The results of this parameter
+estimation analysis are shown in the figures below, where the X axis of
+each figure corresponds to a threshold value between 0 and 1 and the Y
+axis corresponds to the posterior probability density of possible values
+of the threshold.
+
+\begin{verbatim}
+## Warning in is.na(e1) | is.na(e2): longer object length is not a multiple of
+## shorter object length
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in `==.default`(Parameter, c("quatenary_theta1",
+## "quatenary_theta2", : longer object length is not a multiple of shorter
+## object length
+\end{verbatim}
+
+\includegraphics{writeup_files/figure-latex/unnamed-chunk-1-1.pdf}
+\includegraphics{writeup_files/figure-latex/unnamed-chunk-1-2.pdf}
+\includegraphics{writeup_files/figure-latex/unnamed-chunk-1-3.pdf}
+\includegraphics{writeup_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+The above analysis is a proof of concept for the following idea: by
+relaxing the assumptions of the traditional view of scalar implicature
+(namely, that scalar implicatures either are or are not calculated, and
+that behavior on sentence verification tasks directly reflects this
+binary interpretation process), we can propose quantitative models of
+the variation in behavior we observe in experimental settings.
 
 \section{References}\label{references}
 
