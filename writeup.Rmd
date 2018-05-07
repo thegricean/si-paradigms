@@ -771,11 +771,15 @@ This study had three design features that we would like to investigate in future
 
 # General Discussion
 
-On the traditional view of the link between implicature and behavior in sentence verification tasks, scalar implicature is conceptualized as a binary, categorical affair - that is, an implicature is either ‘calculated’ or it isn’t, and the behavioral reflexes of this categorical interpretation process should be straightforwardly observed in experimental paradigms. This assumption raises concerns for analyzing variation in behavior on a truth value judgment task; for example, why did the majority of respondents in the binary condition of our experiment answer “Right” to an utterance of the underinformative "There is a cat or dog" when the card had both a cat and a dog on it?
+On the traditional view of the link between implicature and behavior in sentence verification tasks, scalar implicature is conceptualized as a binary, categorical affair - that is, an implicature is either ‘calculated’ or it isn’t, and the behavioral reflexes of this categorical interpretation process should be straightforwardly observed in experimental paradigms. This assumption raises concerns for analyzing variation in behavior on a truth value judgment task; for example, why did the majority of respondents in the binary condition of our experiment answer “Right” to an utterance of the underinformative "There is a cat or dog" when the card had both a cat and a dog on it? And why did a sizeable minority nonetheless choose "Wrong" in this same condition?
 
-To explain the data on the traditional view, we are forced to say that a) not all participants calculated the implicature; or that b) some participants who calculated the implicature did not choose the anticipated (i.e., "Wrong") response due to some other cognitive process which overrode the 'correct' implicature behavior; or some mixture of (a) and (b). We might similarly posit that one or both of these factors underlie the variation in the ternary, quaternary, and quinary conditions. However, the best we can hope for on this approach is an analysis which traces the general qualitative patterns in the data. **XXX Brandon, can you be more specific about what you mean by 'tracing a general qualitative pattern'?**
+To explain these data on the traditional view, we are forced to say that a) not all participants calculated the implicature; or that b) some participants who calculated the implicature did not choose the anticipated (i.e., "Wrong") response due to some other cognitive process which overrode the 'correct' implicature behavior; or some mixture of (a) and (b). We might similarly posit that one or both of these factors underlie the variation in the ternary, quaternary, and quinary conditions. However, without an understanding of how to quantitatively specify the link between implicature calculation and its behavioral expression, the best we can hope for on this approach is an analysis which predicts general qualitative patterns in the data (e.g. a prediction of relatively more "Right" responses than "Wrong" responses in a given trial of our binary truth-value judgment task, or a prediction of a rise in the rate of response of "Right"/"Wrong" between two experimental conditions, given some contextual manipulation). **XXX Judith, I was thinking of adding the sentence to end this paragraph: "However, we should stress that to the best of our knowledge, even a qualitative analysis of this kind of variation in behavior on sentence verification tasks - much less the effect of the number of response choices on that behavior - is largely underdeveloped scalar implicature literature." But it might be way too strong a claim? **
 
-We contrast the above view of implicature and its behavioral reflexes with an alternative linking hypothesis. Recent developments in the field of probabilistic pragmatics have demonstrated that pragmatic production and comprehension can be captured within the Rational Speech Act (RSA) framework, which treats listeners and speakers as agents that reason about each other and choose interpretations and utterances, respectively, that soft-maximize utility [@Frank2012; @Goodman2013; @Goodman2016; @Franke2016; @Qing2014; @Degen2013; @DegenTG2015; @Bergen2016; @Kao2014; @Scontras2017]. We take inspiration from this approach and treat participants' behavior in our experimental tasks as the result of a soft-optimal pragmatic speaker in the RSA framework. This alternative linking hypothesis contrasts with the traditional view in that it is rooted in a quantitative formalization of pragmatic competence which provides us a continuous measure of pragmatic reasoning. In RSA, pragmatically competent listeners are modeled as a continuous probabilistic distribution over possible meanings (states of the world) given an utterance which that listener observes. The probability with which this listener $L_1$ ascribes a meaning $s$ to an utterance $u$ depends upon a prior probability distribution of potential states of the world $P_w$, and upon reasoning about the communicative behavior of a speaker $S_1$. $S_1$ in turn is modeled as a continuous probabilistic distribution over possible utterances given an intended state of the world the speaker intends to communicate. This distribution is sensitive to a rationality parameter $\alpha$, the production cost $C$ of potential utterances, and the informativeness of the utterance, quantified via a representation of a literal listener $L_0$ whose interpretation of an utterance is in turn a function of that utterance's truth conditional content $[[u]](s)$ and her prior beliefs about the state of the world $P_w(s)$. 
+**XXX Brandon, can you be more specific about what you mean by 'tracing a general qualitative pattern'? XXX Judith: I've tried to offer some examples of what I mean by this, see above.**
+
+We contrast the above view of implicature and its behavioral reflexes with an alternative linking hypothesis. Recent developments in the field of probabilistic pragmatics have demonstrated that pragmatic production and comprehension can be captured within the Rational Speech Act (RSA) framework, which treats listeners and speakers as agents that reason about each other and choose interpretations and utterances, respectively, that soft-maximize utility [@Frank2012; @Goodman2013; @Goodman2016; @Franke2016; @Qing2014; @Degen2013; @DegenTG2015; @Bergen2016; @Kao2014; @Scontras2017]. **XXX Judith: re: your Slack comments, in the following few sentences I've provided a summary of the intuition behind RSA (going off of the discussion in Goodman & Stuhlmueller 2013)** Much in the spirit of Gricean approaches to pragmatic competence, the RSA framework takes as its point of departure the idea that individuals are rational, goal-oriented communicative agents, who in turn assume that their interlocutors similarly behave according to general principles of cooperativity in communication. Just as in more traditional Gricean pragmatics, pragmatic inference and pragmatically-cooperative language production in the RSA framework are, at their core, the product of counterfactual reasoning about alternative utterances that one might produce (but does not, in the interest of cooperativity). However, the RSA framework explicitly and quantitatively models coooperative interlocutors as agents whose language production and comprehension is a function of Bayesian probalistic inference regarding other interlocutors' expected behavior in a discourse context.  
+
+Specifically, in the RSA framework we model pragmatically competent listeners as continuous probabilistic distributions over possible meanings (states of the world) given an utterance which that listener observes. The probability with which this listener $L_1$ ascribes a meaning $s$ to an utterance $u$ depends upon a prior probability distribution of potential states of the world $P_w$, and upon reasoning about the communicative behavior of a speaker $S_1$. $S_1$ in turn is modeled as a continuous probabilistic distribution over possible utterances given an intended state of the world the speaker intends to communicate. This distribution is sensitive to a rationality parameter $\alpha$, the production cost $C$ of potential utterances, and the informativeness of the utterance, quantified via a representation of a literal listener $L_0$ whose interpretation of an utterance is in turn a function of that utterance's truth conditional content $[[u]](s)$ and her prior beliefs about the state of the world $P_w(s)$. 
     
     $P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)$
 
@@ -783,9 +787,9 @@ We contrast the above view of implicature and its behavioral reflexes with an al
     
     $P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
 
-In this framework, individuals never categorically draw (or fail to draw) pragmatic inferences about the utterances they hear. For example, exclusivity readings of disjunction are represented in RSA as relatively lower conditional probability of a conjunctive meaning on the $P_L$ distribution given an utterance of "or", compared to its prior probability. Thus, it is not even possible **XXX or at least not without auxiliary assumptions** to talk about 'rate' of implicature calculation in the RSA framework. The upshot, as we show below, is that this view of pragmatic competence does allow us to talk explicitly and quantitatively about rates of observed behavior in sentence verification tasks.
+Thus, our alternative linking hypothesis contrasts with the traditional view in that it is rooted in a quantitative formalization of pragmatic competence which provides us a continuous measure of pragmatic reasoning. In the RSA framework, individuals never categorically draw (or fail to draw) pragmatic inferences about the utterances they hear. For example, exclusivity readings of disjunction are represented in RSA as relatively lower posterior conditional probability of a conjunctive meaning on the $P_L$ distribution given an utterance of "or", compared the prior probability of that meaning. Thus, absent auxiliary assumptions about what exactly would constitute 'implicature', it is not even possible to talk about rate of implicature calculation in the RSA framework. The upshot, as we show below, is that this view of pragmatic competence does allow us to talk explicitly and quantitatively about rates of observed behavior in sentence verification tasks.
 
-First, following @Degen2014, we proceed on the assumption that behavior on sentence verification tasks, such as truth value judgment tasks, is best modeled as a function of an individual’s mental representation of a cooperative interlocutor ($S_1$ in the language of RSA) rather than of a pragmatic listener who interprets utterances ($P_{L_1}$). In their paper, Degen & Goodman argue that sentence verification tasks are relatively more sensitive to contextual manipulations (such as manipulation of the Question Under Discussion) than are sentence interpretation tasks, and that this follows if sentence interpretation tasks - but not sentence verification tasks - require an additional layer of counterfactual reasoning about the intentions of a cooperative speaker. 
+We take inspiration from the RSA approach and treat participants' behavior in our experimental tasks as the result of a soft-optimal pragmatic speaker in the RSA framework. That is, following @Degen2014, we proceed on the assumption that behavior on sentence verification tasks, such as truth value judgment tasks, is best modeled as a function of an individual’s mental representation of a cooperative interlocutor ($S_1$ in the language of RSA) rather than of a pragmatic listener who interprets utterances ($P_{L_1}$). In their paper, Degen & Goodman argue that sentence verification tasks are relatively more sensitive to contextual manipulations (such as manipulation of the Question Under Discussion) than are sentence interpretation tasks, and that this follows if sentence interpretation tasks - but not sentence verification tasks - require an additional layer of counterfactual reasoning about the intentions of a cooperative speaker. 
 
 A main desideratum of a behavioral linking hypothesis given the RSA view of pragmatic competence is to transform continuous probability distributions into categorical outputs (e.g. responses of “Right”/”Wrong” in the case of the binary condition of our experiment). For a given utterance $u$ and an intended communicated meaning $s$, $S_1$(u | s) outputs a conditional probability of $u$ given $s$. For example, in the binary condition of our experiment where a participant evaluated "There is a cat or a dog" when there were both animals on the card, the participant has access to the mental representation of $S_1$ and hence to the $S_1$ conditional probability of producing the utterance "cat or dog"" given a dog and cat card: $S_1$("cat or dog" | cat and dog). According to the linking hypothesis advanced here, the participant provides a particular response to $u$ if the RSA speaker probability of $u$ lies within a particular probability interval, given an observed state of the world (i.e. the configuration of animals on the card in our experiment). We model a responder, $R$, who in the binary condition responds “Right” to an utterance $u$ in world $s$ just in case $S_1(u | s)$ exceeds some probability threshold $\theta$:
 
@@ -795,15 +799,16 @@ R(u, w, $\theta$)
 
 = “Wrong” otherwise
 
-In the experiment conditions where there are more than two choices, we model the range of possible behavioral responses for $R$ with the introduction of intermediate probability thresholds. For example, in the ternary condition, R(u, s, $\theta_1$ , $\theta_2$) is “Right” iff $S_1$(u | s) > $\theta_1$ and “Neither” iff $\theta_1$ > $S_1$(u | s) > $\theta_2$. To fully generalize the model to our five experimental conditions, we say that $R$ takes as its input an utterance $u$, a world state $s$, and a number of threshold variables dependent on a variable $c$, corresponding to the experimental condition in which the participant finds herself (e.g. the range of possible responses available to $R$). 
+**XXX The following paragraph is mostly new:** Because $\theta$ is a free parameter in our model, we have a straightforward understanding of between-subject response variation on a given trial of our experiment according to this linking hypothesis. That is, we can attribute this variation to individual differences vis a vis the value of the probability threshold against which utterances are evaluated in a given world state. Moreover, the model of a responder in the binary condition is extended intuitively to the condition where participants had three response options. In this case, we allow for two probability thresholds: $\theta_1$, the minimum standard for an utterance in a given world state to count as "Right", and $\theta_2$, the minimum standard for "Neither". Thus, in the ternary condition, R(u, s, $\theta_1$ , $\theta_2$) is “Right” iff $S_1$(u | s) > $\theta_1$ and “Neither” iff $\theta_1$ > $S_1$(u | s) > $\theta_2$.
+To fully generalize the model to our five experimental conditions, we say that $R$ takes as its input an utterance $u$, a world state $s$, and a number of threshold variables dependent on a variable $c$, corresponding to the experimental condition in which the participant finds herself (e.g. the range of possible responses available to $R$). 
 
 Given c = “ternary”
 
 R(u, w, $\theta_1$ , $\theta_2$)
 
-= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
+= “Right” iff $S_1$(u | s) $>$ $\theta_1$ 
 
-= “Neither” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
+= “Neither” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
 
 = “Wrong” otherwise
 
@@ -811,11 +816,11 @@ Given c = “quatenary”
 
 R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$)
 
-= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
+= “Right” iff $S_1$(u | s) $>$ $\theta_1$ 
 
-= “Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
+= “Kinda Right” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
 
-= “Kinda Wrong” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$ 
+= “Kinda Wrong” iff $\theta_2$ $>$ $S_1$(u | s) $>$ $\theta_3$ 
 
 = “Wrong” otherwise
 
@@ -823,59 +828,21 @@ Given c = “quinary”
 
 R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$. $\theta_4$)
 
-= “Right” iff $S_1$(u | w) $>$ $\theta_1$ 
+= “Right” iff $S_1$(u | s) $>$ $\theta_1$ 
 
-=“Kinda Right” iff $\theta_1$ $>$ $S_1$(u | w) $>$ $\theta_2$ 
+=“Kinda Right” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
 
-= “Neither” iff $\theta_2$ $>$ $S_1$(u | w) $>$ $\theta_3$ 
+= “Neither” iff $\theta_2$ $>$ $S_1$(u | s) $>$ $\theta_3$ 
 
-= “Kinda Wrong” iff $\theta_3$ $>$ $S_1$(u | w) $>$ $\theta_4$ 
+= “Kinda Wrong” iff $\theta_3$ $>$ $S_1$(u | s) $>$ $\theta_4$ 
 
 = “Wrong” otherwise 
 
-Bayesian statistical methods provide us a means for estimating the values of these probability thresholds in our RSA model. The basis for the model is a set of possible states of the world, given a universe of three animals - X, Y, and Z - that each may be on some card. We next define a set of possible sentences a speaker might utter, assuming the speaker intends to communicate which animals are on the card. We assume a uniform prior probability of different states of the world and a uniform cost function on utterances. We define a literal listener $L_0$, a pragmatic speaker $S_1$, and a responder $R$ according to our definitions above. Lastly, and assuming a uniform prior distribution over possible values of probability thresholds, we use Bayesian inference to recover a posterior distribution of these thresholds in each experimental condition, given the actual observed rate of response in each condition of the experiment. The results of this parameter estimation analysis are shown in the figures below, where the X axis of each figure corresponds to a threshold value between 0 and 1 and the Y axis corresponds to the posterior probability density of possible values of the threshold. 
+The above analysis is a proof of concept for the following idea: by relaxing the assumptions of the traditional view of scalar implicature (namely, that scalar implicatures either are or are not calculated, and that behavior on sentence verification tasks directly reflects this binary interpretation process), we can propose quantitative models of the variation in behavior we observe in experimental settings.
 
-```{r echo=FALSE, message=FALSE}
-bda <- read.csv("models/webppl_models/bda.csv")
+**XXX The following is entirely new:** However, this way of understanding behaivor in truth value jugdment tasks also raises new analytic and empirical questions which we must leave to future work. For instance, given the experimental results reported here, what is the range of plausible values for, e.g., the single probability threshold $\theta$, which separates "Right" from "Wrong" utterances in the binary condition? Bayesian statistical methods provide us the means for estimating the value of $\theta$ in our RSA-based model, by allowing us to recover a posterior distribution of possible values of $\theta$ given an assumption of a uniform prior and our empirically-observed data, i.e. the actual rate of response of "Right" in each trial of the binary condition of the experiment. We may also ask, for example, whether the speaker probability threshold for an utterance being "Right" is relatively constant across conditions or changes systematically with the introduction of more response options. Again, Bayesian data analysis allows us to explore this question by investigating the extent to which the inferred posterior distribution of, e.g., possible values of the threshold for "Right" in the binary condition of the experiment differs from the inferred posterior distribution of possible values of the threshold for "Right" in the ternary, quatenary, and quinary conditions. 
 
-binary_graph <- ggplot(filter(bda, Parameter == "binary_theta"), aes(x=value))+
-  # facet_wrap(~Parameter, scales = "free") +
-  theme_few() +
-  geom_density() +
-  scale_fill_grey(guide=FALSE) +
-  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
-  ggtitle("Threshold distribution, binary condition:")
-
-ternary_graph <- ggplot(filter(bda, Parameter == c("ternary_theta1", "ternary_theta2")), aes(x=value))+
-  facet_wrap(~Parameter, scales = "free") +
-  theme_few() +
-  geom_density() +
-  scale_fill_grey(guide=FALSE) +
-  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
-  ggtitle("Threshold distributions, ternary condition:")
-
-quatenary_graph <- ggplot(filter(bda, Parameter == c("quatenary_theta1", "quatenary_theta2", "quatenary_theta3")), aes(x=value))+
-  facet_wrap(~Parameter, scales = "free") +
-  theme_few() +
-  geom_density() +
-  scale_fill_grey(guide=FALSE) +
-  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
-  ggtitle("Threshold distributions, quatenary condition:")
-
-quinary_graph <- ggplot(filter(bda, Parameter == c("quinary_theta1", "quinary_theta2", "quinary_theta3", "quinary_theta4")), aes(x=value))+
-  facet_wrap(~Parameter, scales = "free") +
-  theme_few() +
-  geom_density() +
-  scale_fill_grey(guide=FALSE) +
-  theme(axis.text.x=element_text(angle=20,hjust=1,vjust=1)) +
-  ggtitle("Threshold distributions, quinary condition:")
-binary_graph
-ternary_graph
-quatenary_graph
-quinary_graph
-```
-
-The above analysis is a proof of concept for the following idea: by relaxing the assumptions of the traditional view of scalar implicature (namely, that scalar implicatures either are or are not calculated, and that behavior on sentence verification tasks directly reflects this binary interpretation process), we can propose quantitative models of the variation in behavior we observe in experimental settings. 
+Lastly, the linking analysis proposed here is just one in the space of possible analyses when traditional assumptions about scalar implicature are relaxed. For example, one might reject this threshold-based analysis in favor of one whereby responses are the outcomes of sampling on the (pragmatic speaker or pragmatic listener) probability distributions provided by an RSA model. We again must leave this investigation to future work, but for the time being we emphasize that such quantitative, data-driven and systematic model criticism/comparison is made available to researchers in experimental pragmatics by revising core assumptions about the nature of scalar implicature. Though we no longer have a crisp notion of scalar implicature as something that is or is not 'calculated' in interpretation, we have new flexibility to explicitly discuss categorical behavior in experimental settings.
 
 # References
 ```{r create_r-references}
