@@ -1,5 +1,9 @@
 # Scalar implicature paradigms
 
+## Methods
+
+[Link to the online card game](https://web.stanford.edu/~masoudj/online_experiment/connective_game.html)
+
 ## Goal
 
 **Investigate various dependent measures that have been used to measure scalar implicatures to try to understand what exactly is being measured, by specifying explicit linking functions between RSA and the dependent measures.**

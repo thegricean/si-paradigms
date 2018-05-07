@@ -403,41 +403,54 @@ if we are for instance interested in whether scalar implicatures are
 inference defaults and we would like to interpret an implicature rate of
 above an arbitrary threshold (e.g., 50\%) as evidence for such a claim.
 Under the Strong link, we would conclude that scalar implicatures are
-not defaults. Under the Weak link, we would conclude that they are.
-
-In the experiment reported in the following section, we presented
-participants with exactly this setup. Different groups of participants
-were presented with different numbers of response options. We
-categorized their responses according to the Weak and the Strong link
-and tested whether number of response options and categorization scheme
-leads to different conclusions about implicature rates.
+not defaults. Under the Weak link, we would conclude that they are. In
+the experiment reported in the following section, we presented
+participants with exactly this setup.
 
 \section{Experiment}\label{experiment}
+
+In this study, we presented participants with an online card game.
+Different groups of participants were presented with different numbers
+of response options for the task. In critical trials, participants were
+presented with descriptions for the cards that typically result in
+exhaustive or scalar implicatures. We categorized their responses in
+such trials according to the Weak and the Strong link, and tested
+whether the number of response options and the linking assumptions lead
+to different conclusions about the rate of computed implicatures in the
+experimental task.
 
 \subsection{Methods}\label{methods}
 
 \subsubsection{Participants}\label{participants}
 
-200 participants were recruited using Amazon Mechanical Turk (binary=50,
-ternary53, quaternary=43, quinary=54). No participant was excluded from
-the final analysis.
+200 participants were recruited using Amazon Mechanical Turk. They
+optionally provided demographic information at the end of the study.
+Mean age of the participnats was 35. We also asked participants if they
+had any prior training in logic. 40 participants reported that they had
+while 160 had no prior training in logic. No participant was excluded
+from the final analysis.
 
-\subsubsection{Procedure}\label{procedure}
+\subsubsection{Materials and Procedure}\label{materials-and-procedure}
 
 The study was administered online through Amazon Mechanical Turk.
-Participants were introduced to a set of cards with pictures of one or
-two animals (Figure \ref{fig:stimuli}). They were told that a
-blindfolded fictional character called Bob is going to guess what
-animals are on the card. On each trial, participants saw a card as well
-as a sentence representing Bob's guess. For example, they saw a card
-with a cat on it and read the sentence \enquote{There is a cat on the
-card.} The study ended after 24 trials. At the end participants
-optionally provided demographic information. We also asked participants
-if they had any prior training in logic. You can access and view on the
-study's \href{https://github.com/thegricean/si-paradigms/}{online
-repository}.
+Participants were first introduced to the set of cards we used in the
+study (Figure \ref{fig:stimuli}). Each card had pictures of one or two
+animals. Animals were chosen from the following set: cat, dog, and
+elephant. Then participants were introduced to a blindfolded fictional
+character called Bob. Bob was blindfolded to control for violations of
+ignorance expectations with disjunction. Participants were told that Bob
+is going to guess what animals are on the card. We asked participants to
+let us know whether Bob's guess is wrong or right. In each trial,
+participants saw a card as well as a sentence representing Bob's guess.
+For example, they saw a card with a cat and read the sentence
+\enquote{There is a cat on the card.} Depending on the task participants
+were assigned to, they had to choose between two (binary task), three
+(ternary task), four (quaternary task), or five (quinary task) response
+options. The study ended after 24 trials. You can access and view the
+study using the paper's
+\href{https://github.com/thegricean/si-paradigms/}{online repository}.
 
-\subsubsection{Design and Materials}\label{design-and-materials}
+\subsubsection{Design}\label{design}
 
 \begin{figure}
 \centering
@@ -447,9 +460,8 @@ repository}.
 
 The study had two main manipulaitons within participants: the type of
 card and the type of guess. There were two types of cards. Cards with
-only one animal on them and cards with two animals. Animals were chosen
-from the following set: cat, dog, and elephant There were three types of
-guesses: simple (e.g. \emph{There is a cat}), conjunctive (e.g.
+only one animal on them and cards with two animals. There were three
+types of guesses: simple (e.g. \emph{There is a cat}), conjunctive (e.g.
 \emph{There is a cat and a dog}), and disjunctive (e.g. \emph{There is a
 cat or a dog}). In each trial, the animal labels used in the guess and
 the animal images on the card may have no overlap (e.g.~Image: cat,
@@ -458,11 +470,11 @@ Guess: \emph{There is a cat or a dog}), or a total overlap (e.g.~Image:
 cat and dog, Guess: \emph{There is a cat or a dog}). Crossing the number
 of animals on the card, the type of guess, and the overlap between the
 guess and the card results in 12 different possible trial types. We
-chose 8 trial types (Figure \ref{fig:trials}), balancing the number of
-one-animal vs.~two-animal cards, simple vs.~connective guesses, and
-expected true vs.~false trials. Three trials were randomly selected from
-each of the 8 trial-types, for a total of 24 trials. The order of these
-24 trials was randomized as well.
+chose 8 trial types, balancing the number of one-animal vs.~two-animal
+cards, simple vs.~connective guesses, and expected true vs.~false
+trials. Three trials were randomly selected from each of the 8
+trial-types, for a total of 24 trials. The order of these 24 trials was
+randomized as well.
 
 Participants could derive implicatures in two trial types. First, the
 trial type in which two animals were present on the card (e.g.~cat and
@@ -491,20 +503,13 @@ exclusivity and exhaustive inferences.
 
 The study also had a between participant manipulation of the number of
 response options in the forced choice task. Participants were randomly
-assigned to one of four different conditions. The conditions differed
-with respect to the number of response options: binary (wrong
+assigned to one of four different conditions or tasks. The tasks
+differed with respect to the number of response options: binary (wrong
 vs.~right), ternary (wrong, neither, right), quaternary (wrong, kinda
 wrong, kinda right, right), and quinary (wrong, kinda wrong, neither,
 kinda right, right). We wanted to see if the number of response options
 in the forced choice task would affect our estimate of the task's
 \enquote{implicature rate}.
-
-\begin{figure}
-\centering
-\includegraphics{writeup_files/figure-latex/trials-1.pdf}
-\caption{\label{fig:trials}Trial types represented by example cards and
-guesses.}
-\end{figure}
 
 \subsection{Results}\label{results}
 
@@ -515,26 +520,28 @@ guesses.}
 (binary) forced choice judgments in the guessing game.}
 \end{figure}
 
-Here we present the proportion that participants chose the response
-options in each of the 8 trial types of the binary, ternary, quaternary,
-and quinary tasks. Figure \ref{fig:binaryPlot} shows the proportion of
-\enquote{right} and \enquote{wrong} responses in the binary task.
-Starting from the leftmost column, participants considered a guess
-\enquote{wrong} if the guessed animal was not on the card. Moving to the
-second column, participants considered a guess \enquote{right} if the
-animal on the card was mentioned. However, if only one of the two
-animals on the card was mentioned (exhaustive trials), 14\% of the times
-participants considered the guess \enquote{wrong}. Moving to the third
-column, if a conjunction of animals was guessed while only one animal
-was on the card, participants considered the guess to be
-\enquote{wrong}. If a conjunction of animals was guessed and both
-animals were present on the card, all participants considered the guess
-to be \enquote{right} as expected. Moving to the forth column, if a
-disjunction of animals was guessed and only one of the animals was on
-the card, participants considered the guess to be \enquote{right} almost
-all the time. However, if both animals were present (scalar trials),
-38\% of the times participants considered the guess to be
-\enquote{wrong}.
+The experiment had 50 participants in the binary task, 53 in the ternary
+task, 43 in the quaternary task and 54 in the quinary task. In this
+section, we present the proportion that participants chose different
+response options in each of the 8 trial types of these four tasks.
+
+Figure \ref{fig:binaryPlot} shows the proportion of \enquote{right} and
+\enquote{wrong} responses in the binary task. Starting from the leftmost
+column, participants considered a guess \enquote{wrong} if the guessed
+animal was not on the card. Moving to the second column, participants
+considered a guess \enquote{right} if the animal on the card was
+mentioned. However, if only one of the two animals on the card was
+mentioned (exhaustive trials), 14\% of the times participants considered
+the guess \enquote{wrong}. Moving to the third column, if a conjunction
+of animals was guessed while only one animal was on the card,
+participants considered the guess to be \enquote{wrong}. If a
+conjunction of animals was guessed and both animals were present on the
+card, all participants considered the guess to be \enquote{right} as
+expected. Moving to the forth column, if a disjunction of animals was
+guessed and only one of the animals was on the card, participants
+considered the guess to be \enquote{right} almost all the time. However,
+if both animals were present (scalar trials), 38\% of the times
+participants considered the guess to be \enquote{wrong}.
 
 \begin{figure}
 \centering
@@ -619,18 +626,12 @@ trials), participants judged the disjunctive guess as \enquote{kinda
 right} 52\% of the time.
 
 Comparing the response patterns in binary to quinary tasks (Figures
-\ref{fig:binaryPlot} to \ref{fig:quinaryPlot}), we can observe that in
+\ref{fig:binaryPlot}-\ref{fig:quinaryPlot}), we observe that in
 implicature trials, participants are less likely to choose the endpoints
 of the scale (i.e. \enquote{wrong} and \enquote{right}) as they are
-given more intermediate options. This raises the possibilty that the
-strict \enquote{wrong/right} responses in the tasks with fewer options
-(binary and ternary) were not accurately reflecting participant
-judgments of implicature trials and pushed their judgments to the
-extreme ends. More generally, the data suggest that participant
-judgments in contexts that give rise to implicatures fall within the
-intermrediate level of the response scale and forced choice tasks with
-few options (especially binary tasks) may risk depicting judgments more
-extreme than they actually are.
+given more intermediate options.
+
+semantic violations vs.~pragmatic violations
 
 \subsection{Analysis}\label{analysis}
 
@@ -676,9 +677,9 @@ assumption, there are slightly higher rates for scalar implicatures in
 the binary and ternary tasks. With a weak linking assumption, there may
 be slightly higher rates for scalar implicatures in the binary and
 ternary while the rates may be lower in the quaternary and quinary
-tasks. In what follows, we test the effect of linking assumption and
-response options on exhaustive and scalar implicature rates more
-formally.
+tasks. In what follows, we formally test the effect of linking
+assumption and response options on exhaustive and scalar implicature
+rates.
 
 \begin{figure}
 \centering
@@ -689,24 +690,137 @@ of the guessing game, computed once with a strong linking assumption and
 once with a weak linking assumption.}
 \end{figure}
 
-For our formal analysis, we use a binomial mixed effects model with the
-fixed effect of response type (binary, ternary, quaternary, quinary),
-linking assumption (strong vs.~weak), and trial type (exhaustive
-vs.~scalar), as wellas the random intercept for participants as well as
-random intercept and slope for items (the card they saw).
+\begin{table}
 
-All the analytical decisions described here were pre-registered and you
-can access them through the following link:
-\url{https://aspredicted.org/tq3sz.pdf}
+\caption{\label{tab:implicatureRate}\label{tab:modeltable}Model Parameter Estimates and Their Credible Intervals}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+Predictors & Estimate & 2.5\% & 97.5\%\\
+\midrule
+Intercept & -8.60 & -13.98 & -4.53\\
+Link = Weak & -0.15 & -4.86 & 4.77\\
+Task = Quaternary & -1.83 & -8.08 & 4.20\\
+Task = Quinary & -4.05 & -10.90 & 2.38\\
+Task = Ternary & -1.45 & -7.31 & 4.56\\
+\addlinespace
+Implicature = Scalar & 6.09 & 1.00 & 12.29\\
+Link = Weak : Task = Quaternary & 14.03 & 7.24 & 21.88\\
+Link = Weak : Task = Quinary & 17.28 & 10.64 & 25.80\\
+Link = Weak : Task = Ternary & 3.81 & -1.49 & 9.22\\
+Link = Weak : Implicature = Scalar & 0.90 & -4.01 & 6.43\\
+\addlinespace
+Task = Quaternary : Implicature = Scalar & -5.67 & -13.66 & 1.54\\
+Task = Quinary : Implicature = Scalar & -2.31 & -9.30 & 4.61\\
+Task = Ternary : Implicature = Scalar & -1.31 & -7.70 & 4.65\\
+Link=Weak : Task=Quaternary : Implicature=Scalar & -3.29 & -12.07 & 4.55\\
+Link=Weak : Task=Quinary : Implicature=Scalar & -7.74 & -16.59 & -0.16\\
+Link=Weak : Task=Ternary : Implicature=Scalar & -1.44 & -7.00 & 4.22\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\begin{itemize}
-\tightlist
-\item
-  Was logical training a significant predictor of \enquote{implicature
-  rate}?
-\end{itemize}
+For our formal analysis, we used a bayesian binomial mixed effects model
+using the R packge \enquote{brms} (Bürkner \& others, 2016). The model
+had the fixed effects of response type (binary, ternary, quaternary,
+quinary), linking assumption (strong vs.~weak), and trial type
+(exhaustive vs.~scalar), as well as their two way and three way
+interactions. We also included random intercepts and slopes for items
+(cards) and participants. Following Barr, Levy, Scheepers, and Tily
+(2013), we used the maximal random effects structure by including random
+slopes for all our fixed effects and their interactions. Since the
+number of response options was a between participant variable we did not
+include random slopes of response options for participants. Four chains
+converged after 2000 iterations each (warmup = 1000). Table
+\ref{tab:modeltable} summarizes the mean parameter estimates and their
+95\% credible intervals. \(\hat{R}=1\) for all estimated parameters. All
+the analytical decisions described here were pre-registered\footnote{You
+  can access our pre-registration at
+  \url{https://aspredicted.org/tq3sz.pdf}}.
 
-\section{\# Discussion}\label{discussion}
+The model provided evidence for two effects in the study. First, there
+was a main effect of trials such that scalar trials had slightly higher
+implicature rates than exhaustive trials (Mean Estimate = 6.09, 95\%
+Credible Interval={[}1, 12.29{]}). Second, there was an interaction
+between linking assumption and number of resopnse options such that the
+quaternary task (Mean Estimate = 14.03, 95\% Credible Interval={[}7.24,
+21.88{]}) and the quinary task (Mean Estimate = 17.28, 95\% Credible
+Interval={[}10.64, 25.80{]}) with a weak linking assumption had higher
+implicature rates.
+
+\subsection{Discussion}\label{discussion}
+
+We asked whether the linking assumptions and the number of response
+options available to participants affects the inferred implicature rate
+in an experimental study. The results presented here suggest they do. A
+linking assupmtion that considered the highest point on the scale as
+literal and any lower point as pragmatic (weak link) reported higher
+implicature rates in tasks with 4 or 5 options. A linking assumption
+that considered the lowest point on the scale as pragmatic and any
+higher point as literal (strong link) reported lower implicature rates
+in tasks with 4 or 5 options. The results suggest that the choice of
+linking assumption is a crucial analytical step that can significantly
+impact the conclusions of truth value judgment tasks with more than two
+response options. The lower rate of implicatures with a strong linking
+assumption implies that in such studies, strong linking assumptions may
+underestimate participants' pragmatic competence.
+
+While the binary truth value judgement task avoids the analytic decision
+between strong and weak linking assumptions, our results suggest that
+binary tasks can also underestimate participants' pragmatic competence.
+In binary tasks, participants are often given the lowest and highest
+points on a scale (\enquote{wrong} vs. \enquote{right}) and are asked to
+report pragmatic infelicities using the lowest point (e.g.
+\enquote{wrong}). Our study showed that in trials with true but
+infelicitous descriptions (implicature trials), participants often
+avoided the lowest point on the scale if they were given more
+intermediate options. Even though the option \enquote{wrong} was
+available to participants in all tasks, participants in tasks with
+intermediate options chose it less often. In computing implicature rate,
+this pattern manifested itself as a decrease in implicature rate with
+strong link when more response options were provided, and increase in
+implicature rate with weak link when more response options were
+provided. These conclusions are in line with Katsos and Bishop
+(2011)\enquote{s argument that pragmatic violations are not as severe as
+semantic violations and participants do not penalize them as much.
+Providing participants with only the extreme opposits of the scale
+(e.g.~wrong/right, false/true) when pragmatic violations are considered
+to be of an intermediate nature risks misrepresentation of participants}
+pragmatic competence.
+
+This study did not investigate the effect of option labels on the
+inferred implicature rate. However, the results provided suggestive
+evidence that some options better capture participant intuitions of
+pragmatic infelicities than others. Among the intermediate options,
+\enquote{kinda right} was chosen most often to report pragmatic
+infelicities. The option \enquote{neither} was rarely used in the
+ternary and quinary tasks (where it was used as a midpoint), suggesting
+that participants found pragmatic infelicities as different degrees of
+being \enquote{right} and not \enquote{neither right nor wrong.}
+Therefore, options that capture grades of being \enquote{right} like
+\enquote{kinda right} proved be most suitable for capturing true but
+infelicitous utterances.
+
+This study had three design features that we would like to investigate
+in future work. First, the utterances were by a blindfolded character
+because we wanted to control for violation of ignorance expectations
+with disjunction. A disjunction such as \enquote{A or B} often carries
+an implication or expectation that the speaker is not certain which
+alternative actually holds. In future work, we would like to see how the
+violation of the ignorance expectation would affect the inferred
+implicature rate by having the fictional character describe the cards
+while looking at them. Second, in this study we considered exhaustive
+and scalar implicatures with \emph{or}. We would like to see if similar
+effects hold for the scalar implicatures with \emph{some}. Finally, our
+experiment was designed as a guessing game and the exact goal of the
+game was left implicit. We expect that different goals, for example help
+the character win more points vs.~help the character be more accurate,
+would affect how strict or lenient participants are with their judgments
+and ultimately affect the implicature rate in the task. In future work
+we would like to systematically vary the goal of the game and explore
+its effects on the inferred implicature rate.
+
+\section{General Discussion}\label{general-discussion}
 
 On the traditional view of the link between implicature and behavior in
 sentence verification tasks, scalar implicature is conceptualized as a
@@ -919,6 +1033,11 @@ role of scalar alternatives in children's pragmatic inference.
 \emph{Cognition}, \emph{118}(1), 84--93.
 doi:\href{https://doi.org/10.1016/j.cognition.2010.10.010}{10.1016/j.cognition.2010.10.010}
 
+\hypertarget{ref-barr2013random}{}
+Barr, D. J., Levy, R., Scheepers, C., \& Tily, H. J. (2013). Random
+effects structure for confirmatory hypothesis testing: Keep it maximal.
+\emph{Journal of Memory and Language}, \emph{68}(3), 255--278.
+
 \hypertarget{ref-Bergen2012}{}
 Bergen, L., \& Grodner, D. J. (2012). Speaker knowledge influences the
 comprehension of pragmatic inferences. \emph{Journal of Experimental
@@ -949,6 +1068,11 @@ implicatures generated by default? An on-line investigation into the
 role of context in generating pragmatic inferences. \emph{Cognition},
 \emph{100}(3), 434--63.
 doi:\href{https://doi.org/10.1016/j.cognition.2005.07.003}{10.1016/j.cognition.2005.07.003}
+
+\hypertarget{ref-burkner2016brms}{}
+Bürkner, P.-C., \& others. (2016). Brms: An r package for bayesian
+multilevel models using stan. \emph{Journal of Statistical Software},
+\emph{80}(1), 1--28.
 
 \hypertarget{ref-Chemla2011}{}
 Chemla, E., \& Spector, B. (2011). Experimental Evidence for Embedded
