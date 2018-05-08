@@ -187,7 +187,7 @@ Two factors were manipulated within participants: card type and  guess type. The
 
 On critical trials, participants could derive implicatures in two ways. First, on trials on which two animals were present on the card (e.g., cat and dog) but Bob guessed only one of them (e.g. "There is a cat on the card"), the utterance could have a literal interpretation ("There is a cat and possibly another animal on the card") or an exhaustive interpretation ("There is only a cat on the card"). We refer to these trials as "exhaustive". Second, on trials on which two animals were on the card (e.g., a cat and a dog) and Bob used a disjunciton (e.g., "There is a cat or a dog on the card"), the utterance could have the literal, inclusive, interpretation, or a pragmatic, exclusive interpretation. We refer to these trials as "scalar". 
  
-In order to assess the effect of the number of response options on implicature rate, we manipulated number of response options in the forced choice task between participants. We refer to the choice conditions as 'binary' (options: *wrong*, *right*), 'ternary' (options: *wrong*, *neither*, *right*), 'quaternary' (options: *wrong*, *kinda wrong*, *kinda right*, *right*), and 'quinary' (*wrong*, *kinda wrong*, *neither*, *kinda right*, *right*). Thus, the endpoint labels always remained the same. If there was an uneven number of response options, the central option was *neither*. 
+In order to assess the effect of the number of response options on implicature rate, we manipulated number of response options in the forced choice task between participants. We refer to the choice conditions as 'binary' (options: *wrong*, *right*), 'ternary' (options: *wrong*, *neither*, *right*), 'quaternary' (options: *wrong*, *kinda wrong*, *kinda right*, *right*), and 'quinary' (*wrong*, *kinda wrong*, *neither*, *kinda right*, *right*). Thus, the endpoint labels always remained the same. If there was an uneven number of response options, the central option was *neither*. Participants were randomly assigned to one of the four task conditions.
 
 
 ## Results
@@ -273,13 +273,18 @@ binary_summary$guess_type <- recode(binary_summary$guess_type, Z = "elephant", X
 binary_summary <- binary_summary %>% rename(proportion = "est")
 ```
 
-```{r binaryPlot, fig.height=3.5, fig.cap = "Proportion responses for the two-alternative (binary) forced choice judgments in the guessing game."}
+The collected dataset contains `r participants_info$count[1]` participants in the binary task, `r participants_info$count[4]` in the ternary task, `r participants_info$count[2]` in the quaternary task, and `r participants_info$count[3]` in the quinary task. Figures \@ref(fig:binaryPlot) to \@ref(fig:quinaryPlot)  show the proportions of response choices in each of the 8 trial types on each of the four response tasks, respectively. We report the relevant patterns of results qualitatively before turning to the quantitative analysis of interest.
+
+### Qualitative analysis
+
+
+```{r binaryPlot, fig.height=3.5, fig.cap = "Proportion of responses for the binary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
 binary_plot<-
   binary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
   facet_grid(card_type~guess_type) +
-  labs(x="Response Options in the Binary Task", y="Proportions")+
+  labs(x="Response options (binary task)", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=12)) +
   scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE) +
@@ -310,9 +315,8 @@ binaryExh_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat",
 binaryScalar_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
 ```
 
-The experiment had `r participants_info$count[1]` participants in the binary task, `r participants_info$count[4]` in the ternary task, `r participants_info$count[2]` in the quaternary task and `r participants_info$count[3]` in the quinary task. In this section, we present the proportion that participants chose different response options in each of the 8 trial types of these four tasks. 
+In the binary task, participants were at or close to ceiling in responding 'right' and 'wrong' on unambiguously true and false trials, respectively (see Figure \@ref(fig:binaryPlot)). However, on underinformative trials ("cat" and "cat or dog" description for card with cat and dog), we observe pragmatic behavior: on exhaustive trials, participants judged the utterance "wrong" `r round(binaryExh_wrong$proportion*100)`% of the time;  on scalar trials, participants judged the utterance "wrong" `r round(binaryScalar_wrong$proportion*100)`% of the time. That is, both under the weak and the strong link assumptions introduced in the Introduction, inferred implicature rate on exhaustive trials is `r round(binaryExh_wrong$proportion*100)`% and on scalar trials `r round(binaryScalar_wrong$proportion*100)`%.
 
-Figure \@ref(fig:binaryPlot) shows the proportion of "right" and "wrong" responses in the binary task. Starting from the leftmost column, participants considered a guess "wrong" if the guessed animal was not on the card. Moving to the second column, participants considered the guess "right" when the only animal on the card was mentioned. However, when only one of the two animals on the card was mentioned (exhaustive trials), `r round(binaryExh_wrong$proportion*100)`% of the times participants considered the guess "wrong". Moving to the third column, if a conjunction of animals was guessed while only one animal was on the card, participants considered the guess to be "wrong". If a conjunction of animals was guessed and both animals were present on the card, all participants considered the guess to be "right" as expected. Finally, if a disjunction of animals was guessed and only one of the animals was on the card, participants considered the guess to be "right" almost all the time. However, if both animals were present (scalar trials), `r round(binaryScalar_wrong$proportion*100)`% of the times participants considered the guess to be "wrong".
 
 ```{r ternaryData}
 ternary_summary<-
@@ -395,13 +399,13 @@ ternary_summary$guess_type <- recode(ternary_summary$guess_type, Z = "elephant",
 ternary_summary <- ternary_summary %>% rename(proportion = "est")
 ```
 
-```{r ternaryPlot, fig.height=3.5, fig.cap = "Proportion responses for the three-alternative (ternary) forced choice judgments in the guessing game."}
+```{r ternaryPlot, fig.height=3.5, fig.cap = "Proportion of responses for the ternary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
 ternary_plot<-
   ternary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
   facet_grid(card_type~guess_type) +
-  labs(x="Response Options in the Ternary Task", y="Proportions")+
+  labs(x="Response options (ternary task)", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
     scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE) +
@@ -434,7 +438,9 @@ ternaryExh_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="c
 ternaryScalar_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
 ```
 
-Figure \@ref(fig:ternaryPlot) shows the proportion of "right", "neither", and "wrong" responses in the ternary task. Similar to the binary task, participants considered a guess wrong when the mentioned animal was not on the card, and "right" when the mentioned animal was the only animal on the card. However, in exhaustive trials when the fictional character only guessed one of the two animals on the card, participants considered the guess "wrong" `r round(ternaryExh_wrong$proportion*100)`% of the time and neither wrong nor right `r round(ternaryExh_neither$proportion*100)`% of the time. If a conjunction of animals was guessed and only one animal was present on the card, participants considered the guess "wrong". As expected, when a conjunction was used and both animals were present, participants considered the guess "right". Similarly, participants considerd the guess "right" when a disjunction was used and only one of the animals was on the card. However, in scalar trials that both animals were on the card and a disjunction was gueassed, participants judged the guess "wrong" `r round(ternaryScalar_wrong$proportion*100)`% of the time and "neither" `r round(ternaryScalar_neither$proportion*100)`% of the time.
+
+In the ternary task, participants were also at or close to ceiling in responding 'right' and 'wrong' on unambiguously true and false trials, respectively (see Figure \@ref(fig:ternaryPlot)). And again, on underinformative trials ("cat" and "cat or dog" description for card with cat and dog), we observed pragmatic behavior: on exhaustive trials, participants considered the guess "wrong" `r round(ternaryExh_wrong$proportion*100)`% of the time and neither wrong nor right `r round(ternaryExh_neither$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(ternaryScalar_wrong$proportion*100)`% of the time and "neither" `r round(ternaryScalar_neither$proportion*100)`% of the time. This means that the weak and strong link lead to different conclusions about implicature rates on the ternary task. Under the weak link, inferred implicature rate on exhaustive trials is `r round(ternaryExh_wrong$proportion*100) + round(ternaryExh_neither$proportion*100)`%; under the strong link it is only `r round(ternaryExh_wrong$proportion*100)`%. Similarly, under the weak link, inferred implicature rate on scalar trials is `r round(ternaryScalar_wrong$proportion*100) + round(ternaryScalar_neither$proportion*100)`%; under the strong link it is only `r round(ternaryScalar_wrong$proportion*100)`%.
+
 
 ```{r quaternaryData}
 quaternary_summary<-
@@ -517,14 +523,14 @@ quaternary_summary$guess_type <- recode(quaternary_summary$guess_type, Z = "elep
 quaternary_summary <- quaternary_summary %>% rename(proportion = "est")
 ```
 
-```{r quaternaryPlot, fig.height=4, fig.cap = "Proportion responses for the four-alternative (quatenary) forced choice judgments in the guessing game."}
+```{r quaternaryPlot, fig.height=4, fig.cap = "Proportion of responses for the quaternary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
 quaternary_plot<-
   quaternary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="Response Options for the Quaternary Task", y="Proportions")+
+  labs(x="Response options (quaternary task)", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
   scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE) + 
@@ -560,7 +566,13 @@ quaternaryScalar_kindaWrong <- quaternary_summary %>% filter(card_type=="XY", gu
 quaternaryScalar_kindaRight <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
 ```
 
-Figure \@ref(fig:quaternaryPlot) shows the proportion of "right", "kinda right", "kinda wrong", and "wrong" responses in the quaternary task. Similar to the results seen previously, the control trials turned out as expected. Participants considered a guess "wrong" if the animal guessed was not on the card and "right" if it was the only animal on the card. If a conjunctin of animals was guessed and both animals were on the card the guess was "right". However, when only one of the animals on the card was guessed (exhaustive trials), participants judged the guess "wrong" `r round(quaternaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryExh_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryExh_kindaRight$proportion*100)`% of the times. Perhaps surprisingly, when a conjunction was used and only one of the animals was on the card, participants considered the guess "wrong" most of the time, but they often considered it "kinda wrong" or even "kinda right". This suggests that perhaps participants considered a notion of partially true or correct statement in our experimental setting. Disjunctive guesses with one or two animals on the card showed similar response patterns with participants choosing the "kinda right" and "right" options most of the time. When both animals were on the card with a disjunctive guess (scalar trials), participants judged the guess "wrong" `r round(quaternaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryScalar_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryScalar_kindaRight$proportion*100)`% of the times.
+In the quaternary task (Figure \@ref(fig:quaternaryPlot)), participants were again at or close to ceiling in responding 'right' and 'wrong' on 4 of the 6 unambiguously true and false trials. However, with four response options, two of the control conditions appear to be showing signs of pragmatic infelicity: when a conjunction was used and only one of the animals was on the card, participants considered the guess "wrong" most of the time, but they often considered it "kinda wrong" or even "kinda right". This suggests that perhaps participants considered a notion of partially true or correct statement in our experimental setting. Disjunctive descriptions of cards with only one animal, while previously at ceiling for "right" responses, were downgraded to only "kinda right" 26% of the time, presumably because these utterances are also underinformative, though the degree of underinformativeness may be less egregious than on scalar trials.
+
+On underinformative exhaustive trials, we observed pragmatic behavior as before: participants judged the guess "wrong" `r round(quaternaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryExh_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryExh_kindaRight$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(quaternaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryScalar_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryScalar_kindaRight$proportion*100)`% of the times.
+
+Thus, we are again forced to draw different conclusions about implicature rates depending on whether we assume the weak link or the strong link. Under the weak link, inferred implicature rate on exhaustive trials is `r round(quaternaryExh_wrong$proportion*100) + round(quaternaryExh_kindaWrong$proportion*100) + round(quaternaryExh_kindaRight$proportion*100)`%; under the strong link it is only `r round(quaternaryExh_wrong$proportion*100)`%. Similarly, under the weak link, inferred implicature rate on scalar trials is `r round(quaternaryScalar_wrong$proportion*100) + round(quaternaryScalar_kindaWrong$proportion*100) + round(quaternaryScalar_kindaRight$proportion*100)`%; under the strong link it is only `r round(quaternaryScalar_wrong$proportion*100)`%.
+
+
 
 ```{r quinaryData}
 quinary_summary<-
@@ -643,14 +655,14 @@ quinary_summary$guess_type <- recode(quinary_summary$guess_type, Z = "elephant",
 quinary_summary <- quinary_summary %>% rename(proportion = "est")
 ```
 
-```{r quinaryPlot, fig.height=4, fig.cap = "Proportion responses for the five-alternative (quinary) forced choice judgments in the guessing game."}
+```{r quinaryPlot, fig.height=4, fig.cap = "Proportion of responses for the quinary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
 quinary_plot<-
   quinary_summary %>%
   ggplot(aes(x=response, y=proportion, fill=response)) +
   geom_bar(stat = "identity", position="dodge", width = 0.6) +
 #  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
   facet_grid(card_type~guess_type) +
-  labs(x="Response Options in the Quinary Task", y="Proportions")+
+  labs(x="Response options (quinary task)", y="Proportion of response")+
   theme_few() +
   theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
   scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE) +
@@ -682,13 +694,17 @@ quinaryExh_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat
 quinaryExh_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Wrong")
 quinaryExh_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Neither")
 
-quinaryyScalar_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+quinaryScalar_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
 quinaryScalar_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Wrong")
 quinaryScalar_kindaRight <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
 quinaryScalar_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
 ```
 
-Finally, Figure \@ref(fig:quinaryPlot) shows the proportion of "right", "kinda right", "neither", "kinda wrong", and "wrong" responses in the quinary task. Since the results for the control trials were identical to previous tasks, we do not repeat them here. In exhaustive trials where two animals were on the card and only one of them was guessed, participants chose "kinda right" the majority of times (`r round(quinaryExh_kindaRight$proportion*100)`%). Again perhaps surprisingly, when only one animal was on the card and the guess was a conjunction, responses were equally split among "wrong", "kinda wrong", and "kinda right" responses. With disjunctive guesses, partitipants were more likely to choose "right" and "kinda right" options. When only one animal was on the card, participants considered the disjunctive guess as "right" more often. When both animals were on the card (scalar trials), participants judged the disjunctive guess as "kinda right" `r round(quinaryScalar_kindaRight$proportion*100)`% of the time.
+Finally, Figure \@ref(fig:quinaryPlot) shows the proportion of  responses in the quinary task. Performance on the 4 pragmatically felicitous control trials was again at floor and ceiling, respectively. The 2 control conditions that the quaternary task had revealed pragmatic infelicity in again displayed that pragmatic infelicity in the quinary task, suggesting that this is a robust type of pragmatic infelicity that, however, requires fine-grained enough response options to be detected experimentally.
+
+On underinformative exhaustive trials, we observed pragmatic behavior as before: participants judged the guess "wrong" `r round(quinaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quinaryExh_kindaWrong$proportion*100)`% of the time, "neither" `r round(quinaryExh_Neither$proportion*100)`% of the time, and "kinda right" `r round(quinaryExh_kindaRight$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(quinaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quinaryScalar_kindaWrong$proportion*100)`% of the time, "neither" `r round(quinaryScalar_Neither$proportion*100)`% of the time, and "kinda right" `r round(quinaryScalar_kindaRight$proportion*100)`% of the time.
+
+Thus, we would again draw different conclusions about implicature rates depending on whether we assume the weak link or the strong link. Under the weak link, inferred implicature rate on exhaustive trials is `r round(quinaryExh_wrong$proportion*100) + round(quinaryExh_kindaWrong$proportion*100) + round(quinaryExh_Neither$proportion*100) + round(quinaryExh_kindaRight$proportion*100)`%; under the strong link it is only `r round(quinaryExh_wrong$proportion*100)`%. Similarly, under the weak link, inferred implicature rate on scalar trials is `r round(quinaryScalar_wrong$proportion*100) + round(quinaryScalar_kindaWrong$proportion*100) + round(quinaryScalar_Neither$proportion*100) + round(quinaryScalar_kindaRight$proportion*100)`%; under the strong link it is only `r round(quinaryScalar_wrong$proportion*100)`%. 
 
 <!--
 In four trial types, participants provided the same responses regardless of how many response options were made available. The first two trial types include the guesses with an animal not on the card at all. In such trials, whether there was one or two animals on the card, participants considered the guess wrong. In the third and the fourth trial types, the gueses matched the aimal(s) on the card; if there was one animal on the card, that animal was mentioned and if there were two, both were mentioned using a conjunction. The fact that participants chose the extreme ends of the scale for these trial types and the responses did not change when intermediate options were provided suggests that participant judgments truly aligned with the opposite ends of the scale in these trial types. 
@@ -700,7 +716,7 @@ Finally, in exhaustive and scalar implicature trial types participants were less
 semantic violations vs. pragmatic violations
 -->
 
-## Analysis
+### Quantitative analysis
 
 ```{r implicatureResultss}
 implicature_results<-
@@ -730,12 +746,12 @@ Comparing the strong and weak rows on Figure \@ref(fig:implicatureRatePlot), we 
 
 Comparing the exhaustive and scalar columns of Figure \@ref(fig:implicatureRatePlot), we see that with a strong linking assumption, there are slightly higher rates for scalar implicatures in the binary and ternary tasks. With a weak linking assumption, there may be slightly higher rates for scalar implicatures in the binary and ternary while the rates may be lower in the quaternary and quinary tasks. In what follows, we formally test the effect of linking assumption and response options on exhaustive and scalar implicature rates.
 
-```{r implicatureRatePlot, fig.width=5, fig.height=3, fig.cap = "Implicature rate in exhaustive and scalar trials of the binary, ternary, quaternary, and quinary versions of the guessing game, computed once with a strong linking assumption and once with a weak linking assumption."}
+```{r implicatureRatePlot, fig.width=5, fig.height=3, fig.cap = "Inferred implicature rate on exhaustive and scalar trials with the binary, ternary, quaternary, and quinary response task. Columns indicate link from response to implicature rate (strong: proportion of "wrong" judgments; weak: proportion of non-"right" judgments)."}
 ggplot(implicature_results, aes(x=response_type,y=proportion)) +
   geom_bar(aes(fill=definition), stat="identity") +
   facet_grid(trial_type~definition, drop = TRUE) +
   theme_few() + 
-  labs(x="Number of Response Options in the Task", y="Inferred Implicature Rate") +
+  labs(x="Response task", y="Inferred implicature rate") +
   theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1)) +
   geom_linerange(aes(ymin=lower,ymax=upper)) + guides(fill=FALSE)
 ```
