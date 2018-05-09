@@ -1,0 +1,9 @@
+"","s","u","prob"
+"1","s = Cat on card","u = 'Cat'",0.454545454545455
+"2","s = Cat on card","u = 'Cat or dog'",0.272727272727273
+"3","s = Cat on card","u = 'Cat and dog'",0
+"4","s = Cat on card","u = 'Elephant'",0
+"5","s = Cat and dog on card","u = 'Cat'",0.147058823529412
+"6","s = Cat and dog on card","u = 'Cat or dog'",0.088235294117647
+"7","s = Cat and dog on card","u = 'Cat and dog'",0.441176470588235
+"8","s = Cat and dog on card","u = 'Elephant'",0

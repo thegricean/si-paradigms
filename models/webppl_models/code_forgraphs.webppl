@@ -1,0 +1,58 @@
+var states = [["X"], ["Y"], ["Z"], ["X","Y"], ["X","Z"], ["Y","Z"]];
+var utterances = ["X", "Y", "XorY", "XandY", "Z","XorZ","XandZ","YorZ","YandZ"];
+
+var statePrior = function() {
+  return uniformDraw(states)
+};
+
+var cost = function(u) {
+  return 1
+};
+
+var utterancePrior = function() {
+  return uniformDraw(utterances);
+};
+
+var literalMeanings = {
+  X: function(state) { return state.includes("X"); },
+  Y: function(state) { return state.includes("Y"); },
+  Z: function(state) { return state.includes("Z"); },
+  XorY: function(state) { return state.includes("X") || state.includes("Y"); },
+  XandY: function(state) { return state.includes("X") && state.includes("Y"); },
+  XorZ: function(state) { return state.includes("X") || state.includes("Z"); },
+  XandZ: function(state) { return state.includes("X") && state.includes("Z"); },
+  YorZ: function(state) { return state.includes("Y") || state.includes("Z"); },
+  YandZ: function(state) { return state.includes("Y") && state.includes("Z"); },
+};
+
+var literalListener = cache(function(utt) {
+  return Infer({model: function(){
+    var state = statePrior()
+    //if (flip(0.95)) {
+    var meaning = literalMeanings[utt]
+    condition(meaning(state))
+    //} 
+    
+    return state;
+  }})
+});
+
+// set speaker optimality
+var alpha = 1
+
+// pragmatic speaker
+var speaker = cache(function(state) {
+  return Infer({model: function(){
+    var utt = utterancePrior()
+    factor(alpha * literalListener(utt).score(state))
+    return utt
+  }})
+}); 
+
+var s = input[0].s;
+var s = s.split(",") ;
+
+Math.exp(speaker(s).score(input[0].u))
+
+
+
