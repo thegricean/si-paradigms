@@ -1,4 +1,4 @@
-\documentclass[floatsintext,man]{apa6}
+\documentclass[man]{apa6}
 
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -39,6 +39,12 @@
   {\begin{landscape}\begin{center}\begin{ThreePartTable}}
   {\end{ThreePartTable}\end{center}\end{landscape}}
 
+  \usepackage{ifthen} % Only add declarations when endfloat package is loaded
+  \ifthenelse{\equal{\string man}{\string man}}{%
+   \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
+   % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
+   \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable
+  }{}%
 
 
 
@@ -120,16 +126,18 @@ scalar implicature rate}
 
   \affiliation{
     \vspace{0.5cm}
-          \textsuperscript{1} Stanford University  }
+          \textsuperscript{1} Stanford University, Department of Linguistics  }
 
   \authornote{
-    XXX Add complete departmental affiliations for each author here. Each
-    new line herein must be indented, like this line. Enter author note
-    here.
+    The authors declare that they have no affiliations with, or involvement
+    in any organization or entity with any financial interest, or
+    non-financial interest in the subject matter or materials discussed in
+    this manuscript.
     
     Correspondence concerning this article should be addressed to Masoud
-    Jasbi, XXX Postal address. E-mail: XXX
-    \href{mailto:my@email.com}{\nolinkurl{my@email.com}}
+    Jasbi, Margaret Jacks Hall, Building 460 Rm. 127, Stanford, CA,
+    94305-2150. E-mail:
+    \href{mailto:masoudj@stanford.edu}{\nolinkurl{masoudj@stanford.edu}}
   }
 
 
@@ -156,7 +164,7 @@ truth value judgment tasks from probabilistic utterance expectations.}
   \keywords{scalar implicature; methodology; linking hypothesis; experimental
 pragmatics; truth value judgment task \\
 
-    \indent Word count: X
+    \indent Word count: 9037
   }
 
 
@@ -211,35 +219,27 @@ result of a speaker producing the weaker of two ordered scalemates
 provided in (1-2).
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-\end{enumerate}
-
-\begin{itemize}
+\def\labelenumi{(\arabic{enumi})}
 \tightlist
 \item
-  \emph{Utterance:} Some of her pets are cats.
-\item
-  \emph{Implicature:} Some, but not all, of her pets are cats.
-\item
-  \emph{Scale:} 
-\end{itemize}
+  Some of her pets are cats.
+\end{enumerate}
+
+\emph{Implicature:} Some, but not all, of her pets are cats.
+
+\emph{Scale:} \(<\)all, some\(>\)
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\def\labelenumi{(\arabic{enumi})}
 \setcounter{enumi}{1}
-\item
-\end{enumerate}
-
-\begin{itemize}
 \tightlist
 \item
-  \emph{Utterance:} She owns a cat or a dog.
-\item
-  \emph{Implicature:} She owns a cat or a dog, but not both.
-\item
-  \emph{Scale:} 
-\end{itemize}
+  She owns a cat or a dog.
+\end{enumerate}
+
+\emph{Implicature:} She owns a cat or a dog, but not both.
+
+\emph{Scale:} \(<\)and, or\(>\)
 
 A listener, upon observing the utterances in (1-2a) typically infers
 that the speaker intended to convey the meanings in (1-2b),
@@ -935,13 +935,17 @@ utterance is in turn a function of that utterance's truth conditional
 content \([[u]](s)\) and her prior beliefs about the state of the world
 \(P_w(s)\).
 
+\$\$
+
 \begin{verbatim}
-$P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)$
+P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s) \\
 
-$P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) $
+P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) \\
 
-$P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
+P_{L_0}(s | u) \propto [[u]](s) * P_w(s)
 \end{verbatim}
+
+\$\$
 
 This view contrasts with the traditional view in that it is rooted in a
 quantitative formalization of pragmatic competence which provides us a

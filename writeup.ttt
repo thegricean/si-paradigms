@@ -1,0 +1,33 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+
+\caption{\label{tab:implicatureRate}\label{tab:modeltable}Model parameter estimates and their credible intervals. Rows marked with an asterisk in the evidence column do not contain 0 in the credible interval, thereby providing evidence for an effect.}
+\centering
+\begin{tabular}[t]{lrrrl}
+\toprule
+Predictors & Estimate & 2.5\% & 97.5\% & Evidence\\
+\midrule
+Intercept & -8.60 & -13.98 & -4.53 & *\\
+Link = Weak & -0.15 & -4.86 & 4.77 & \\
+Task = Quaternary & -1.83 & -8.08 & 4.20 & \\
+Task = Quinary & -4.05 & -10.90 & 2.38 & \\
+Task = Ternary & -1.45 & -7.31 & 4.56 & \\
+\addlinespace
+Implicature = Scalar & 6.09 & 1.00 & 12.29 & *\\
+Link = Weak : Task = Quaternary & 14.03 & 7.24 & 21.88 & *\\
+Link = Weak : Task = Quinary & 17.28 & 10.64 & 25.80 & *\\
+Link = Weak : Task = Ternary & 3.81 & -1.49 & 9.22 & \\
+Link = Weak : Implicature = Scalar & 0.90 & -4.01 & 6.43 & \\
+\addlinespace
+Task = Quaternary : Implicature = Scalar & -5.67 & -13.66 & 1.54 & \\
+Task = Quinary : Implicature = Scalar & -2.31 & -9.30 & 4.61 & \\
+Task = Ternary : Implicature = Scalar & -1.31 & -7.70 & 4.65 & \\
+Link=Weak : Task=Quaternary : Implicature=Scalar & -3.29 & -12.07 & 4.55 & \\
+Link=Weak : Task=Quinary : Implicature=Scalar & -7.74 & -16.59 & -0.16 & *\\
+Link=Weak : Task=Ternary : Implicature=Scalar & -1.44 & -7.00 & 4.22 & \\
+\bottomrule
+\end{tabular}
+\end{table*}
+\efloatseparator
+ 
