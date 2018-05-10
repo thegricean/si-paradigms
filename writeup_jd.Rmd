@@ -1,0 +1,913 @@
+---
+title             : "Linking hypothesis and number of response options modulate inferred scalar implicature rate"
+shorttitle        : "Linking hypotheses and implicature rate"
+author: 
+    
+  - name          : "Masoud Jasbi"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "XXX Postal address"
+    email         : "XXX my@email.com"
+  - name          : "Brandon Waldon"
+    affiliation   : "1"
+  - name          : "Judith Degen"
+    affiliation   : "1"
+affiliation:
+  - id            : "1"
+    institution   : "Stanford University"
+author_note: |
+  XXX Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+  Enter author note here.
+abstract: |
+  The past 15 years have seen increasing experimental investigations of core pragmatic questions in the ever more active and lively field of experimental pragmatics. Within experimental pragmatics, many of the core questions have relied on the operationalization of the theoretical notion of 'implicature rate'. Implicature rate based results have informed the work on acquisition, online processing, and scalar diversity, inter alia. Despite its theoretical importance. Implicature rate has  typically been quantified as the proportion of 'pragmatic' judgments in two-alternative forced choice truth value judgment tasks. Despite its theoretical importance, this linking hypothesis from implicature rate to behavioral responses has never been extensively tested. Here we show that two factors dramatically affect the 'implicature rate' inferred from truth value judgment tasks: a) the number of responses provided to participants; and b) the linking hypothesis about what constitutes a 'pragmatic' judgment. We argue that it is time for the field of experimental pragmatics to engage more seriously with its foundational assumptions about how theoretical notions map onto behaviorally measurable quantities, and present a sketch of an alternative linking hypothesis that derives behavior in truth value judgment tasks from probabilistic utterance expectations.
+keywords          : "scalar implicature; methodology; linking hypothesis; experimental pragmatics; truth value judgment task"
+wordcount         : "X"
+bibliography      : ["r-references.bib"]
+figsintext        : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+mask              : no
+class             : "man"
+output            : papaja::apa6_pdf
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r load_packages, include = FALSE}
+library(grid)
+library(gtable)
+library(papaja)
+library(tidyverse)
+library(magrittr)
+library(readr)
+library(png)
+library(jpeg)
+library(lme4)
+library(ggthemes)
+library(forcats)
+library(brms)
+library(DescTools)
+library(binom)
+library(knitr)
+theme_set(theme_bw(18))
+```
+
+```{r analysis_preferences}
+# Seed for random number generation
+set.seed(42)
+```
+
+# Introduction
+
+The past 15 years have seen the rise and development of a bustling and exciting new field at the intersection of linguistics, psychology, and philosophy: *experimental pragmatics* [@chierchia2001;@Noveck2003;@Bott2004;@Breheny2006;@DegenTanenhaus2015;@DegenTanenhaus2016;@Grodner2010;@huang2009;@Geurts2009;@noveck2008;@Bott2016;@Breheny2013;@VanTiel2014;@DeNeys2007;@Katsos2011;@Papafragou2004;@Barner2011;@Bonnefon2009;@Tomlinson2013]. Experimental pragmatics is devoted to experimentally testing theories of how language is used in context. How do listeners draw inferences about the -- often underspecified -- linguistic signal they receive from speakers? How do speakers choose between the many utterance alternatives they have at their disposal?
+
+The most prominently studied phenomenon in experimental pragmatics is undoubtedly *scalar implicature*. Scalar implicatures arise as a result of a speaker producing the weaker of two ordered scalemates [@grice1975; @Horn1972; @Hirschberg1985; @Geurts2010]. Examples are provided in (1-2).
+
+1. 
+  + *Utterance:* Some of her pets are cats.
+  + *Implicature:* Some, but not all, of her pets are cats.
+  + *Scale:* <all, some>
+
+2. 
+  + *Utterance:* She owns a cat or a dog.
+  + *Implicature:* She owns a cat or a dog, but not both.
+  + *Scale:* <and, or>
+  
+ 
+  
+A listener, upon observing the utterances in (1-2a) typically infers that the speaker intended to convey the meanings in (1-2b), respectively. Since @grice1975, the agreed-upon abstract rationalization the listener could give for their inference goes something like this: the speaker could have made a more informative statement by producing the stronger alternative (e.g., *All of her pets are cats.* in (1)). If the stronger alternative is true, they should have produced it to comply with the Cooperative Principle. They chose not to. I believe the speaker knows whether the stronger alternative is true. Hence, it must not be true. The derivation procedure for ad hoc exhaustive inferences such as in (3) is assumed to be calculable in the same way as for scalar implicatures, though the scale is assumed to be contextually driven.
+
+Because the basic reconstruction of the inference is much more easily characterized for scalar implicatures than for other implicatures, scalar implicatures have served as a test bed for many questions in experimental pragmatics, including, but not limited to:
+
+1. Are scalar inferences default inferences, in the sense that they arise unless blocked by (marked) contexts [@horn1984; @levinson2000; @Degen2015]?
+
+2. Are scalar inferences default inferences, in the sense that they are computed automatically in online processing and only cancelled by context in a second effortful step if required by context) [@Bott2004;@Breheny2006;@DegenTanenhaus2016;@Grodner2010;@huang2009;@Politzer-Ahles2013;@Tomlinson2013]?
+
+3. What are the (linguistic and extra-linguistic) factors that affect whether a scalar implicature is derived [@Zondervan2010;@DegenTanenhaus2015; @DegenTanenhaus2016; @Degen2015; @Degen2014; @Bergen2012; @Breheny2006; @Breheny2013;@DeMarneffe2017;@DeNeys2007;@Bonnefon2009;@Chemla2011;@Potts2015]?
+
+4. How much diversity is there across implicature types, and within scalar implicatures across scale types, in whether or not an implicature is computed [@Doran2012;@VanTiel2014]?
+
+5. At what age do children acquire the ability to compute implicatures [@Noveck2001; @Papafragou2004; @Barner2011; @Stiller2015; @Horowitz2017; @Musolino2004;@Katsos2011]? 
+
+In addressing all of these questions, it has been crucial to obtain estimates of *implicature rates*. For 1., implicature rates from experimental tasks can be taken to inform whether scalar implicatures should be considered default inferences. For 2., processing measures on responses that indicate implicatures can be compared to processing measures on responses that indicate literal interpretations. For 3., contextual effects can be examined by comparing implicature rates across contexts. For 4., implicature rates can be compared across scales (or across implicature types). For 5., implicature rates can be compared across age groups.
+
+A standard measure that has stood as a proxy for implicature rate across many studies is the proportion of 'pragmatic' judgments in truth value judgment paradigms [@Bott2004;@Noveck2001;@Noveck2003;@Chemla2011;@Geurts2009;@DegenTanenhaus2015;@DeNeys2007;@Degen2014]. In these kinds of tasks, participants are provided a set of facts, either presented visually or via their own knowledge of the world. They are then asked to judge whether a sentence intended to describe those facts is true or false (or alternatively, whether it is right or wrong, or they are asked whether they agree or disagree with the sentence). The crucial condition for assessing implicature rates in these kinds of studies typically consists of a case where the facts are such that the stronger alternative is true and the target utterance is thus also true but underinformative. For instance, @Bott2004 asked participants to judge sentences like 'Some elephants are mammals', when world knowledge dictates that all elephants are mammals. Similarly, @DegenTanenhaus2015 asked participants to judge sentences like 'You got some of the gumballs' in situations where the visual evidence indicated that the participant received all the gumballs from a gumball machine. In these kinds of scenarios, the story goes, if a participant responds 'FALSE', that indicates that they computed a scalar implicature, eg to the effect of 'Not all elephants are mammals' or 'You didn't get all of the gumballs', which is (globally or contextually) false. If instead a participant responds 'TRUE', that is taken to indicate that they interpreted the utterance literally as `Some, and possibly all, elephants are mammals' or 'You got some, and possibly all, of the gumballs'.
+
+Given the centrality of the theoretical notion of 'implicature rate' to much of experimental pragmatics, there is to date a surprising lack of discussion of the basic assumption that it is adequately captured by the  proportion of FALSE responses in truth value judgment tasks (but see @BenzGotzner2014; @Geurts2009; @Degen2014; @Katsos2011). Indeed, the scalar implicature acquisition literature was shaken up when @Katsos2011 showed that simply by introducing an additional response option, children started looking much more pragmatic than had been previously observed in a binary judgment paradigm. @Katsos2011 allowed children to distribute 1, 2, or 3 strawberries to a puppet depending on 'how good the puppet said it'. The result was that children gave on average fewer strawberries to the puppet when he produced underinformative utterances compared to when he produced literally true and pragmatically felicitous utterances, suggesting that children do, in fact, display pragmatic ability even at ages when they had previously appeared not to.
+
+But this raises an important question: in truth value judgment tasks, how does the researcher know whether an interpretation is literal or the result of an implicature computation? The binary choice task typically used is appealing in part because it allows for a direct mapping from response options -- TRUE and FALSE -- to interpretations -- literal and pragmatic. That the seeming simplicity of this mapping is illusory becomes apparent once a third response option is introduced, as in the @Katsos2011 case. How is the researcher to interpret the intermediate option? @Katsos2011 grouped the intermediate option with the negative endpoint of the scale for the purpose of categorizing judgments as literal vs. pragmatic, i.e., they interpreted the intermediate option as pragmatic. But it seems just as plausible that they could have grouped it with the positive endpoint of the scale and taken the hard line that only truly FALSE responses constitute evidence of a full-fledged implicature. The point here is that there has been remarkably little consideration of *linking hypothesiss* between behavioral measures and theoretical constructs in experimental pragmatics, a problem in many subfields of psycholinguistics [@Tanenhaus2004]. We argue that it is time to engage more seriously with these issues. 
+
+We begin by reporting an experiment that addresses the following question: do the number of response options provided in a truth value judgment task and the way that responses are grouped into pragmatic ('SI') and literal ('no SI') change inferences about scalar implicature rates? Note that this way of asking the question presupposes two things: first, that whatever participants are doing in a truth value judgment task, the behavioral measure can be interpreted as providing a measure of interpretation; and second,  that listeners either do or do not compute an implicature on any given occasion. In the General Discussion we will discuss both of these issues. First, following @Degen2014, we will offer some remarks on why truth value judgment tasks are better thought of as measuring participants' estimates of speakers' *production* probabilities. This will suggest a completely different class of linking hypothesiss. Next, we discuss an alternative conception of scalar implicature as a probabilistic phenomeonen, a view that has recently rose to prominence in the subfield of probabilistic pragmatics [@Franke2016;@Goodman2016]. This alternative conception of scalar implicature, we argue, affords developing and testing quantitative linking hypothesiss in a rigorous and motivated way.
+
+Consider a setup in which a listener is presented a card with a depiction of either one or two animals (see Figure \@ref(fig:linkvisualization) for an example). As in a standard truth value judgment task, the listener then observes an underinformative utterance about this card (e.g., 'There is a cat or a dog on the card') and is asked to provide a judgment on a scale with 2, 3, 4, or 5 response options, with endpoints 'wrong' and 'right'.[^1] In the binary case, this reproduces the standard truth value judgment task. Figure \@ref(fig:linkvisualization) exemplifies (some of) the researcher's options for grouping responses. Under what we will call the 'Strong link' assumption, only the negative endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Under the 'Weak link' assumption, in contrast, any response that does not correspond to the positive endpoint of the scale is interpreted as evidence for a scalar implicature having been computed. Intermediate grouping schemes are also possible, but these are the ones we will consider here. Note that for the binary case, the Weak and Strong link return the same categorization scheme, but for any number of response options greater than 2, the Weak and Strong link can in principle lead to differences in inferences about implicature rate. 
+
+[^1]: An open question concerns the extent to which the labeling of points on the scale affects judgments (e.g., 'wrong'--'right' vs. 'false'--'true' vs. 'disagree'--'agree'). While some studies have used 'false'--'true', others have argued that judging truth may lead to meta-linguistic reasoning in participants that could distort judgments.  
+
+
+```{r linkvisualization, fig.asp=0.2,fig.cap = "Strong and Weak link from response options to researcher inference about scalar implicature rate, exemplified for the disjunctive utterance when the conjunction is true."}
+link_img <- png::readPNG("writeup_files/figures/link-visualization.png")
+grid::grid.raster(link_img)
+```
+
+Let's examine an example. Assume three response options (wrong, neither, right).  Assume further that each of the three responses was selected by a third of participants, i.e., the distributions of responses is 1/3, 1/3, and 1/3. Under the Strong link, we infer that this task yielded an implicature rate of 2/3. Under the Weak link, we infer that this task yielded an implicature rate of 1/3. This is quite a drastic difference if we are, for instance, interested in whether scalar implicatures are inference defaults and we would like to interpret an implicature rate of above an arbitrary threshold (e.g., 50%) as evidence for such a claim. Under the Strong link, we would conclude that scalar implicatures are not defaults. Under the Weak link, we would conclude that they are. In the experiment reported in the following section, we presented participants with exactly this setup. We manipulated the number of response options between participants and analyzed the results under different linking hypothesiss. 
+
+
+# Experiment
+
+Participants played an online card game in which they were asked to judge descriptions of the contents of cards. Different groups of participants were presented with different numbers of response options. On critical trials, participants were presented with descriptions for the cards that typically result in exhaustivity implicatures ("There is a cat on the card" when there was a cat and a dog) or scalar implicatures ("There is a cat or a dog on the card" when there was a cat and a dog). We categorized their responses on such trials according to the weak and the Strong link introduced above, and tested whether the number of response options and the linking hypothesiss led to different conclusions about the rate of computed implicatures in the experimental task.
+
+## Methods
+
+```{r importData, warning=FALSE, echo=FALSE}
+data <- read_csv("experiments/main/3_processed_data/data_main.csv")
+
+data$response_type <- recode(data$response_type, quatenary = "quaternary", tertiary = "ternary")
+
+# define an implicature column for the ad-hoc and implicature trials
+pragmatic_trials <- 
+  data %>%
+  filter(trial_type == "XY_XorY" | trial_type=="XY_X")
+
+# adding a column that defines pragmatic vs. literal
+
+# weak definition only considers the highest point on the scale as "literal" (Weak link in paper)
+pragmatic_trials$weak<-1
+pragmatic_trials[pragmatic_trials$response=="Right",]$weak <-0
+
+# strong definition only considers the lowest point on the scale as implicature (Strong link in paper)
+pragmatic_trials$strong<-0
+pragmatic_trials[pragmatic_trials$response=="Wrong",]$strong <-1
+
+implicature_rate <- 
+  pragmatic_trials %>% gather("definition","implicature", weak:strong)
+
+# changing trial type names to exhaustive vs. scalar
+implicature_rate$trial_type <-fct_recode(pragmatic_trials$trial_type, 
+                                         exhaustive = "XY_X", scalar = "XY_XorY")
+```
+
+###  Participants
+
+```{r participants}
+participants_info <-
+  data %>%
+  group_by(response_type) %>%
+  summarise(count = n()/24)
+
+mean_age <- mean(data$age)
+
+logic <- data %>% select(participant, logical_training) %>% unique()
+
+logicTraining <- table(logic$logical_training)
+```
+
+200 participants were recruited via Amazon Mechanical Turk. They optionally provided demographic information at the end of the study. Participants' mean age was `r round(mean_age)`. We also asked participants if they had any prior training in logic. `r logicTraining[[2]]` participants reported that they did, while `r logicTraining[[1]]` had no prior training in logic. All participants' data was included in the final analysis.
+
+### Materials and procedure
+
+The study was administered online through Amazon Mechanical Turk.[^2] Participants were first introduced to the set of cards we used in the study (Figure \@ref(fig:stimuli)). Each card depicted one or two animals, where an animal could be either a cat, a dog, or an elephant. Then participants were introduced to a blindfolded fictional character called Bob. Bob was blindfolded to avoid violations of ignorance expectations associated with the use of disjunction [@chierchia2001;@sauerland2004scalar] Participants were told that Bob would guess the contents of the cards and their task was to indicate whether Bob's guess was wrong or right. On each trial, participants saw a card and a sentence representing Bob's guess. For example, they saw a card with a cat and read the sentence "There is a cat on the card." They then provided an assessment of Bob's guess.  The study ended after 24 trials. 
+
+[^2]: The experiment can be viewed [here](https://cdn.rawgit.com/thegricean/si-paradigms/94a590f0/experiments/main/1_methods/online_experiment/connective_game.html).
+
+
+```{r stimuli, fig.asp=0.35, fig.cap = "Cards used in the connective guessing game."}
+cards_img <- jpeg::readJPEG("experiments/figs/cards.jpg")
+grid::grid.raster(cards_img)
+```
+
+Two factors were manipulated within participants: card type and  guess type. There were two types of cards, cards with only one animal on them and cards with two animals. There were three types of guesses: simple (e.g. *There is a cat*), conjunctive (e.g. *There is a cat and a dog*), and disjunctive (e.g. *There is a cat or a dog*). Crossing card type and guess type yielded trials of varying theoretical interest (see Figure \@ref(fig:trials)): critical underinformative trials that were likely to elicit pragmatic  inferences  (either scalar or exhaustive) and  control trials that were either unambiguously true  or false. Each trial type occurred three times with randomly sampled animals and utterances that satisfied the constraint of the trial type. Trial order was randomized.
+
+```{r trials, fig.asp=0.35, fig.cap = "Trial types (critical and control). Headers indicate utterance types. Rows indicate card types. Critical trials are marked in bold."}
+ trials_img <- jpeg::readJPEG("writeup_files/figures/trialtypes.jpeg")
+ grid::grid.raster(trials_img)
+ ```
+
+On critical trials, participants could derive implicatures in two ways. First, on trials on which two animals were present on the card (e.g., cat and dog) but Bob guessed only one of them (e.g. "There is a cat on the card"), the utterance could have a literal interpretation ("There is a cat and possibly another animal on the card") or an exhaustive interpretation ("There is only a cat on the card"). We refer to these trials as "exhaustive". Second, on trials on which two animals were on the card (e.g., a cat and a dog) and Bob used a disjunciton (e.g., "There is a cat or a dog on the card"), the utterance could have the literal, inclusive, interpretation, or a pragmatic, exclusive interpretation. We refer to these trials as "scalar". 
+ 
+In order to assess the effect of the number of response options on implicature rate, we manipulated number of response options in the forced choice task between participants. We refer to the choice conditions as 'binary' (options: *wrong*, *right*), 'ternary' (options: *wrong*, *neither*, *right*), 'quaternary' (options: *wrong*, *kinda wrong*, *kinda right*, *right*), and 'quinary' (*wrong*, *kinda wrong*, *neither*, *kinda right*, *right*). Thus, the endpoint labels always remained the same. If there was an uneven number of response options, the central option was *neither*. Participants were randomly assigned to one of the four task conditions.
+
+
+## Results and discussion
+
+```{r binaryData}
+binary_summary<-
+  data %>%
+  filter(response_type=="binary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), est=count/total)
+
+binary_summary_X_cat <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+binary_summary_X_cat_confint <-
+  binary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_cat <- binary_summary_X_cat %>% full_join(binary_summary_X_cat_confint, by="est")
+
+binary_summary_XY_cat <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+binary_summary_XY_cat_confint <-
+  binary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_cat <- binary_summary_XY_cat %>% full_join(binary_summary_XY_cat_confint, by="est")
+
+binary_summary_XY_ele <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+binary_summary_XY_ele_confint <-
+  binary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_ele <- binary_summary_XY_ele %>% full_join(binary_summary_XY_ele_confint, by="est") %>% unique()
+
+binary_summary_X_ele <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+binary_summary_X_ele_confint <-
+  binary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_ele <- binary_summary_X_ele %>% full_join(binary_summary_X_ele_confint, by="est") %>% unique()
+
+binary_summary_XY_and <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="XandY")
+binary_summary_XY_and_confint <-
+  binary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_and <- binary_summary_XY_and %>% full_join(binary_summary_XY_and_confint, by="est") %>% unique()
+
+binary_summary_X_and <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+binary_summary_X_and_confint <-
+  binary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_and <- binary_summary_X_and %>% full_join(binary_summary_X_and_confint, by="est") %>% unique()
+
+binary_summary_XY_or <-
+  binary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+binary_summary_XY_or_confint <-
+  binary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_XY_or <- binary_summary_XY_or %>% full_join(binary_summary_XY_or_confint, by="est") %>% unique()
+
+binary_summary_X_or <-
+  binary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+binary_summary_X_or_confint <-
+  binary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+binary_summary_X_or <- binary_summary_X_or %>% full_join(binary_summary_X_or_confint, by="est") %>% unique()
+
+binary_summary <- bind_rows(binary_summary_X_cat, binary_summary_XY_cat, binary_summary_XY_ele, binary_summary_X_ele, binary_summary_XY_and, binary_summary_X_and, binary_summary_XY_or, binary_summary_X_or)
+
+binary_summary$response <- factor(binary_summary$response, levels = c("Wrong","Right"))
+binary_summary$guess_type <- factor(binary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+binary_summary$guess_type <- recode(binary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+binary_summary <- binary_summary %>% rename(proportion = "est")
+```
+
+The collected dataset contains `r participants_info$count[1]` participants in the binary task, `r participants_info$count[4]` in the ternary task, `r participants_info$count[2]` in the quaternary task, and `r participants_info$count[3]` in the quinary task. Figures \@ref(fig:binaryPlot) to \@ref(fig:quinaryPlot)  show the proportions of response choices in each of the 8 trial types on each of the four response tasks, respectively. We report the relevant patterns of results qualitatively before turning to the quantitative analysis of interest.
+
+### Qualitative analysis
+
+
+```{r binaryPlot, fig.height=3.5, fig.cap = "Proportion of responses for the binary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
+binary_plot<-
+  binary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+  facet_grid(card_type~guess_type) +
+  labs(x="Response options (binary task)", y="Proportion of response")+
+  theme_few() +
+  theme(text = element_text(size=12)) +
+  scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+binary_plot_g <- ggplot_gtable(ggplot_build(binary_plot))
+
+strips <- grep("strip-r", binary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+binary_plot_g <- with(binary_plot_g$layout[strips,],
+          gtable_add_grob(binary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+binary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(binary_plot_g)
+
+binaryExh_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+binaryScalar_wrong <- binary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+```
+
+In the binary task, participants were at or close to ceiling in responding 'right' and 'wrong' on unambiguously true and false trials, respectively (see Figure \@ref(fig:binaryPlot)). However, on underinformative trials (i.e. a "cat" or "cat or dog" description for a card with both a cat and a dog), we observe pragmatic behavior: on exhaustive trials, participants judged the utterance "wrong" `r round(binaryExh_wrong$proportion*100)`% of the time;  on scalar trials, participants judged the utterance "wrong" `r round(binaryScalar_wrong$proportion*100)`% of the time. That is, both under the Weak and Strong link assumptions introduced in the Introduction, inferred implicature rate on exhaustive trials is `r round(binaryExh_wrong$proportion*100)`% and on scalar trials `r round(binaryScalar_wrong$proportion*100)`%.
+
+
+```{r ternaryData}
+ternary_summary<-
+  data %>%
+  filter(response_type=="ternary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), est=count/total)
+
+ternary_summary_X_cat <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+ternary_summary_X_cat_confint <-
+  ternary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_cat <- ternary_summary_X_cat %>% full_join(ternary_summary_X_cat_confint, by="est")
+
+ternary_summary_XY_cat <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+ternary_summary_XY_cat_confint <-
+  ternary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_cat <- ternary_summary_XY_cat %>% full_join(ternary_summary_XY_cat_confint, by="est")
+
+ternary_summary_XY_ele <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+ternary_summary_XY_ele_confint <-
+  ternary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_ele <- ternary_summary_XY_ele %>% full_join(ternary_summary_XY_ele_confint, by="est") %>% unique()
+
+ternary_summary_X_ele <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+ternary_summary_X_ele_confint <-
+  ternary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_ele <- ternary_summary_X_ele %>% full_join(ternary_summary_X_ele_confint, by="est") %>% unique()
+
+ternary_summary_XY_and <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="XandY")
+ternary_summary_XY_and_confint <-
+  ternary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_and <- ternary_summary_XY_and %>% full_join(ternary_summary_XY_and_confint, by="est") %>% unique()
+
+ternary_summary_X_and <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+ternary_summary_X_and_confint <-
+  ternary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_and <- ternary_summary_X_and %>% full_join(ternary_summary_X_and_confint, by="est") %>% unique()
+
+ternary_summary_XY_or <-
+  ternary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+ternary_summary_XY_or_confint <-
+  ternary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_XY_or <- ternary_summary_XY_or %>% full_join(ternary_summary_XY_or_confint, by="est") %>% unique()
+
+ternary_summary_X_or <-
+  ternary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+ternary_summary_X_or_confint <-
+  ternary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+ternary_summary_X_or <- ternary_summary_X_or %>% full_join(ternary_summary_X_or_confint, by="est") %>% unique()
+
+ternary_summary <- bind_rows(ternary_summary_X_cat, ternary_summary_XY_cat, ternary_summary_XY_ele, ternary_summary_X_ele, ternary_summary_XY_and, ternary_summary_X_and, ternary_summary_XY_or, ternary_summary_X_or)
+
+ternary_summary$response <- factor(ternary_summary$response, levels = c("Wrong","Neither", "Right"))
+ternary_summary$guess_type <- factor(ternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+ternary_summary$guess_type <- recode(ternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+ternary_summary <- ternary_summary %>% rename(proportion = "est")
+```
+
+```{r ternaryPlot, fig.height=3.5, fig.cap = "Proportion of responses for the ternary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
+ternary_plot<-
+  ternary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+  facet_grid(card_type~guess_type) +
+  labs(x="Response options (ternary task)", y="Proportion of response")+
+  theme_few() +
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+    scale_fill_manual(values = c("red4","grey", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+ternary_plot_g <- ggplot_gtable(ggplot_build(ternary_plot))
+
+strips <- grep("strip-r", ternary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+ternary_plot_g <- with(ternary_plot_g$layout[strips,],
+          gtable_add_grob(ternary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+ternary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(ternary_plot_g)
+
+ternaryExh_wrong <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+ternaryScalar_wrong <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+ternaryExh_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Neither")
+ternaryScalar_neither <- ternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
+```
+
+
+In the ternary task, participants were also at or close to ceiling in responding 'right' and 'wrong' on unambiguously true and false trials, respectively (see Figure \@ref(fig:ternaryPlot)). And again, on underinformative trials (a "cat" and "cat or dog" description for a card with both a cat and a dog), we observed pragmatic behavior: on exhaustive trials, participants considered the guess "wrong" `r round(ternaryExh_wrong$proportion*100)`% of the time and neither wrong nor right `r round(ternaryExh_neither$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(ternaryScalar_wrong$proportion*100)`% of the time and "neither" `r round(ternaryScalar_neither$proportion*100)`% of the time. This means that the Weak and Strong link lead to different conclusions about implicature rates on the ternary task. Under the Weak link, inferred implicature rate on exhaustive trials is `r round(ternaryExh_wrong$proportion*100) + round(ternaryExh_neither$proportion*100)`%; under the Strong link it is only `r round(ternaryExh_wrong$proportion*100)`%. Similarly, under the Weak link, inferred implicature rate on scalar trials is `r round(ternaryScalar_wrong$proportion*100) + round(ternaryScalar_neither$proportion*100)`%; under the Strong link it is only `r round(ternaryScalar_wrong$proportion*100)`%.
+
+
+
+```{r quaternaryData}
+quaternary_summary<-
+  data %>%
+  filter(response_type=="quaternary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), est=count/total)
+
+quaternary_summary_X_cat <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+quaternary_summary_X_cat_confint <-
+  quaternary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_cat <- quaternary_summary_X_cat %>% full_join(quaternary_summary_X_cat_confint, by="est")
+
+quaternary_summary_XY_cat <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+quaternary_summary_XY_cat_confint <-
+  quaternary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_cat <- quaternary_summary_XY_cat %>% full_join(quaternary_summary_XY_cat_confint, by="est")
+
+quaternary_summary_XY_ele <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+quaternary_summary_XY_ele_confint <-
+  quaternary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_ele <- quaternary_summary_XY_ele %>% full_join(quaternary_summary_XY_ele_confint, by="est") %>% unique()
+
+quaternary_summary_X_ele <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+quaternary_summary_X_ele_confint <-
+  quaternary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_ele <- quaternary_summary_X_ele %>% full_join(quaternary_summary_X_ele_confint, by="est") %>% unique()
+
+quaternary_summary_XY_and <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="XandY")
+quaternary_summary_XY_and_confint <-
+  quaternary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_and <- quaternary_summary_XY_and %>% full_join(quaternary_summary_XY_and_confint, by="est") %>% unique()
+
+quaternary_summary_X_and <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quaternary_summary_X_and_confint <-
+  quaternary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_and <- quaternary_summary_X_and %>% full_join(quaternary_summary_X_and_confint, by="est") %>% unique()
+
+quaternary_summary_XY_or <-
+  quaternary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+quaternary_summary_XY_or_confint <-
+  quaternary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_XY_or <- quaternary_summary_XY_or %>% full_join(quaternary_summary_XY_or_confint, by="est") %>% unique()
+
+quaternary_summary_X_or <-
+  quaternary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+quaternary_summary_X_or_confint <-
+  quaternary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quaternary_summary_X_or <- quaternary_summary_X_or %>% full_join(quaternary_summary_X_or_confint, by="est") %>% unique()
+
+quaternary_summary <- bind_rows(quaternary_summary_X_cat, quaternary_summary_XY_cat, quaternary_summary_XY_ele, quaternary_summary_X_ele, quaternary_summary_XY_and, quaternary_summary_X_and, quaternary_summary_XY_or, quaternary_summary_X_or)
+
+quaternary_summary$response <- factor(quaternary_summary$response, levels = c("Wrong","Kinda Wrong", "Kinda Right", "Right"))
+quaternary_summary$guess_type <- factor(quaternary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+quaternary_summary$guess_type <- recode(quaternary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+quaternary_summary <- quaternary_summary %>% rename(proportion = "est")
+```
+
+```{r quaternaryPlot, fig.height=4, fig.cap = "Proportion of responses for the quaternary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
+quaternary_plot<-
+  quaternary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="Response options (quaternary task)", y="Proportion of response")+
+  theme_few() +
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "springgreen2", "springgreen3"), guide=FALSE) + 
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+quaternary_plot_g <- ggplot_gtable(ggplot_build(quaternary_plot))
+
+strips <- grep("strip-r", quaternary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+quaternary_plot_g <- with(quaternary_plot_g$layout[strips,],
+          gtable_add_grob(quaternary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+quaternary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(quaternary_plot_g)
+
+quaternaryExh_kindaRight <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Right")
+quaternaryExh_wrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+quaternaryExh_kindaWrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Wrong")
+
+quaternaryScalar_wrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+quaternaryScalar_kindaWrong <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Wrong")
+quaternaryScalar_kindaRight <- quaternary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
+```
+
+In the quaternary task (Figure \@ref(fig:quaternaryPlot)), participants were again at or close to ceiling in responding 'right' and 'wrong' on 4 of the 6 unambiguously true and false trials. However, with four response options, two of the control conditions appear to be showing signs of pragmatic infelicity: when a conjunction was used and only one of the animals was on the card, participants considered the guess "wrong" most of the time, but they often considered it "kinda wrong" or even "kinda right". This suggests that perhaps participants considered the notion of a partially true or correct statement in our experimental setting. Disjunctive descriptions of cards with only one animal, while previously at ceiling for "right" responses, were downgraded to only "kinda right" 26% of the time, presumably because these utterances are also underinformative, though the degree of underinformativeness may be less egregious than on scalar trials.
+
+On underinformative exhaustive trials, we observed pragmatic behavior as before: participants judged the guess "wrong" `r round(quaternaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryExh_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryExh_kindaRight$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(quaternaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quaternaryScalar_kindaWrong$proportion*100)`% of the time, and "kinda right" `r round(quaternaryScalar_kindaRight$proportion*100)`% of the times.
+
+Thus, we are again forced to draw different conclusions about implicature rates depending on whether we assume the Weak link or the Strong link. Under the Weak link, inferred implicature rate on exhaustive trials is `r round(quaternaryExh_wrong$proportion*100) + round(quaternaryExh_kindaWrong$proportion*100) + round(quaternaryExh_kindaRight$proportion*100)`%; under the Strong link it is only `r round(quaternaryExh_wrong$proportion*100)`%. Similarly, under the Weak link, inferred implicature rate on scalar trials is `r round(quaternaryScalar_wrong$proportion*100) + round(quaternaryScalar_kindaWrong$proportion*100) + round(quaternaryScalar_kindaRight$proportion*100)`%; under the Strong link it is only `r round(quaternaryScalar_wrong$proportion*100)`%. 
+
+
+
+```{r quinaryData}
+quinary_summary<-
+  data %>%
+  filter(response_type=="quinary") %>%
+  group_by(card_type, guess_type, response) %>%
+  summarize(count=n()) %>%
+  group_by(card_type, guess_type) %>%
+  mutate(total = sum(count), est=count/total)
+
+quinary_summary_X_cat <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="X")
+quinary_summary_X_cat_confint <-
+  quinary_summary_X_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_cat <- quinary_summary_X_cat %>% full_join(quinary_summary_X_cat_confint, by="est")
+
+quinary_summary_XY_cat <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="X")
+quinary_summary_XY_cat_confint <-
+  quinary_summary_XY_cat$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_cat <- quinary_summary_XY_cat %>% full_join(quinary_summary_XY_cat_confint, by="est")
+
+quinary_summary_XY_ele <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="Z")
+quinary_summary_XY_ele_confint <-
+  quinary_summary_XY_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_ele <- quinary_summary_XY_ele %>% full_join(quinary_summary_XY_ele_confint, by="est") %>% unique()
+
+quinary_summary_X_ele <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="Z")
+quinary_summary_X_ele_confint <-
+  quinary_summary_X_ele$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_ele <- quinary_summary_X_ele %>% full_join(quinary_summary_X_ele_confint, by="est") %>% unique()
+
+quinary_summary_XY_and <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="XandY")
+quinary_summary_XY_and_confint <-
+  quinary_summary_XY_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_and <- quinary_summary_XY_and %>% full_join(quinary_summary_XY_and_confint, by="est") %>% unique()
+
+quinary_summary_X_and <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="XandY")
+quinary_summary_X_and_confint <-
+  quinary_summary_X_and$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_and <- quinary_summary_X_and %>% full_join(quinary_summary_X_and_confint, by="est") %>% unique()
+
+quinary_summary_XY_or <-
+  quinary_summary %>%
+  filter(card_type=="XY", guess_type=="XorY")
+quinary_summary_XY_or_confint <-
+  quinary_summary_XY_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_XY_or <- quinary_summary_XY_or %>% full_join(quinary_summary_XY_or_confint, by="est") %>% unique()
+
+quinary_summary_X_or <-
+  quinary_summary %>%
+  filter(card_type=="X", guess_type=="XorY")
+quinary_summary_X_or_confint <-
+  quinary_summary_X_or$count %>%
+  MultinomCI(conf.level = 0.95, method = "sisonglaz") %>% data.frame()
+quinary_summary_X_or <- quinary_summary_X_or %>% full_join(quinary_summary_X_or_confint, by="est") %>% unique()
+
+quinary_summary <- bind_rows(quinary_summary_X_cat, quinary_summary_XY_cat, quinary_summary_XY_ele, quinary_summary_X_ele, quinary_summary_XY_and, quinary_summary_X_and, quinary_summary_XY_or, quinary_summary_X_or)
+
+quinary_summary$response <- factor(quinary_summary$response, levels = c("Wrong","Kinda Wrong", "Neither", "Kinda Right", "Right"))
+quinary_summary$guess_type <- factor(quinary_summary$guess_type, levels = c("Z","X","XandY","XorY"))
+quinary_summary$guess_type <- recode(quinary_summary$guess_type, Z = "elephant", X = "cat", XandY = "cat and dog", XorY ="cat or dog")
+quinary_summary <- quinary_summary %>% rename(proportion = "est")
+```
+
+```{r quinaryPlot, fig.height=4, fig.cap = "Proportion of responses for the quinary forced choice judgments. Error bars indicate 95% bootstrapped confidence intervals."}
+quinary_plot<-
+  quinary_summary %>%
+  ggplot(aes(x=response, y=proportion, fill=response)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+#  geom_linerange(aes(ymax=cih, ymin=cil), position= position_dodge(width=0.9)) + 
+  facet_grid(card_type~guess_type) +
+  labs(x="Response options (quinary task)", y="Proportion of response")+
+  theme_few() +
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("red4", "red3", "grey", "springgreen2", "springgreen3"), guide=FALSE) +
+  geom_linerange(aes(ymin=lwr.ci,ymax=upr.ci))
+
+cat <- 
+  readJPEG("experiments/figs/cat_card.jpg") %>%
+  rasterGrob(width=0.9)
+
+cat_dog <- 
+  readJPEG("experiments/figs/catdog_card.jpg")%>%
+  rasterGrob(width=0.9)
+
+quinary_plot_g <- ggplot_gtable(ggplot_build(quinary_plot))
+
+strips <- grep("strip-r", quinary_plot_g$layout$name)
+
+new_grobs <- list(cat, cat_dog)
+
+quinary_plot_g <- with(quinary_plot_g$layout[strips,],
+          gtable_add_grob(quinary_plot_g, new_grobs,
+                          t=t, l=l, b=b, r=r, name="cards"))        
+quinary_plot_g$widths[[11]] <- unit(2.5,"cm")
+
+grid.draw(quinary_plot_g)
+
+quinaryExh_kindaRight <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Right")
+quinaryExh_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Wrong")
+quinaryExh_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Kinda Wrong")
+quinaryExh_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat", response=="Neither")
+
+quinaryScalar_wrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Wrong")
+quinaryScalar_kindaWrong <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Wrong")
+quinaryScalar_kindaRight <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Kinda Right")
+quinaryScalar_Neither <- quinary_summary %>% filter(card_type=="XY", guess_type=="cat or dog", response=="Neither")
+```
+
+
+Finally, Figure \@ref(fig:quinaryPlot) shows the proportion of responses in the quinary task. Performance on the 4 pragmatically felicitous control trials was again at floor and ceiling, respectively. The 2 control conditions in which the quaternary task had revealed pragmatic infelicity  again displayed that pragmatic infelicity in the quinary task, suggesting that this is a robust type of pragmatic infelicity that, nonetheless, requires fine-grained enough response options to be detected experimentally.
+
+On underinformative exhaustive trials, we observed pragmatic behavior as before: participants judged the guess "wrong" `r round(quinaryExh_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quinaryExh_kindaWrong$proportion*100)`% of the time, "neither" `r round(quinaryExh_Neither$proportion*100)`% of the time, and "kinda right" `r round(quinaryExh_kindaRight$proportion*100)`% of the time. On scalar trials, participants judged the guess "wrong" `r round(quinaryScalar_wrong$proportion*100)`% of the time, "kinda wrong" `r round(quinaryScalar_kindaWrong$proportion*100)`% of the time, "neither" `r round(quinaryScalar_Neither$proportion*100)`% of the time, and "kinda right" `r round(quinaryScalar_kindaRight$proportion*100)`% of the time.
+
+Thus, we would again draw different conclusions about implicature rates depending on whether we assume the Weak link or the Strong link. Under the Weak link, inferred implicature rate on exhaustive trials is `r round(quinaryExh_wrong$proportion*100) + round(quinaryExh_kindaWrong$proportion*100) + round(quinaryExh_Neither$proportion*100) + round(quinaryExh_kindaRight$proportion*100)`%; under the Strong link it is only `r round(quinaryExh_wrong$proportion*100)`%. Similarly, under the Weak link, inferred implicature rate on scalar trials is `r round(quinaryScalar_wrong$proportion*100) + round(quinaryScalar_kindaWrong$proportion*100) + round(quinaryScalar_Neither$proportion*100) + round(quinaryScalar_kindaRight$proportion*100)`%; under the Strong link it is only `r round(quinaryScalar_wrong$proportion*100)`%. 
+<!--
+In four trial types, participants provided the same responses regardless of how many response options were made available. The first two trial types include the guesses with an animal not on the card at all. In such trials, whether there was one or two animals on the card, participants considered the guess wrong. In the third and the fourth trial types, the gueses matched the aimal(s) on the card; if there was one animal on the card, that animal was mentioned and if there were two, both were mentioned using a conjunction. The fact that participants chose the extreme ends of the scale for these trial types and the responses did not change when intermediate options were provided suggests that participant judgments truly aligned with the opposite ends of the scale in these trial types. 
+
+In the trial type where the guess was a conjunction but only one of the animals was on the card, participants considered the guess wrong when fewer options were provided. However, in tasks with more options (four and five), participant responses were distributed between "wrong", "kinda wrong", and "kinda right" options, with the majority of responses being "wrong" or "kinda wrong". The graded nature of the judgments in this trial type suggests that participants do not consider such guesses as completely wrong. Similarly, 
+
+Finally, in exhaustive and scalar implicature trial types participants were less likely to choose the option "wrong" when they were given more intermediate options. Even though in the binary task task recorded participant judgments as  
+
+semantic violations vs. pragmatic violations
+-->
+
+### Quantitative analysis
+
+```{r implicatureResultss}
+implicature_results<-
+  implicature_rate %>%
+  group_by(response_type, trial_type, implicature, definition) %>%
+  summarize(counts = n()) %>%
+  group_by(response_type, trial_type, definition) %>%
+  mutate(total = sum(counts), proportion = counts/total)
+
+implicature_plot <- 
+  implicature_results %>% filter(implicature==1)
+
+binomial_confint<- binom.confint(implicature_plot$counts, implicature_plot$total, method="logit") %>%
+  rename(counts = "x", total="n")
+
+implicature_results <- implicature_plot %>% full_join(binomial_confint, by=c("total", "counts")) %>% unique
+
+implicature_results$response_type <- fct_relevel(implicature_results$response_type, "binary", "ternary", "quaternary", "quinary")
+implicature_results$implicature <- as.factor(implicature_results$implicature)
+```
+
+Our primary goal in this study was to test whether the estimated implicature rate in the experimental task is affected by the linking hypothesis and the number of response options available to participants. To this end, we only analyzed the critical trials (exhaustive and scalar). In particular, we classified each data point from critical trials as constituting an implicature (1) or not (0) under the Strong and Weak link. Figure \@ref(fig:implicatureRatePlot) shows the resulting implicature rates by condition and link.
+
+Visually, the Weak link tends to result in greater estimates of implicature rates, especially in tasks with more response options. Under the Strong link, this latter pattern is reversed: the binary and ternary judgment tasks result in greater estimates of implicature rates than with more response options. 
+
+
+```{r implicatureRatePlot, fig.width=4, fig.height=3, fig.cap = "Inferred implicature rates on exhaustive and scalar trials as obtained with the binary, ternary, quaternary, and quinary response task. Columns indicate link from response to implicature rate (strong: proportion of 'wrong judgments; weak: proportion of non-'right' judgments)."}
+ggplot(implicature_results, aes(x=response_type,y=proportion)) +
+  geom_bar(aes(fill=definition), stat="identity") +
+  facet_grid(trial_type~definition, drop = TRUE) +
+  theme_few() + 
+  labs(x="Response task", y="Inferred implicature rate") +
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1)) +
+  geom_linerange(aes(ymin=lower,ymax=upper)) + guides(fill=FALSE)
+```
+
+```{r implicatureRate, warning=FALSE}
+# The analysis takes time to run. To reproduce please run the commented lines. We have saved the results we obtained as a dataframe.
+
+#library(brms)
+
+#implicature_analysis_b <- brm(implicature ~ definition * response_type * trial_type + (definition*trial_type*response_type|card) + (definition*trial_type|participant), family="bernoulli", data=implicature_rate, control = list(adapt_delta = 0.99, max_treedepth = 15))
+
+#saveRDS(implicature_analysis_b, file = "implicature_analysis_b")
+#implicature_analysis_b <- readRDS("implicature_analysis_b")
+
+#fixed_effects <- data.frame(fixef(implicature_analysis_b))
+#write.csv(fixed_effects, "experiments/main/fixed_effect_estimates.csv")
+
+fixed_effects <- read_csv("experiments/main/fixed_effect_estimates.csv")
+
+fixed_effects$X1 <- c("Intercept", "Link = Weak", "Task = Quaternary", "Task = Quinary", "Task = Ternary", "Implicature = Scalar", "Link = Weak : Task = Quaternary", "Link = Weak : Task = Quinary", "Link = Weak : Task = Ternary", "Link = Weak : Implicature = Scalar", "Task = Quaternary : Implicature = Scalar", "Task = Quinary : Implicature = Scalar", "Task = Ternary : Implicature = Scalar", "Link=Weak : Task=Quaternary : Implicature=Scalar", "Link=Weak : Task=Quinary : Implicature=Scalar", "Link=Weak : Task=Ternary : Implicature=Scalar")
+
+fixed_effects_table <- 
+  fixed_effects %>%
+  rename(Predictors = "X1", `2.5%` = "X2.5.ile", `97.5%` = "X97.5.ile") %>%
+  select(-Est.Error) %>%
+  mutate(Evidence=sign(`2.5%`)==sign(`97.5%`)) %>%
+  mutate(Evidence=replace(Evidence,Evidence==TRUE,"*")) %>%
+  mutate(Evidence=replace(Evidence,Evidence==FALSE,""))
+
+kable(fixed_effects_table,digits = 2 , caption = "\\label{tab:modeltable}Model parameter estimates and their credible intervals. Rows marked with an asterisk in the evidence column do not contain 0 in the credible interval, thereby providing evidence for an effect.", booktabs = T)
+```
+
+To analyze the effect of link and response options on inferred implicature rate, we used a Bayesian binomial mixed effects model using the R packge "brms" [@burkner2016brms] with uninformative or weakly informative priors [^3]. The model predicted the log odds of implicature over no implicature from fixed effects of *response type* (binary, ternary, quaternary, quinary -- dummy-coded with binary as reference level), *link* (strong vs. weak -- dummy-coded with strong as reference level), and trial type (exhaustive vs. scalar -- dummy-coded, with exhaustive as reference level), as well as their two-way and three-way interactions. Following @barr2013random, we included the maximal random effects structure justified by the design: random intercepts for items (cards) and participants, random by-participant slopes for link, trial type, and their interaction, and random by-item slopes for link, trial type, response type, and their interactions. Since the number of response options was a between participant variable we did not include random slopes of response options for participants. Four chains converged after 2000 iterations each (warmup = 1000). Table \@ref(tab:modeltable) summarizes the mean parameter estimates and their 95% credible intervals. $\hat{R}=1$ for all estimated parameters. All the analytical decisions described here were pre-registered[^3].
+
+[^3]: For more information about the default priors of the "brms" package, see [the brms package manual](ftp://cran.r-project.org/pub/R/web/packages/brms/brms.pdf).
+
+The model provided evidence for the following effects: First, there was a main effect of trial type such that scalar trials resulted in greater implicature rates than exhaustive trials (Mean Estimate = `r round(fixed_effects$Estimate[6],2)`, 95% Credible Interval=[`r round(fixed_effects$X2.5.ile[6],2)`, `r round(fixed_effects$X97.5.ile[6],2)`]). Second, there was an interaction between link and number of response options such that the quaternary task (Mean Estimate = `r round(fixed_effects$Estimate[7],2)`, 95% Credible Interval=[`r round(fixed_effects$X2.5.ile[7],2)`, `r round(fixed_effects$X97.5.ile[7],2)`]) and the quinary task  (Mean Estimate = `r round(fixed_effects$Estimate[8],2)`, 95% Credible Interval=[`r round(fixed_effects$X2.5.ile[8],2)`, `r round(fixed_effects$X97.5.ile[8],2)`]) with a weak link resulted in greater implicature rates. Finally, there was a three-way interaction between link, trial type, and number of response options (Mean Estimate = `r round(fixed_effects$Estimate[15],2)`, 95% Credible Interval=[`r round(fixed_effects$X2.5.ile[15],2)`, `r round(fixed_effects$X97.5.ile[15],2)`]). One interpretation of this interaction is that the difference between the Weak and Strong link on scalar trials in the quinary task was smaller than on exhaustive trials, though we believe this is not too interesting, given that the binary reference level implicature estimate was lower for exhaustive trials in the first place. Crucially, both number of response options and link affect the inferred implicature rate.
+
+[^3]: You can access our pre-registration at [https://aspredicted.org/tq3sz.pdf](https://aspredicted.org/tq3sz.pdf)
+
+# General Discussion
+
+## Summary and methodological discussion
+
+In this paper we asked whether linking hypothesiss and number of response options available to participants in truth value judgment tasks affects inferred implicature rates. The results presented here suggest they do. A linking assupmtion that considered the highest point on the scale literal and any lower point  pragmatic (Weak link) resulted in higher implicature rates in tasks with 4 or 5 response options compared to the standard two options. A linking hypothesis that considered the lowest point on the scale pragmatic and any higher point literal (Strong link) reported lower implicature rates in tasks with 4 or 5 options compared to the standard two options. The results suggest that the choice of linking hypothesis is a crucial analytical step that can significantly impact the conclusions drawn from truth value judgment tasks. In particular, there is danger for pragmatic ability to be both under- and overestimated.
+
+While the binary truth value judgement task avoids the analytic decision between Strong and Weak linking hypothesiss, the results reported here suggest that binary tasks can also underestimate participants' pragmatic competence. In binary tasks, participants are often given the lowest and highest points on a scale ("wrong" vs. "right") and are asked to report pragmatic infelicities using the lowest point (e.g. "wrong"). The study reported here showed that on trials with true but pragmatically infelicitous descriptions, participants often avoided the lowest point on the scale if they were given more intermediate options. Even though the option "wrong" was available to participants in all tasks, participants in tasks with intermediate options chose it less often. In computing implicature rate, this pattern manifested itself as a decrease in implicature rate under the Strong link when more response options were provided, and an increase in implicature rate under the Weak link when more response options were provided. These observations are in line with @Katsos2011's argument that pragmatic violations are not as severe as semantic violations and participants do not penalize them as much. Providing participants with only the extreme ends of the scale (e.g. wrong/right, false/true) when pragmatic violations are considered to be of an intermediate nature risks misrepresentation of participants' pragmatic competence. It further suggests that in studies that use binary tasks to investigate response-contingent processing, proportions of "literal" responses may be a composite of both literal and pragmatic underlying interpretations that just happen to get mapped differently onto different response options by participants.
+
+This study did not investigate the effect of response labels on the inferred implicature rate. However, the results provided suggestive evidence that some options better capture participant intuitions of pragmatic infelicities than others. Among the intermediate options, "kinda right" was chosen most often to report pragmatic infelicities. The option "neither" was rarely used in the ternary and quinary tasks (where it was used as a midpoint), suggesting that participants interpreted pragmatic infelicities as different degrees of being "right" and not "neither right nor wrong." Therefore, options that capture degrees  of being "right" like "kinda right" may prove most suitable for capturing infelicity in the long run. We leave this as a methodological issue for future research.
+
+The study had three further design features worth investigating in future work. First, the utterances were ostensibly produced by a blindfolded character. This was an intentional decision to control for violation of ignorance expectations with disjunction. A disjunction such as "A or B" often carries an implication or expectation that the speaker is not certain which alternative actually holds. Future work should investigate how the violation of the ignorance expectation interacts with link and number of response options in inferred implicature rate. Second, in this study we considered exhaustive and scalar implicatures with *or*. If the observed effects of link and number of response options hold in general, they should be observable using other scales, e.g., on implicatures with *some*. Finally, our experiment was designed as a guessing game and the exact goal or task-relevant Question Under Discussion of the game was left implicit. Given the past literature on QUD effects on scalar implicature, we expect that different goals -- e.g., to help the character win more points vs. to help the character be more accurate -- would affect how strict or lenient participants are with their judgments and ultimately affect implicature rate in the task [@Degen2014;@Zondervan2010]. Future work should systematically vary the goal of the game and explore its effects on the inferred implicature rate. But crucially, it's unlikely that the observed effects of number of response options and linking hypothesis on inferred implicature rate are dependent on any of the discussed design choices. 
+
+
+## Revisiting linking hypothesiss
+
+On the traditional view of the link between implicature and behavior in sentence verification tasks, scalar implicature is conceptualized as a binary, categorical affair -- that is, an implicature is either ‘calculated’ or it isn’t, and the behavioral reflexes of this categorical interpretation process should be straightforwardly observed in experimental paradigms. This assumption raises concerns for analyzing variation in behavior on a truth value judgment task; for example, why did the majority of respondents in the binary condition of our experiment answer “right” to an utterance of the underinformative "There is a cat or dog" when the card had both a cat and a dog on it? And why did a sizeable minority nonetheless choose "wrong" in this same condition?
+
+To explain these data on the traditional view, we are forced to say that a) not all participants calculated the implicature; or that b) some participants who calculated the implicature did not choose the anticipated (i.e., "wrong") response due to some other cognitive process which overrode the 'correct' implicature behavior; or some mixture of (a) and (b). We might similarly posit that one or both of these factors underlie the variation in the ternary, quaternary, and quinary conditions. However, without an understanding of how to quantitatively specify the link between implicature calculation and its behavioral expression, the best we can hope for on this approach is an analysis which predicts general qualitative patterns in the data (e.g. a prediction of relatively more "right" responses than "wrong" responses in a given trial of our binary truth value judgment task, or a prediction of a rise in the rate of response of "right"/"wrong" between two experimental conditions, given some contextual manipulation). However, we should stress that to the best of our knowledge, even a qualitative analysis of this kind of variation in behavior on sentence verification tasks -- much less the effect of the number of response choices on that behavior -- is largely underdeveloped in the scalar implicature literature.
+
+We contrast the above view of implicature and its behavioral reflexes with an alternative linking hypothesis. Recent developments in the field of probabilistic pragmatics have demonstrated that pragmatic production and comprehension can be captured within the Rational Speech Act (RSA) framework  [@Frank2012; @Goodman2013; @Goodman2016; @Franke2016; @Qing2015; @Degen2013; @DegenTG2015; @Bergen2016; @Kao2014; @Scontras2017]. Much in the spirit of Gricean approaches to pragmatic competence, the RSA framework takes as its point of departure the idea that individuals are rational, goal-oriented communicative agents, who in turn assume that their interlocutors similarly behave according to general principles of cooperativity in communication. Just as in more traditional Gricean pragmatics, pragmatic inference and pragmatically-cooperative language production in the RSA framework are, at their core, the product of counterfactual reasoning about alternative utterances that one might produce (but does not, in the interest of cooperativity). However, the RSA framework explicitly and quantitatively models cooperative interlocutors as agents whose language production and comprehension is a function of Bayesian probabilistic inference regarding other interlocutors' expected behavior in a discourse context.  
+
+Specifically, in the RSA framework we model pragmatically competent listeners as continuous probabilistic distributions over possible meanings (states of the world) given an utterance which that listener observes. The probability with which this listener $L_1$ ascribes a meaning $s$ to an utterance $u$ depends upon a prior probability distribution of potential states of the world $P_w$, and upon reasoning about the communicative behavior of a speaker $S_1$. $S_1$ in turn is modeled as a continuous probabilistic distribution over possible utterances given an intended state of the world the speaker intends to communicate. This distribution is sensitive to a rationality parameter $\alpha$, the production cost $C$ of potential utterances, and the informativeness of the utterance, quantified via a representation of a literal listener $L_0$ whose interpretation of an utterance is in turn a function of that utterance's truth conditional content $[[u]](s)$ and her prior beliefs about the state of the world $P_w(s)$. 
+    
+    $P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)$
+
+    $P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) $
+    
+    $P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
+
+This view contrasts with the traditional view in that it is rooted in a quantitative formalization of pragmatic competence which provides us a continuous measure of pragmatic reasoning. In the RSA framework, individuals never categorically draw (or fail to draw) pragmatic inferences about the utterances they hear. For example, exclusivity readings of disjunction are represented in RSA as relatively lower posterior conditional probability of a conjunctive meaning on the $P_L$ distribution given an utterance of "or", compared to the prior probability of that meaning. Thus, absent auxiliary assumptions about what exactly would constitute 'implicature', it is not even possible to talk about rate of implicature calculation in the RSA framework. The upshot, as we show below, is that this view of pragmatic competence does allow us to talk explicitly and quantitatively about rates of observed behavior in sentence verification tasks.
+
+We take inspiration from the RSA approach and treat participants' behavior in our experimental tasks as the result of a soft-optimal pragmatic speaker in the RSA framework. That is, following @Degen2014, we proceed on the assumption that behavior on sentence verification tasks, such as truth value judgment tasks, is best modeled as a function of an individual’s mental representation of a cooperative interlocutor ($S_1$ in the language of RSA) rather than of a pragmatic listener who interprets utterances ($P_{L_1}$). In their paper, Degen & Goodman argue that sentence verification tasks are relatively more sensitive to contextual manipulations (such as manipulation of the Question Under Discussion) than are sentence interpretation tasks, and that this follows if sentence interpretation tasks -- but not sentence verification tasks -- require an additional layer of counterfactual reasoning about the intentions of a cooperative speaker. 
+
+A main desideratum of a behavioral linking hypothesis given the RSA view of pragmatic competence is to transform continuous probability distributions into categorical outputs (e.g. responses of “right”/”wrong” in the case of the binary condition of our experiment). For a given utterance $u$ and an intended communicated meaning $s$, $S_1$(u | s) outputs a conditional probability of $u$ given $s$. For example, in the binary condition of our experiment where a participant evaluated "There is a cat or a dog" when there were both animals on the card, the participant has access to the mental representation of $S_1$ and hence to the $S_1$ conditional probability of producing the utterance "cat or dog" given a dog and cat card: $S_1$("cat or dog" | cat and dog). According to the linking hypothesis advanced here, the participant provides a particular response to $u$ if the RSA speaker probability of $u$ lies within a particular probability interval. We model a responder, $R$, who in the binary condition responds “right” to an utterance $u$ in world $s$ just in case $S_1(u | s)$ exceeds some probability threshold $\theta$:
+
+R(u, w, $\theta$) 
+
+= “right” iff $S_1$(u | s) $>$ $\theta$
+
+= “wrong” otherwise
+
+The model of a responder in the binary condition is extended intuitively to the condition where participants had three response options. In this case, we allow for two probability thresholds: $\theta_1$, the minimum standard for an utterance in a given world state to count as "right", and $\theta_2$, the minimum standard for "neither". Thus, in the ternary condition, R(u, s, $\theta_1$ , $\theta_2$) is “right” iff $S_1$(u | s) > $\theta_1$ and “neither” iff $\theta_1$ > $S_1$(u | s) > $\theta_2$.
+To fully generalize the model to our five experimental conditions, we say that $R$ takes as its input an utterance $u$, a world state $s$, and a number of threshold variables dependent on a variable $c$, corresponding to the experimental condition in which the participant finds themself (e.g. the range of possible responses available to $R$). 
+
+Given c = “ternary”
+
+R(u, w, $\theta_1$ , $\theta_2$)
+
+= “right” iff $S_1$(u | s) $>$ $\theta_1$ 
+
+= “neither” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
+
+= “wrong” otherwise
+
+Given c = “quaternary”
+
+R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$)
+
+= “right” iff $S_1$(u | s) $>$ $\theta_1$ 
+
+= “kinda right” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
+
+= “kinda wrong” iff $\theta_2$ $>$ $S_1$(u | s) $>$ $\theta_3$ 
+
+= “wrong” otherwise
+
+Given c = “quinary”
+
+R(u, w, $\theta_1$ , $\theta_2$, $\theta_3$. $\theta_4$)
+
+= “right” iff $S_1$(u | s) $>$ $\theta_1$ 
+
+=“kinda right” iff $\theta_1$ $>$ $S_1$(u | s) $>$ $\theta_2$ 
+
+= “neither” iff $\theta_2$ $>$ $S_1$(u | s) $>$ $\theta_3$ 
+
+= “kinda wrong” iff $\theta_3$ $>$ $S_1$(u | s) $>$ $\theta_4$ 
+
+= “wrong” otherwise 
+
+In an RSA model, $S_1$(u | s) will be defined for any possible combination of possible utterance and possible world state. One consequence of this is that for the purposes of our linking hypothesis, participants are modeled as employing the same decision criterion -- does $S_1$(u | s) exceed the threshold? -- in both 'implicature' and 'non-implicature' conditions of a truth value judgment task experiment. That is, participants never evaluate utterances directly on the basis of logical truth or falsity: for example, our blindfolded character Bob's guess of "cat and dog" on a cat and dog card trial is "right" to the vast majority of participants not because the guess is logically true but because $S_1$("cat and dog" | cat and dog) is exceedingly high.
+
+For further illustration, we use our definition of a pragmatically-competent speaker $S_1$ (as defined above) to calculate the speaker probabilities of utterances in states of the world corresponding to our experimental conditions (i.e., for "cat", "dog", "cat and dog", and "elephant", given either a cat on the card, or both a cat and a dog on the card). In calculating these probabilities, we assume that the space of possible utterances is the set of utterances made by Bob in our experiment (i.e. any possible single, disjunctive, or conjunctive guess involving "cat", "dog", or "elephant"). For the purposes of our model, we assume a uniform cost term on all utterances. We furthermore assume that the space of possible meanings corresponds to the set of possible card configurations that a participant may have seen in our experiment, and that the prior probability distribution over these world states is uniform. Lastly, we set $\alpha$ -- the speaker rationality parameter -- to 1. The resulting speaker probabilities are shown in Figure \@ref(fig:speakerprobs).[^4]
+
+[^4]: Note that the probabilities in each facet don't sum to 1 because the model considers all possible disjunctive, conjunctive, and simple utterances, while we are only visualizing the ones corresponding to the experimental conditions.
+
+```{r speakerprobs, message=FALSE, warning=FALSE,fig.cap = "Speaker probabilities of utterances on the exhaustive and scalar trials, as obtained using the model described in this section."}
+
+speaker_probs <- read.csv("models/webppl_models/speaker_probs.csv")
+
+speaker_probs %>%
+  ggplot(aes(x=u, y=prob)) +
+  geom_bar(stat = "identity", position="dodge", width = 0.6) +
+  facet_wrap(~s) +
+  labs(x="", y= paste("Speaker probability ", "S(u | s)"))+
+  # theme_few() +
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1))
+  scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
+```
+
+
+The linking hypothesis under discussion assumes that speaker probabilities of utterance given meaning are invariant across a) our four different experimental conditions, b) across participants, and c) within participants (that is, participants are not capable of updating their $S_1$ distribution in a local discourse context). We note that the assumption (b) may conceivably be relaxed by allowing one or more of the parameters in the model -- including the prior probability over world states $P_w$, the cost function on utterances $C$, or the rationality parameter $\alpha$ -- to vary across participants. We also note that assumption (c) in particular is in tension with a growing body of empirical evidence that semantic and pragmatic interpretation is modulated by rapid adaptation to the linguistic and social features of one's interlocutors [@Kleinschmidt2015;@Fine2013].
+
+However, if we should like to keep the above assumptions in place, then we must look elsewhere to explain the observed variation in our experimental data. In particular, this linking hypothesis, coupled with our assumptions, commits us to explaining variation in the data in terms of the threshold parameters of our responder model $R$. Consider first the variation in response across different experimental conditions on a given trial, e.g. evaluation of a guess of "cat and dog" when the card contains both a cat and a dog. The variation in the proportion of responses of "right" on this trial between the binary, ternary, quaternary, and quinary conditions indicates that the threshold value for "right" responses must vary across conditions; that is, we predict that the $\theta$ of the binary condition will differ from, e.g., the $\theta_1$ of the ternary condition as well as the $\theta_1$ of the quaternary condition. We also observed variation in response on this trial within a single condition (for example, a sizeable minority of participants responded "wrong" to this trial in the binary condition). Thus, this linking hypothesis is committed to the notion that threshold values may vary across participants, such that a speaker probability of utterance $S_1$(u | s) can fall below $\theta$ for some subset of participants while $S_1$(u | s) itself remains constant across participants. 
+
+Lastly, it is conceivable that for two utterances of the same conditional probability and in the same experimental condition, a participant in our experiment provided a judgment of, e.g. "right" to one utterance but "wrong" to the other. That is, it is possible that there was within-subject variation in this experiment. One way to represent such variation would be to posit that the parameterization of threshold values proceeds stochastically and that threshold values are recalibrated for every individual sentence verification task. Rather than representing a threshold as a discrete value N between 0 and 1, we can represent that threshold as a distribution over possible threshold values -- with mass centered around N. Whenever an individual encounters a sentence verification task, such as a single trial of our truth value judgment task experiment, the threshold value is recalibrated by sampling from this distribution. If we allow values of $\theta$ to vary as a result of this schotastic process, for the possibility that $S_1$(u | s) sometimes falls below $\theta$ (and is otherwise above $\theta$) for a given participant.
+
+One outstanding empirical problem is the pattern of response we observed for "cat and dog" on trials where there was only a cat on the card. Because this utterance is strictly false in this world state, it is surprising -- on both the traditional view as well as on the account developed here -- that participants assigned this utterance ratings above "wrong" with any systematicity. However, this is exactly what we observed, particulary in the quaternary and quinary conditions of the experiment, where a sizeable minority of participants considered this utterance "kinda right". As Figure  \@ref(fig:speakerprobs) demonstrates, the conditional speaker probability of this utterance in this world state is 0; thus, there is no conceivable threshold value that would allow this utterance to ever be rated above "wrong" (on the reasonable assumption that the thresholds in our responder model $R$ should be nonzero). Any linking hypothesis will have to engage with this data point, and we leave to future work an analysis which captures participants' behavior in this condition. 
+
+For the time being, however, we present the above analysis as a proof of concept for the following idea: by relaxing the assumptions of the traditional view of scalar implicature (namely, that scalar implicatures either are or are not calculated, and that behavior on sentence verification tasks directly reflects this binary interpretation process), we can propose quantitative models of the variation in behavior we observe in experimental settings. We note that the linking analysis proposed here is just one in the space of possible analyses when traditional assumptions about scalar implicature are relaxed. For example, one might reject this threshold-based analysis in favor of one whereby responses are the outcomes of sampling on the (pragmatic speaker or pragmatic listener) probability distributions provided by an RSA model. We must leave this investigation to future work, but for now we emphasize that this kind of quantitative, data-driven and systematic model criticism is made available to researchers in experimental pragmatics by revising core assumptions about the nature of scalar implicature. Though we no longer have a crisp notion of scalar implicature as something that is or is not 'calculated' in interpretation, we have new flexibility to explicitly discuss categorical behavior in experimental settings.
+
+Concluding, we have shown in this paper that inferred 'implicature rate' -- ubiquitous in theoretical and experimental pragmatics -- as estimated in truth value judgment tasks, depends on both the number of responses participants are provided with as well as on the linking hypothesis from proportion of behavioral responses to 'implicature rate'. We further sketched an alternate linking hypothesis that treats behavioral responses as the result of probabilistic reasoning about speakers' likely productions. While a thorough model comparison is still outstanding, this kind of linking hypothesis opens a door towards more systematic and rigorous formulation and testing of linking hypotheses between theoretical notions of interest in pragmatics and behavioral responses in experimental paradigms.
+
+
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
