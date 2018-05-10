@@ -6,15 +6,15 @@ author:
   - name          : "Masoud Jasbi"
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
-    address       : "XXX Postal address"
-    email         : "XXX my@email.com"
+    address       : "Margaret Jacks Hall, Building 460 Rm. 127, Stanford, CA, 94305-2150"
+    email         : "masoudj@stanford.edu"
   - name          : "Brandon Waldon"
     affiliation   : "1"
   - name          : "Judith Degen"
     affiliation   : "1"
 affiliation:
   - id            : "1"
-    institution   : "Stanford University"
+    institution   : "Stanford University, Department of Linguistics"
 author_note: |
   XXX Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
   Enter author note here.
@@ -875,7 +875,7 @@ For further illustration, we use our definition of a pragmatically-competent spe
 
 [^4]: Note that the probabilities in each facet don't sum to 1 because the model considers all possible disjunctive, conjunctive, and simple utterances, while we are only visualizing the ones corresponding to the experimental conditions.
 
-```{r speakerprobs, message=FALSE, warning=FALSE,fig.cap = "Speaker probabilities of utterances on the exhaustive and scalar trials, as obtained using the model described in this section."}
+```{r speakerprobs, message=FALSE, warning=FALSE, fig.cap = "Speaker probabilities of utterances on the exhaustive and scalar trials, as obtained using the model described in this section."}
 
 speaker_probs <- read.csv("models/webppl_models/speaker_probs.csv")
 
@@ -885,10 +885,9 @@ speaker_probs %>%
   facet_wrap(~s) +
   labs(x="", y= paste("Speaker probability ", "S(u | s)"))+
   # theme_few() +
-  theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(text = element_text(size=12), axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(values = c("red4", "springgreen3"), guide=FALSE)
 ```
-
 
 The linking hypothesis under discussion assumes that speaker probabilities of utterance given meaning are invariant across a) our four different experimental conditions, b) across participants, and c) within participants (that is, participants are not capable of updating their $S_1$ distribution in a local discourse context). We note that the assumption (b) may conceivably be relaxed by allowing one or more of the parameters in the model -- including the prior probability over world states $P_w$, the cost function on utterances $C$, or the rationality parameter $\alpha$ -- to vary across participants. We also note that assumption (c) in particular is in tension with a growing body of empirical evidence that semantic and pragmatic interpretation is modulated by rapid adaptation to the linguistic and social features of one's interlocutors [@Kleinschmidt2015;@Fine2013].
 
@@ -901,8 +900,6 @@ One outstanding empirical problem is the pattern of response we observed for "ca
 For the time being, however, we present the above analysis as a proof of concept for the following idea: by relaxing the assumptions of the traditional view of scalar implicature (namely, that scalar implicatures either are or are not calculated, and that behavior on sentence verification tasks directly reflects this binary interpretation process), we can propose quantitative models of the variation in behavior we observe in experimental settings. We note that the linking analysis proposed here is just one in the space of possible analyses when traditional assumptions about scalar implicature are relaxed. For example, one might reject this threshold-based analysis in favor of one whereby responses are the outcomes of sampling on the (pragmatic speaker or pragmatic listener) probability distributions provided by an RSA model. We must leave this investigation to future work, but for now we emphasize that this kind of quantitative, data-driven and systematic model criticism is made available to researchers in experimental pragmatics by revising core assumptions about the nature of scalar implicature. Though we no longer have a crisp notion of scalar implicature as something that is or is not 'calculated' in interpretation, we have new flexibility to explicitly discuss categorical behavior in experimental settings.
 
 Concluding, we have shown in this paper that inferred 'implicature rate' -- ubiquitous in theoretical and experimental pragmatics -- as estimated in truth value judgment tasks, depends on both the number of responses participants are provided with as well as on the linking hypothesis from proportion of behavioral responses to 'implicature rate'. We further sketched an alternate linking hypothesis that treats behavioral responses as the result of probabilistic reasoning about speakers' likely productions. While a thorough model comparison is still outstanding, this kind of linking hypothesis opens a door towards more systematic and rigorous formulation and testing of linking hypotheses between theoretical notions of interest in pragmatics and behavioral responses in experimental paradigms.
-
-
 
 # References
 ```{r create_r-references}
