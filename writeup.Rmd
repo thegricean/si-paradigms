@@ -813,11 +813,15 @@ We contrast the above view of implicature and its behavioral reflexes with an al
 
 Specifically, in the RSA framework we model pragmatically competent listeners as continuous probabilistic distributions over possible meanings (states of the world) given an utterance which that listener observes. The probability with which this listener $L_1$ ascribes a meaning $s$ to an utterance $u$ depends upon a prior probability distribution of potential states of the world $P_w$, and upon reasoning about the communicative behavior of a speaker $S_1$. $S_1$ in turn is modeled as a continuous probabilistic distribution over possible utterances given an intended state of the world the speaker intends to communicate. This distribution is sensitive to a rationality parameter $\alpha$, the production cost $C$ of potential utterances, and the informativeness of the utterance, quantified via a representation of a literal listener $L_0$ whose interpretation of an utterance is in turn a function of that utterance's truth conditional content $[[u]](s)$ and her prior beliefs about the state of the world $P_w(s)$. 
     
-    $P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)$
+$$
 
-    $P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) $
+    P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s) \\
+
+    P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) \\
     
-    $P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
+    P_{L_0}(s | u) \propto [[u]](s) * P_w(s)
+
+$$
 
 This view contrasts with the traditional view in that it is rooted in a quantitative formalization of pragmatic competence which provides us a continuous measure of pragmatic reasoning. In the RSA framework, individuals never categorically draw (or fail to draw) pragmatic inferences about the utterances they hear. For example, exclusivity readings of disjunction are represented in RSA as relatively lower posterior conditional probability of a conjunctive meaning on the $P_L$ distribution given an utterance of "or", compared to the prior probability of that meaning. Thus, absent auxiliary assumptions about what exactly would constitute 'implicature', it is not even possible to talk about rate of implicature calculation in the RSA framework. The upshot, as we show below, is that this view of pragmatic competence does allow us to talk explicitly and quantitatively about rates of observed behavior in sentence verification tasks.
 
