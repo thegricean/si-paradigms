@@ -728,32 +728,28 @@ Link=Weak : Task=Ternary : Implicature=Scalar & -1.44 & -7.00 & 4.22 & \\
 To analyze the effect of link and response options on inferred
 implicature rate, we used a Bayesian binomial mixed effects model using
 the R packge \enquote{brms} (Bürkner \& others, 2016) with uninformative
-or weakly informative priors.\footnote{You can access our
-  pre-registration at \url{https://aspredicted.org/tq3sz.pdf}} The model
-predicted the log odds of implicature over no implicature from fixed
-effects of \emph{response type} (binary, ternary, quaternary, quinary --
-dummy-coded with binary as reference level), \emph{link} (strong
-vs.~weak -- dummy-coded with strong as reference level), and trial type
-(exhaustive vs.~scalar -- dummy-coded, with exhaustive as reference
-level), as well as their two-way and three-way interactions. Following
-Barr, Levy, Scheepers, and Tily (2013), we included the maximal random
-effects structure justified by the design: random intercepts for items
-(cards) and participants, random by-participant slopes for link, trial
-type, and their interaction, and random by-item slopes for link, trial
-type, response type, and their interactions. Since the number of
-response options was a between participant variable we did not include
-random slopes of response options for participants. Four chains
-converged after 2000 iterations each (warmup = 1000). Table
-\ref{tab:modeltable} summarizes the mean parameter estimates and their
-95\% credible intervals. \(\hat{R}=1\) for all estimated parameters. All
-the analytical decisions described here were pre-registered\footnote{You
-  can access our pre-registration at
+or weakly informative priors.\footnote{For more information about the
+  default priors of the \enquote{brms} package, see
+  \href{ftp://cran.r-project.org/pub/R/web/packages/brms/brms.pdf}{the
+  brms package manual}.} The model predicted the log odds of implicature
+over no implicature from fixed effects of \emph{response type} (binary,
+ternary, quaternary, quinary -- dummy-coded with binary as reference
+level), \emph{link} (strong vs.~weak -- dummy-coded with strong as
+reference level), and trial type (exhaustive vs.~scalar -- dummy-coded,
+with exhaustive as reference level), as well as their two-way and
+three-way interactions. Following Barr, Levy, Scheepers, and Tily
+(2013), we included the maximal random effects structure justified by
+the design: random intercepts for items (cards) and participants, random
+by-participant slopes for link, trial type, and their interaction, and
+random by-item slopes for link, trial type, response type, and their
+interactions. Since the number of response options was a between
+participant variable we did not include random slopes of response
+options for participants. Four chains converged after 2000 iterations
+each (warmup = 1000). Table \ref{tab:modeltable} summarizes the mean
+parameter estimates and their 95\% credible intervals. \(\hat{R}=1\) for
+all estimated parameters. All the analytical decisions described here
+were pre-registered\footnote{You can access our pre-registration at
   \url{https://aspredicted.org/tq3sz.pdf}}.
-
-{[}\^{}3: For more information about the default priors of the
-\enquote{brms} package, see
-\href{ftp://cran.r-project.org/pub/R/web/packages/brms/brms.pdf}{the
-brms package manual}.{]}
 
 The model provided evidence for the following effects: First, there was
 a main effect of trial type such that scalar trials resulted in greater
@@ -935,9 +931,11 @@ utterance is in turn a function of that utterance's truth conditional
 content \([[u]](s)\) and her prior beliefs about the state of the world
 \(P_w(s)\).
 
-\begin{verbatim}
-$P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s) \\ P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u))) \\ P_{L_0}(s | u) \propto [[u]](s) * P_w(s)$
-\end{verbatim}
+\(P_{L_1}(s | u) \propto P_{S_1}(u | s) * P_w(s)\)
+
+\(P_{S_1}(u | s) \propto exp(\alpha(log(L_0(s | u)) - C(u)))\)
+
+\(P_{L_0}(s | u) \propto [[u]](s) * P_w(s)\)
 
 This view contrasts with the traditional view in that it is rooted in a
 quantitative formalization of pragmatic competence which provides us a
