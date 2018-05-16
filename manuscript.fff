@@ -1,0 +1,99 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/linkvisualization-1.pdf}
+\caption{\label{fig:linkvisualization}Strong and Weak link from response
+options to researcher inference about scalar implicature rate,
+exemplified for the disjunctive utterance when the conjunction is true.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/stimuli-1.pdf}
+\caption{\label{fig:stimuli}Cards used in the connective guessing game.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/trials-1.pdf}
+\caption{\label{fig:trials}Trial types (critical and control). Headers
+indicate utterance types. Rows indicate card types. Critical trials are
+marked in bold.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/binaryPlot-1.pdf}
+\caption{\label{fig:binaryPlot}Proportion of responses for the binary forced
+choice judgments. Error bars indicate 95\% bootstrapped confidence
+intervals.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/ternaryPlot-1.pdf}
+\caption{\label{fig:ternaryPlot}Proportion of responses for the ternary
+forced choice judgments. Error bars indicate 95\% bootstrapped
+confidence intervals.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/quaternaryPlot-1.pdf}
+\caption{\label{fig:quaternaryPlot}Proportion of responses for the
+quaternary forced choice judgments. Error bars indicate 95\%
+bootstrapped confidence intervals.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/quinaryPlot-1.pdf}
+\caption{\label{fig:quinaryPlot}Proportion of responses for the quinary
+forced choice judgments. Error bars indicate 95\% bootstrapped
+confidence intervals.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/implicatureRatePlot-1.pdf}
+\caption{\label{fig:implicatureRatePlot}Inferred implicature rates on
+exhaustive and scalar trials as obtained with the binary, ternary,
+quaternary, and quinary response task. Columns indicate link from
+response to implicature rate (strong: proportion of \enquote{wrong
+judgments; weak: proportion of non-'right} judgments).}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{writeup_files/figure-latex/speakerprobs-1.pdf}
+\caption{\label{fig:speakerprobs}Speaker probabilities of utterances on the
+exhaustive and scalar trials, as obtained using the model described in
+this section.}
+\end{figure*}
+\efloatseparator
+ 
