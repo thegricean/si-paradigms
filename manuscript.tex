@@ -690,13 +690,8 @@ To this end, we only analyzed the critical trials (exhaustive and
 scalar). In particular, we classified each data point from critical
 trials as constituting an implicature (1) or not (0) under the Strong
 and Weak link. Figure \ref{fig:implicatureRatePlot} shows the resulting
-implicature rates by condition and link.
-
-Visually, the Weak link tends to result in greater estimates of
-implicature rates, especially in tasks with more response options. Under
-the Strong link, this latter pattern is reversed: the binary and ternary
-judgment tasks result in greater estimates of implicature rates than
-with more response options.
+implicature rates by condition and link. \change{It is immediately obvious that there is variability in inferred implicature rate. In particular, the Weak link appears to result in greater estimates of
+implicature rates in tasks with four or five response options, compared to the Strong link. For the binary and ternary task, the assumed link appears to play a much smaller role.}
 
 \begin{figure}
 \centering
@@ -740,8 +735,7 @@ Link=Weak : Task=Ternary : Implicature=Scalar & -1.44 & -7.00 & 4.22 & \\
 
 To analyze the effect of link and response options on inferred
 implicature rate, we used a Bayesian binomial mixed effects model using
-the R packge \enquote{brms} (Bürkner \& others, 2016) with uninformative
-or weakly informative priors.\footnote{For more information about the
+the R packge \enquote{brms} (Bürkner \& others, 2016) with weakly informative priors.\footnote{For more information about the
   default priors of the \enquote{brms} package, see
   \href{ftp://cran.r-project.org/pub/R/web/packages/brms/brms.pdf}{the
   brms package manual}.} The model predicted the log odds of implicature
@@ -755,13 +749,12 @@ three-way interactions. Following Barr, Levy, Scheepers, and Tily
 the design: random intercepts for items (cards) and participants, random
 by-participant slopes for link, trial type, and their interaction, and
 random by-item slopes for link, trial type, response type, and their
-interactions. Since the number of response options was a between
-participant variable we did not include random slopes of response
+interactions. Since the number of response options was a between-participant variable we did not include random slopes of response
 options for participants. Four chains converged after 2000 iterations
 each (warmup = 1000). Table \ref{tab:modeltable} summarizes the mean
 parameter estimates and their 95\% credible intervals. \(\hat{R}=1\) for
 all estimated parameters. All the analytical decisions described here
-were pre-registered\footnote{You can access our pre-registration at
+were pre-registered\footnote{Our preregistration can be accessed at
   \url{https://aspredicted.org/tq3sz.pdf}}.
 
 The model provided evidence for the following effects: First, there was
@@ -771,16 +764,13 @@ Credible Interval={[}1, 12.29{]}). Second, there was an interaction
 between link and number of response options such that the quaternary
 task (Mean Estimate = 14.03, 95\% Credible Interval={[}7.24, 21.88{]})
 and the quinary task (Mean Estimate = 17.28, 95\% Credible
-Interval={[}10.64, 25.80{]}) with a weak link resulted in greater
-implicature rates \change{than with a strong link}. Finally, there was a three-way interaction between
-link, trial type, and number of response options (Mean Estimate = -7.74,
-95\% Credible Interval={[}-16.59, -0.16{]}). One interpretation of this
-interaction is that the difference between the Weak and Strong link on
-scalar trials in the quinary task was smaller than on exhaustive trials,
-though we believe this is not too interesting, given that the binary
-reference level implicature estimate was lower for exhaustive trials in
-the first place. Crucially, both number of response options and link
-affect the inferred implicature rate.
+Interval={[}10.64, 25.80{]}) resulted in greater
+implicature rates \change{with a weak link than with a strong link, but there was no evidence of a link-dependent difference in inferred implicature rate for the binary and ternary task}. Finally, there was a three-way interaction between
+link, trial type, and number of response options, \change{driven by the binary/quinary contrast} (Mean Estimate = -7.74,
+95\% Credible Interval={[}-16.59, -0.16{]}). \change{Simple effects analysis on only the binary and and quinary trials, separately for the exhaustive and scalar subset of the data, revealed that the three-way interaction is driven by a different effect of number of response options under the Weak vs Strong link for the two inference types. Specifically, on exhaustive trials, number of response options (2 vs.~5) only resulted in greater implicature rates under the Weak ($\beta$ = .2, $p <$ .0001), but not the Strong link ($\beta$ = -.8, $p <$ .82). In contrast, on scalar trials, number of response options (2 vs.~5) resulted in greater implicature rates under the Weak ($\beta$ = 3.6, $p <$ .005) link, and in lower implicature rates under the Strong link ($\beta$ = -4.0, $p <$ .0007).}
+
+\change{In sum,} both number of response options and link
+affected the inferred implicature rate\change{, as did the type of inference (exhaustive vs.~scalar)}.
 
 \section{General Discussion}\label{general-discussion}
 
