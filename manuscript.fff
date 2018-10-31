@@ -7,8 +7,6 @@
 options to researcher inference about scalar implicature rate,
 exemplified for the disjunctive utterance when the conjunction is true.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -16,8 +14,6 @@ exemplified for the disjunctive utterance when the conjunction is true.}
 \includegraphics{writeup_files/figure-latex/stimuli-1.pdf}
 \caption{\label{fig:stimuli}Cards used in the connective guessing game.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -27,8 +23,6 @@ exemplified for the disjunctive utterance when the conjunction is true.}
 indicate utterance types. Rows indicate card types. Critical trials are
 marked in bold.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -38,8 +32,6 @@ marked in bold.}
 choice judgments. Error bars indicate 95\% bootstrapped confidence
 intervals.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -49,8 +41,6 @@ intervals.}
 forced choice judgments. Error bars indicate 95\% bootstrapped
 confidence intervals.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -60,8 +50,6 @@ confidence intervals.}
 quaternary forced choice judgments. Error bars indicate 95\%
 bootstrapped confidence intervals.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -71,8 +59,6 @@ bootstrapped confidence intervals.}
 forced choice judgments. Error bars indicate 95\% bootstrapped
 confidence intervals.}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -84,8 +70,6 @@ quaternary, and quinary response task. Columns indicate link from
 response to implicature rate (strong: proportion of \enquote{wrong
 judgments; weak: proportion of non-'right} judgments).}
 \end{figure*}
-\efloatseparator
- 
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
 
@@ -95,5 +79,3 @@ judgments; weak: proportion of non-'right} judgments).}
 exhaustive and scalar trials, as obtained using the model described in
 this section.}
 \end{figure*}
-\efloatseparator
- 
