@@ -1,0 +1,108 @@
+var states = [['X'], ['Y'], ['Z'], ['X','Y'], ['X','Z'], ['Y','Z'], ['X','Y','Z']];
+var utterances = ['X', 'Y', 'XorY', 'XandY', 'Z','XorZ','XandZ','YorZ','YandZ','XandYandZ','XorYorZ'];
+
+var statePrior = function() {
+  return uniformDraw(states)
+};
+
+var cost = function(u) {
+  return 1
+};
+
+var utterancePrior = function() {
+  return uniformDraw(utterances);
+};
+
+// literalMeanings: the sentence is true according to the truth conditions of the sentence
+
+var literalMeanings = {
+  X: function(state) { return state.includes('X'); },
+  Y: function(state) { return state.includes('Y'); },
+  Z: function(state) { return state.includes('Z'); },
+  XorY: function(state) { return state.includes('X') || state.includes('Y'); },
+  XandY: function(state) { return state.includes('X') && state.includes('Y'); },
+  XorZ: function(state) { return state.includes('X') || state.includes('Z'); },
+  XandZ: function(state) { return state.includes('X') && state.includes('Z'); },
+  YorZ: function(state) { return state.includes('Y') || state.includes('Z'); },
+  YandZ: function(state) { return state.includes('Y') && state.includes('Z'); },
+  XorYorZ: function(state) { return state.includes('X') || state.includes('Y') || state.includes('Z'); },
+  XandYandZ: function(state) { return state.includes('X') && state.includes('Y') && state.includes('Z'); },
+};
+
+
+var followsthat = function(exp1, exp2) {
+  var f = literalMeanings[exp1]
+  var g = literalMeanings[exp2]
+  var m = function() {
+    var s = statePrior()
+    //add the desired assumption:
+    condition(f(s))
+    return {'follows': g(s)}
+  };
+  var dist = Infer({}, m)
+  return dist 
+};
+
+var atomicsents = ["X", "Y", "Z"];
+
+// just takes the literalMeanings dictionary and "curries" it 
+
+var standardEvaluate = function (s) {
+  var f = literalMeanings[s]
+  return function (state) {
+      return f(state)
+  }
+}
+
+// returns an array of truth values. 
+
+var eval_entailedAtomicsents = function (exp, state) {
+  // e.g. entailedAtomicsents("XandY") = ["X","Y]:
+  var entailedAtomicsents = filter(function(x) { return Math.exp(followsthat(exp, x).score({"follows": true})) == 1; }, atomicsents)
+  // eval_entailedAtomicsents("XandY", ['X']) = [true, false]
+  map(function (exp) {
+    return standardEvaluate(exp)(state)
+  }, entailedAtomicsents)
+}
+
+// are any of an expression's entailments true given some world state?
+
+var trueofEntailments = function (exp, state) { 
+reduce(function (x, acc) {
+return x || acc
+}, false, eval_entailedAtomicsents(exp, state))
+}
+
+var partialEvaluate = function(exp) {
+  return function (state) {
+    return standardEvaluate(exp)(state) || trueofEntailments(exp, state)
+  }
+}
+
+var meaningsPrior = function() {
+  return (flip(0.95) ? standardEvaluate : partialEvaluate);
+};
+
+var literalListener = cache(function(utt) {
+  return Infer({model: function(){
+    var state = statePrior()
+    var interpretation = meaningsPrior()
+    var meaning = interpretation(utt)
+    condition(meaning(state))
+    return state;
+  }})
+});
+
+// set speaker optimality
+var alpha = 1
+
+// pragmatic speaker
+var speaker = cache(function(state) {
+  return Infer({model: function(){
+    var utt = utterancePrior()
+    factor(alpha * literalListener(utt).score(state))
+    return utt
+  }})
+});
+
+speaker(['X'])

@@ -778,6 +778,23 @@ fixed_effects_table <-
   mutate(Evidence=replace(Evidence,Evidence==FALSE,""))
 
 kable(fixed_effects_table,digits = 2 , caption = "\\label{tab:modeltable}Model parameter estimates and their credible intervals. Rows marked with an asterisk in the evidence column do not contain 0 in the credible interval, thereby providing evidence for an effect.", booktabs = T)
+
+## auxiliary analysis of 3-way interaction
+
+# exhaustive trials
+sbq = implicature_rate %>%
+  filter(response_type %in% c("binary","quinary") & trial_type == "scalar") %>%
+  droplevels()
+m.simple <- glmer(implicature ~ definition*response_type - response_type + (1|card) + (1|participant), family="binomial", data=sbq)
+summary(m.simple)
+
+# scalar trials
+ebq = implicature_rate %>%
+  filter(response_type %in% c("binary","quinary") & trial_type == "exhaustive") %>%
+  droplevels()
+m.simple <- glmer(implicature ~ definition*response_type - response_type + (1|card) + (1|participant), family="binomial", data=ebq)
+summary(m.simple)
+
 ```
 
 To analyze the effect of link and response options on inferred implicature rate, we used a Bayesian binomial mixed effects model using the R packge "brms" [@burkner2016brms] with uninformative or weakly informative priors [^3]. The model predicted the log odds of implicature over no implicature from fixed effects of *response type* (binary, ternary, quaternary, quinary -- dummy-coded with binary as reference level), *link* (strong vs. weak -- dummy-coded with strong as reference level), and trial type (exhaustive vs. scalar -- dummy-coded, with exhaustive as reference level), as well as their two-way and three-way interactions. Following @barr2013random, we included the maximal random effects structure justified by the design: random intercepts for items (cards) and participants, random by-participant slopes for link, trial type, and their interaction, and random by-item slopes for link, trial type, response type, and their interactions. Since the number of response options was a between participant variable we did not include random slopes of response options for participants. Four chains converged after 2000 iterations each (warmup = 1000). Table \@ref(tab:modeltable) summarizes the mean parameter estimates and their 95% credible intervals. $\hat{R}=1$ for all estimated parameters. All the analytical decisions described here were pre-registered[^5].
